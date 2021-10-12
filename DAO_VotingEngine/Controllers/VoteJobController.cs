@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using static Helpers.Constants.Enums;
 using static DAO_VotingEngine.Mapping.AutoMapperBase;
-using PagedList;
+using PagedList.Core;
 using DAO_VotingEngine.Mapping;
 using Helpers.Models.SharedModels;
 

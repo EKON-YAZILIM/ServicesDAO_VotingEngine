@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using static Helpers.Constants.Enums;
 using static DAO_ReputationService.Mapping.AutoMapperBase;
-using PagedList;
+using PagedList.Core;
 using Helpers.Models.SharedModels;
 using DAO_ReputationService.Mapping;
 
