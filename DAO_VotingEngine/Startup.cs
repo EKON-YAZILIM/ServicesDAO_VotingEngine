@@ -32,6 +32,20 @@ namespace DAO_VotingEngine
                 monitizer.AddException(rabbitControl.Exception, LogTypes.ApplicationError, true);
             }
 
+            ApplicationStartResult mysqlMigrationcontrol = mysql.Migrate(new dao_votesdb_context().Database);
+            if (!mysqlMigrationcontrol.Success)
+            {
+                monitizer.startSuccesful = -1;
+                monitizer.AddException(rabbitControl.Exception, LogTypes.ApplicationError, true);
+            }
+
+            ApplicationStartResult mysqlcontrol = mysql.Connect(_settings.DbConnectionString);
+            if (!mysqlcontrol.Success)
+            {
+                monitizer.startSuccesful = -1;
+                monitizer.AddException(mysqlcontrol.Exception, LogTypes.ApplicationError, true);
+            }
+
             if (monitizer.startSuccesful != -1)
             {
                 monitizer.startSuccesful = 1;
