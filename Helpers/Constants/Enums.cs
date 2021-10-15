@@ -59,6 +59,15 @@
             Admin,
             User
         }
-
+        /// <summary>
+        ///  Enum of current status of a job post
+        /// </summary>
+        public enum VoteStatusTypes
+        {
+            Pending,  
+            Active,
+            Waiting,
+            Completed
+        }
     }
 }

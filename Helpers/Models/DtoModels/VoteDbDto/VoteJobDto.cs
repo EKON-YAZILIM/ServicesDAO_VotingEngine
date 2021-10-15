@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using static Helpers.Constants.Enums;
 
 namespace Helpers.Models.DtoModels.VoteDbDto
 {
@@ -14,5 +15,6 @@ namespace Helpers.Models.DtoModels.VoteDbDto
         public DateTime CreateDate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public VoteStatusTypes Status { get; set; }
     }
 }

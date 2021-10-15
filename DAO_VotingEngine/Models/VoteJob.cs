@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using static Helpers.Constants.Enums;
 
 namespace DAO_VotingEngine.Models
 {
@@ -15,6 +16,7 @@ namespace DAO_VotingEngine.Models
         public DateTime CreateDate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public VoteStatusTypes Status { get; set; }
 
     }
 }
