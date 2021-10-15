@@ -175,5 +175,34 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
+
+        [Route("GetVoteJobsByStatus")]
+        [HttpGet]
+        public List<VoteJobDto> GetVoteJobsByStatus(Helpers.Constants.Enums.VoteStatusTypes? status)
+        {
+            List<VoteJob> model = new List<VoteJob>();
+
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    if(status != null)
+                    {
+                        model = db.VoteJobs.Where(x => x.Status == status).ToList();
+                    }
+                    else
+                    {
+                        model = db.VoteJobs.ToList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                model = new List<VoteJob>();
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return _mapper.Map<List<VoteJob>, List<VoteJobDto>>(model).ToList();
+        }
     }
 }

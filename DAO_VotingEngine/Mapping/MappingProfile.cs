@@ -14,8 +14,6 @@ namespace DAO_VotingEngine.Mapping
             CreateMap<VoteJob, VoteJobDto>();
             CreateMap<VoteJobDto, VoteJob>();
 
-  
-
         }
     }
 }

@@ -57,10 +57,11 @@
         public enum UserIdentityType
         {
             Admin,
-            User
+            Associate,
+            VotingAssociate
         }
         /// <summary>
-        ///  Enum of current status of a job post
+        ///  Enum of current status of a voting
         /// </summary>
         public enum VoteStatusTypes
         {

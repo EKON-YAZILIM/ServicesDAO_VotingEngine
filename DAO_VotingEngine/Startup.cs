@@ -36,7 +36,7 @@ namespace DAO_VotingEngine
             if (!mysqlMigrationcontrol.Success)
             {
                 monitizer.startSuccesful = -1;
-                monitizer.AddException(rabbitControl.Exception, LogTypes.ApplicationError, true);
+                monitizer.AddException(mysqlMigrationcontrol.Exception, LogTypes.ApplicationError, true);
             }
 
             ApplicationStartResult mysqlcontrol = mysql.Connect(_settings.DbConnectionString);
