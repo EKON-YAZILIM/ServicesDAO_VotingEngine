@@ -16,94 +16,94 @@ namespace DAO_VotingEngine.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class VoteJobController : Controller
+    public class VotingController : Controller
     {
         [Route("Get")]
         [HttpGet]
-        public IEnumerable<VoteJobDto> Get()
+        public IEnumerable<VotingDto> Get()
         {
-            List<VoteJob> model = new List<VoteJob>();
+            List<Voting> model = new List<Voting>();
 
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    model = db.VoteJobs.ToList();
+                    model = db.Votings.ToList();
                 }
             }
             catch (Exception ex)
             {
-                model = new List<VoteJob>();
+                model = new List<Voting>();
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
             }
 
-            return _mapper.Map<List<VoteJob>, List<VoteJobDto>>(model).ToArray();
+            return _mapper.Map<List<Voting>, List<VotingDto>>(model).ToArray();
         }
-        
+
         [Route("GetId")]
         [HttpGet]
-        public VoteJobDto GetId(int id)
+        public VotingDto GetId(int id)
         {
-            VoteJob model = new VoteJob();
+            Voting model = new Voting();
 
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    model = db.VoteJobs.Find(id);
+                    model = db.Votings.Find(id);
                 }
             }
             catch (Exception ex)
             {
-                model = new VoteJob();
+                model = new Voting();
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
             }
 
-            return _mapper.Map<VoteJob, VoteJobDto>(model);
+            return _mapper.Map<Voting, VotingDto>(model);
         }
 
         [Route("Post")]
         [HttpPost]
-        public VoteJobDto Post([FromBody] VoteJobDto model)
+        public VotingDto Post([FromBody] VotingDto model)
         {
             try
             {
-                VoteJob item = _mapper.Map<VoteJobDto, VoteJob>(model);
+                Voting item = _mapper.Map<VotingDto, Voting>(model);
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    db.VoteJobs.Add(item);
+                    db.Votings.Add(item);
                     db.SaveChanges();
                 }
-                return _mapper.Map<VoteJob, VoteJobDto>(item);
+                return _mapper.Map<Voting, VotingDto>(item);
             }
             catch (Exception ex)
             {
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
-                return new VoteJobDto();
+                return new VotingDto();
             }
         }
-       
+
         [Route("PostMultiple")]
         [HttpPost]
-        public List<VoteJobDto> PostMultiple([FromBody] List<VoteJobDto> model)
+        public List<VotingDto> PostMultiple([FromBody] List<VotingDto> model)
         {
             try
             {
-                List<VoteJob> item = _mapper.Map<List<VoteJobDto>, List<VoteJob>>(model);
+                List<Voting> item = _mapper.Map<List<VotingDto>, List<Voting>>(model);
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    db.VoteJobs.AddRange(item);
+                    db.Votings.AddRange(item);
                     db.SaveChanges();
                 }
-                return _mapper.Map<List<VoteJob>, List<VoteJobDto>>(item);
+                return _mapper.Map<List<Voting>, List<VotingDto>>(item);
             }
             catch (Exception ex)
             {
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
-                return new List<VoteJobDto>();
+                return new List<VotingDto>();
             }
         }
-       
+
         [Route("Delete")]
         [HttpDelete]
         public bool Delete(int? ID)
@@ -112,7 +112,7 @@ namespace DAO_VotingEngine.Controllers
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    VoteJob item = db.VoteJobs.FirstOrDefault(s => s.VoteJobID == ID);
+                    Voting item = db.Votings.FirstOrDefault(s => s.VotingID == ID);
                     db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
                     db.SaveChanges();
                 }
@@ -124,40 +124,40 @@ namespace DAO_VotingEngine.Controllers
                 return false;
             }
         }
-       
+
         [Route("Update")]
         [HttpPut]
-        public VoteJobDto Update([FromBody] VoteJobDto model)
+        public VotingDto Update([FromBody] VotingDto model)
         {
             try
             {
-                VoteJob item = _mapper.Map<VoteJobDto, VoteJob>(model);
+                Voting item = _mapper.Map<VotingDto, Voting>(model);
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
                     db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                 }
-                return _mapper.Map<VoteJob, VoteJobDto>(item);
+                return _mapper.Map<Voting, VotingDto>(item);
             }
             catch (Exception ex)
             {
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
-                return new VoteJobDto();
+                return new VotingDto();
             }
         }
-       
+
         [Route("GetPaged")]
         [HttpGet]
-        public PaginationEntity<VoteJobDto> GetPaged(int page = 1, int pageCount = 30)
+        public PaginationEntity<VotingDto> GetPaged(int page = 1, int pageCount = 30)
         {
-            PaginationEntity<VoteJobDto> res = new PaginationEntity<VoteJobDto>();
+            PaginationEntity<VotingDto> res = new PaginationEntity<VotingDto>();
 
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
 
-                    IPagedList<VoteJobDto> lst = AutoMapperBase.ToMappedPagedList<VoteJob, VoteJobDto>(db.VoteJobs.OrderByDescending(x => x.VoteJobID).ToPagedList(page, pageCount));
+                    IPagedList<VotingDto> lst = AutoMapperBase.ToMappedPagedList<Voting, VotingDto>(db.Votings.OrderByDescending(x => x.VotingID).ToPagedList(page, pageCount));
 
                     res.Items = lst;
                     res.MetaData = new PaginationMetaData() { Count = lst.Count, FirstItemOnPage = lst.FirstItemOnPage, HasNextPage = lst.HasNextPage, HasPreviousPage = lst.HasPreviousPage, IsFirstPage = lst.IsFirstPage, IsLastPage = lst.IsLastPage, LastItemOnPage = lst.LastItemOnPage, PageCount = lst.PageCount, PageNumber = lst.PageNumber, PageSize = lst.PageSize, TotalItemCount = lst.TotalItemCount };
@@ -176,33 +176,33 @@ namespace DAO_VotingEngine.Controllers
         }
 
 
-        [Route("GetVoteJobsByStatus")]
+        [Route("GetVotingByStatus")]
         [HttpGet]
-        public List<VoteJobDto> GetVoteJobsByStatus(Helpers.Constants.Enums.VoteStatusTypes? status)
+        public List<VotingDto> GetVotingByStatus(Helpers.Constants.Enums.VoteStatusTypes? status)
         {
-            List<VoteJob> model = new List<VoteJob>();
+            List<Voting> model = new List<Voting>();
 
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    if(status != null)
+                    if (status != null)
                     {
-                        model = db.VoteJobs.Where(x => x.Status == status).ToList();
+                        model = db.Votings.Where(x => x.Status == status).ToList();
                     }
                     else
                     {
-                        model = db.VoteJobs.ToList();
+                        model = db.Votings.ToList();
                     }
                 }
             }
             catch (Exception ex)
             {
-                model = new List<VoteJob>();
+                model = new List<Voting>(); 
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
             }
 
-            return _mapper.Map<List<VoteJob>, List<VoteJobDto>>(model).ToList();
+            return _mapper.Map<List<Voting>, List<VotingDto>>(model).ToList();
         }
     }
 }

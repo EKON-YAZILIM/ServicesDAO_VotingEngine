@@ -3,14 +3,16 @@ using System;
 using DAO_VotingEngine.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAO_VotingEngine.Migrations
 {
     [DbContext(typeof(dao_votesdb_context))]
-    partial class dao_votesdb_contextModelSnapshot : ModelSnapshot
+    [Migration("20211018132108_VoteJobs_deleted")]
+    partial class VoteJobs_deleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,35 +40,6 @@ namespace DAO_VotingEngine.Migrations
                     b.HasKey("VoteId");
 
                     b.ToTable("Votes");
-                });
-
-            modelBuilder.Entity("DAO_VotingEngine.Models.Voting", b =>
-                {
-                    b.Property<int>("VotingID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<bool>("IsFormal")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("JobID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("VotingID");
-
-                    b.ToTable("Votings");
                 });
 #pragma warning restore 612, 618
         }

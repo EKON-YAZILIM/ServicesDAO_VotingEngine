@@ -39,7 +39,7 @@ namespace DAO_VotingEngine.Controllers
 
             return _mapper.Map<List<Vote>, List<VoteDto>>(model).ToArray();
         }
-       
+
         [Route("GetId")]
         [HttpGet]
         public VoteDto GetId(int id)
@@ -82,7 +82,7 @@ namespace DAO_VotingEngine.Controllers
                 return new VoteDto();
             }
         }
-     
+
         [Route("PostMultiple")]
         [HttpPost]
         public List<VoteDto> PostMultiple([FromBody] List<VoteDto> model)
@@ -103,7 +103,7 @@ namespace DAO_VotingEngine.Controllers
                 return new List<VoteDto>();
             }
         }
-      
+
         [Route("Delete")]
         [HttpDelete]
         public bool Delete(int? ID)
@@ -124,7 +124,7 @@ namespace DAO_VotingEngine.Controllers
                 return false;
             }
         }
-    
+
         [Route("Update")]
         [HttpPut]
         public VoteDto Update([FromBody] VoteDto model)
@@ -145,7 +145,7 @@ namespace DAO_VotingEngine.Controllers
                 return new VoteDto();
             }
         }
-      
+
         [Route("GetPaged")]
         [HttpGet]
         public PaginationEntity<VoteDto> GetPaged(int page = 1, int pageCount = 30)
@@ -173,6 +173,28 @@ namespace DAO_VotingEngine.Controllers
             }
 
             return res;
+        }
+
+        [Route("GetAllVote")]
+        [HttpGet]
+        public List<VoteDto> GetAllVote(int VoteJobID)
+        {
+            List<Vote> model = new List<Vote>();
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    model = db.Votes.Where(x => x.VoteJobID == VoteJobID).ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                model = new List<Vote>();
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return _mapper.Map<List<Vote>, List<VoteDto>>(model).ToList();
         }
     }
 }

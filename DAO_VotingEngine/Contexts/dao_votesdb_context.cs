@@ -24,7 +24,7 @@ namespace DAO_VotingEngine.Contexts
 
         // public DbSet<InformalVote> InformalVotes { get; set; }
         //public DbSet<FormalVotes> FormalVotes { get; set; }
-        public DbSet<VoteJob> VoteJobs { get; set; }
+        public DbSet<Voting> Votings { get; set; }
         public DbSet<Vote> Votes { get; set; }
 
     }
