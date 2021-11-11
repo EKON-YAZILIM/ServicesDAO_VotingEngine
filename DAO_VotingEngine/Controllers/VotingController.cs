@@ -175,7 +175,6 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
-
         [Route("GetVotingByStatus")]
         [HttpGet]
         public List<VotingDto> GetVotingByStatus(Helpers.Constants.Enums.VoteStatusTypes? status)
@@ -204,5 +203,7 @@ namespace DAO_VotingEngine.Controllers
 
             return _mapper.Map<List<Voting>, List<VotingDto>>(model).ToList();
         }
+
+
     }
 }

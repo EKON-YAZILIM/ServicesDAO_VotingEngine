@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAO_VotingEngine.Migrations
 {
     [DbContext(typeof(dao_votesdb_context))]
-    [Migration("20211018132205_VoteJobs_added")]
-    partial class VoteJobs_added
+    [Migration("20211111092723_db_init")]
+    partial class db_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,6 +18,67 @@ namespace DAO_VotingEngine.Migrations
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.10");
+
+            modelBuilder.Entity("DAO_VotingEngine.Models.Auction", b =>
+                {
+                    b.Property<int>("AuctionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("InternalAuctionEndDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool?>("IsInternal")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("JobID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("JobPosterUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("PublicAuctionEndDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("WinnerAuctionBidID")
+                        .HasColumnType("int");
+
+                    b.HasKey("AuctionID");
+
+                    b.ToTable("Auctions");
+                });
+
+            modelBuilder.Entity("DAO_VotingEngine.Models.AuctionBid", b =>
+                {
+                    b.Property<int>("AuctionBidID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AuctionID")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
+
+                    b.Property<double>("ReputationStake")
+                        .HasColumnType("double");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AuctionBidID");
+
+                    b.ToTable("AuctionBids");
+                });
 
             modelBuilder.Entity("DAO_VotingEngine.Models.Vote", b =>
                 {

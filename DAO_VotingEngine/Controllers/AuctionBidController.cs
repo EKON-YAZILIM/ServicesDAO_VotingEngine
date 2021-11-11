@@ -1,5 +1,4 @@
 ﻿using DAO_VotingEngine.Contexts;
-using DAO_VotingEngine.Models;
 using Helpers.Models.DtoModels.VoteDbDto;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,99 +10,100 @@ using static DAO_VotingEngine.Mapping.AutoMapperBase;
 using PagedList.Core;
 using DAO_VotingEngine.Mapping;
 using Helpers.Models.SharedModels;
+using DAO_VotingEngine.Models;
 
 namespace DAO_VotingEngine.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class VoteController : Controller
+    public class AuctionBidController : Controller
     {
         [Route("Get")]
         [HttpGet]
-        public IEnumerable<VoteDto> Get()
+        public IEnumerable<AuctionBidDto> Get()
         {
-            List<Vote> model = new List<Vote>();
+            List<AuctionBid> model = new List<AuctionBid>();
 
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    model = db.Votes.ToList();
+                    model = db.AuctionBids.ToList();
                 }
             }
             catch (Exception ex)
             {
-                model = new List<Vote>();
+                model = new List<AuctionBid>();
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
             }
 
-            return _mapper.Map<List<Vote>, List<VoteDto>>(model).ToArray();
+            return _mapper.Map<List<AuctionBid>, List<AuctionBidDto>>(model).ToArray();
         }
-
+        
         [Route("GetId")]
         [HttpGet]
-        public VoteDto GetId(int id)
+        public AuctionBidDto GetId(int id)
         {
-            Vote model = new Vote();
+            AuctionBid model = new AuctionBid();
 
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    model = db.Votes.Find(id);
+                    model = db.AuctionBids.Find(id);
                 }
             }
             catch (Exception ex)
             {
-                model = new Vote();
+                model = new AuctionBid();
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
             }
 
-            return _mapper.Map<Vote, VoteDto>(model);
+            return _mapper.Map<AuctionBid, AuctionBidDto>(model);
         }
-
+        
         [Route("Post")]
         [HttpPost]
-        public VoteDto Post([FromBody] VoteDto model)
+        public AuctionBidDto Post([FromBody] AuctionBidDto model)
         {
             try
             {
-                Vote item = _mapper.Map<VoteDto, Vote>(model);
+                AuctionBid item = _mapper.Map<AuctionBidDto, AuctionBid>(model);
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    db.Votes.Add(item);
+                    db.AuctionBids.Add(item);
                     db.SaveChanges();
                 }
-                return _mapper.Map<Vote, VoteDto>(item);
+                return _mapper.Map<AuctionBid, AuctionBidDto>(item);
             }
             catch (Exception ex)
             {
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
-                return new VoteDto();
+                return new AuctionBidDto();
             }
         }
-
+        
         [Route("PostMultiple")]
         [HttpPost]
-        public List<VoteDto> PostMultiple([FromBody] List<VoteDto> model)
+        public List<AuctionBidDto> PostMultiple([FromBody] List<AuctionBidDto> model)
         {
             try
             {
-                List<Vote> item = _mapper.Map<List<VoteDto>, List<Vote>>(model);
+                List<AuctionBid> item = _mapper.Map<List<AuctionBidDto>, List<AuctionBid>>(model);
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    db.Votes.AddRange(item);
+                    db.AuctionBids.AddRange(item);
                     db.SaveChanges();
                 }
-                return _mapper.Map<List<Vote>, List<VoteDto>>(item);
+                return _mapper.Map<List<AuctionBid>, List<AuctionBidDto>>(item);
             }
             catch (Exception ex)
             {
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
-                return new List<VoteDto>();
+                return new List<AuctionBidDto>();
             }
         }
-
+        
         [Route("Delete")]
         [HttpDelete]
         public bool Delete(int? ID)
@@ -112,7 +112,7 @@ namespace DAO_VotingEngine.Controllers
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    Vote item = db.Votes.FirstOrDefault(s => s.VoteId == ID);
+                    AuctionBid item = db.AuctionBids.FirstOrDefault(s => s.AuctionBidID == ID);
                     db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
                     db.SaveChanges();
                 }
@@ -124,40 +124,40 @@ namespace DAO_VotingEngine.Controllers
                 return false;
             }
         }
-
+        
         [Route("Update")]
         [HttpPut]
-        public VoteDto Update([FromBody] VoteDto model)
+        public AuctionBidDto Update([FromBody] AuctionBidDto model)
         {
             try
             {
-                Vote item = _mapper.Map<VoteDto, Vote>(model);
+                AuctionBid item = _mapper.Map<AuctionBidDto, AuctionBid>(model);
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
                     db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                 }
-                return _mapper.Map<Vote, VoteDto>(item);
+                return _mapper.Map<AuctionBid, AuctionBidDto>(item);
             }
             catch (Exception ex)
             {
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
-                return new VoteDto();
+                return new AuctionBidDto();
             }
         }
-
+      
         [Route("GetPaged")]
         [HttpGet]
-        public PaginationEntity<VoteDto> GetPaged(int page = 1, int pageCount = 30)
+        public PaginationEntity<AuctionBidDto> GetPaged(int page = 1, int pageCount = 30)
         {
-            PaginationEntity<VoteDto> res = new PaginationEntity<VoteDto>();
+            PaginationEntity<AuctionBidDto> res = new PaginationEntity<AuctionBidDto>();
 
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
 
-                    IPagedList<VoteDto> lst = AutoMapperBase.ToMappedPagedList<Vote, VoteDto>(db.Votes.OrderByDescending(x => x.VoteId).ToPagedList(page, pageCount));
+                    IPagedList<AuctionBidDto> lst = AutoMapperBase.ToMappedPagedList<AuctionBid, AuctionBidDto>(db.AuctionBids.OrderByDescending(x => x.AuctionBidID).ToPagedList(page, pageCount));
 
                     res.Items = lst;
                     res.MetaData = new PaginationMetaData() { Count = lst.Count, FirstItemOnPage = lst.FirstItemOnPage, HasNextPage = lst.HasNextPage, HasPreviousPage = lst.HasPreviousPage, IsFirstPage = lst.IsFirstPage, IsLastPage = lst.IsLastPage, LastItemOnPage = lst.LastItemOnPage, PageCount = lst.PageCount, PageNumber = lst.PageNumber, PageSize = lst.PageSize, TotalItemCount = lst.TotalItemCount };
@@ -174,28 +174,5 @@ namespace DAO_VotingEngine.Controllers
 
             return res;
         }
-
-        [Route("GetAllVote")]
-        [HttpGet]
-        public List<VoteDto> GetAllVote(int VoteJobID)
-        {
-            List<Vote> model = new List<Vote>();
-            try
-            {
-                using (dao_votesdb_context db = new dao_votesdb_context())
-                {
-                    model = db.Votes.Where(x => x.VoteJobID == VoteJobID).ToList();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                model = new List<Vote>();
-                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
-            }
-
-            return _mapper.Map<List<Vote>, List<VoteDto>>(model).ToList();
-        }
-
     }
 }

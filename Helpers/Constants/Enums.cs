@@ -60,6 +60,19 @@
             Associate,
             VotingAssociate
         }
+
+        /// <summary>
+        ///  Enum of current status of an auction
+        /// </summary>
+        public enum AuctionStatusTypes
+        {
+            AdminApproval,
+            InternalBidding,
+            PublicBidding,
+            Completed,
+            Expired
+        }
+
         /// <summary>
         ///  Enum of current status of a voting
         /// </summary>
@@ -68,7 +81,8 @@
             Pending,  
             Active,
             Waiting,
-            Completed
+            Completed,
+            Expired
         }
     }
 }

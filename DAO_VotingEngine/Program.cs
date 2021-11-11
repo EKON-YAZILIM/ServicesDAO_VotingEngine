@@ -19,6 +19,12 @@ namespace DAO_VotingEngine
             public string RabbitMQUrl { get; set; }
             public string RabbitMQUsername { get; set; }
             public string RabbitMQPassword { get; set; }
+
+            public int InternalAuctionDays { get; set; }
+            public int PublicAuctionDays { get; set; }
+            public int InformalVotingDays { get; set; }
+            public int FormalVotingDays { get; set; }
+
         }
 
         public static Monitizer monitizer;
