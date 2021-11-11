@@ -18,6 +18,7 @@ namespace DAO_VotingEngine.Models
         public DateTime EndDate { get; set; }
         public VoteStatusTypes Status { get; set; }
         public int? QuorumCount { get; set; }
+        public VoteTypes Type { get; set; }
 
     }
 

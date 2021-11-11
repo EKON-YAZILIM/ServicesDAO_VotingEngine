@@ -64,9 +64,6 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double");
 
-                    b.Property<double>("ReputationStake")
-                        .HasColumnType("double");
-
                     b.Property<string>("Time")
                         .HasColumnType("text");
 
@@ -87,11 +84,8 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime");
 
-                    b.Property<double>("Reputation")
-                        .HasColumnType("double");
-
-                    b.Property<string>("Side")
-                        .HasColumnType("text");
+                    b.Property<int>("Direction")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
@@ -129,6 +123,9 @@ namespace DAO_VotingEngine.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("VotingID");

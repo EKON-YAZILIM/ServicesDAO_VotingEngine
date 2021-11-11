@@ -3,14 +3,16 @@ using System;
 using DAO_ReputationService.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAO_ReputationService.Migrations
 {
     [DbContext(typeof(dao_reputationserv_context))]
-    partial class dao_reputationserv_contextModelSnapshot : ModelSnapshot
+    [Migration("20211111183300_dbinit")]
+    partial class dbinit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

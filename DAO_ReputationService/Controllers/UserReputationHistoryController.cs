@@ -1,6 +1,5 @@
 ﻿using DAO_ReputationService.Contexts;
 using DAO_ReputationService.Models;
-using Helpers.Models.DtoModels.VoteDbDto;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using static DAO_ReputationService.Mapping.AutoMapperBase;
 using PagedList.Core;
 using Helpers.Models.SharedModels;
 using DAO_ReputationService.Mapping;
+using Helpers.Models.DtoModels.ReputationDbDto;
 
 namespace DAO_ReputationService.Controllers
 {
@@ -207,7 +207,7 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-                    IPagedList<UserReputationHistoryDto> lst = AutoMapperBase.ToMappedPagedList<UserReputationHistory, UserReputationHistoryDto>(db.UserReputationHistories.Where(x =>x.Explanation.Contains(query)).ToPagedList(page, pageCount));
+                    IPagedList<UserReputationHistoryDto> lst = AutoMapperBase.ToMappedPagedList<UserReputationHistory, UserReputationHistoryDto>(db.UserReputationHistories.Where(x => x.Explanation.Contains(query)).ToPagedList(page, pageCount));
 
                     res.Items = lst;
                     res.MetaData = new PaginationMetaData() { Count = lst.Count, FirstItemOnPage = lst.FirstItemOnPage, HasNextPage = lst.HasNextPage, HasPreviousPage = lst.HasPreviousPage, IsFirstPage = lst.IsFirstPage, IsLastPage = lst.IsLastPage, LastItemOnPage = lst.LastItemOnPage, PageCount = lst.PageCount, PageNumber = lst.PageNumber, PageSize = lst.PageSize, TotalItemCount = lst.TotalItemCount };
@@ -222,5 +222,50 @@ namespace DAO_ReputationService.Controllers
             }
 
         }
+
+        [Route("GetByUserId")]
+        [HttpGet]
+        public IEnumerable<UserReputationHistoryDto> GetByUserId(int userid)
+        {
+            List<UserReputationHistory> model = new List<UserReputationHistory>();
+
+            try
+            {
+                using (dao_reputationserv_context db = new dao_reputationserv_context())
+                {
+                    model = db.UserReputationHistories.Where(x => x.UserID == userid).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                model = new List<UserReputationHistory>();
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return _mapper.Map<List<UserReputationHistory>, List<UserReputationHistoryDto>>(model).ToArray();
+        }
+
+        [Route("GetLastReputation")]
+        [HttpGet]
+        public UserReputationHistoryDto GetLastReputation(int userid)
+        {
+            UserReputationHistory model = new UserReputationHistory();
+
+            try
+            {
+                using (dao_reputationserv_context db = new dao_reputationserv_context())
+                {
+                    model = db.UserReputationHistories.LastOrDefault(x => x.UserID == userid);
+                }
+            }
+            catch (Exception ex)
+            {
+                model = new UserReputationHistory();
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return _mapper.Map<UserReputationHistory, UserReputationHistoryDto>(model);
+        }
+
     }
 }

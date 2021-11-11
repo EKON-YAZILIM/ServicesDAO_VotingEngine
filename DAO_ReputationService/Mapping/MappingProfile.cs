@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DAO_ReputationService.Models;
-using Helpers.Models.DtoModels.VoteDbDto;
+using Helpers.Models.DtoModels.ReputationDbDto;
 
 namespace DAO_ReputationService.Mapping
 {
@@ -8,13 +8,11 @@ namespace DAO_ReputationService.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<UserReputation, UserReputationDto>();
-            CreateMap<UserReputationDto, UserReputation>();
-
             CreateMap<UserReputationHistory, UserReputationHistoryDto>();
             CreateMap<UserReputationHistoryDto, UserReputationHistory>();
 
-         
+            CreateMap<UserReputationStake, UserReputationStakeDto>();
+            CreateMap<UserReputationStakeDto, UserReputationStake>();
 
         }
     }

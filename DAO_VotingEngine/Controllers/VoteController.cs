@@ -11,6 +11,7 @@ using static DAO_VotingEngine.Mapping.AutoMapperBase;
 using PagedList.Core;
 using DAO_VotingEngine.Mapping;
 using Helpers.Models.SharedModels;
+using Helpers.Models.DtoModels.ReputationDbDto;
 
 namespace DAO_VotingEngine.Controllers
 {
@@ -197,5 +198,56 @@ namespace DAO_VotingEngine.Controllers
             return _mapper.Map<List<Vote>, List<VoteDto>>(model).ToList();
         }
 
+        [Route("SubmitVote")]
+        [HttpPost]
+        public SimpleResponse SubmitVote(int VotingID, int UserID, VoteDirection direction, double? reputationStake)
+        {
+            SimpleResponse res = new SimpleResponse();
+
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    //Save vote into database
+                    Vote vote = new Vote();
+                    vote.Date = DateTime.Now;
+                    vote.Direction = direction;
+                    vote.VotingID = VotingID;
+                    vote.UserID = UserID;
+                    db.Votes.Add(vote);
+                    db.SaveChanges();
+
+                    //Check if reputation is staked
+                    Voting voteProcess = db.Votings.Find(VotingID);
+                    if (reputationStake != null && voteProcess.Type != VoteTypes.Simple && voteProcess.Type != VoteTypes.Governance && voteProcess.Type != VoteTypes.Simple)
+                    {
+                        UserReputationStakeDto repModel = new UserReputationStakeDto();
+                        repModel.ReferenceID = vote.VoteID;
+                        repModel.ReferenceProcessID = vote.VotingID;
+                        repModel.UserID = vote.UserID;
+                        repModel.Amount = Convert.ToDouble(reputationStake);
+                        repModel.Direction = direction;
+
+                        var jsonResult = Helpers.Request.Post(Program._settings.Service_Reputation_Url + "/UserReputationStake/SubmitStake", Helpers.Serializers.SerializeJson(repModel));
+
+                        SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
+
+                        if(parsedResult.Success == false)
+                        {
+                            db.Votes.Remove(vote);
+                            db.SaveChanges();
+                        }
+
+                        return parsedResult;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return res;
+        }
     }
 }

@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace DAO_VotingEngine.Migrations
 {
-    public partial class db_init : Migration
+    public partial class dbinit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,8 +17,7 @@ namespace DAO_VotingEngine.Migrations
                     AuctionID = table.Column<int>(type: "int", nullable: false),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "double", nullable: false),
-                    Time = table.Column<string>(type: "text", nullable: true),
-                    ReputationStake = table.Column<double>(type: "double", nullable: false)
+                    Time = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,9 +35,9 @@ namespace DAO_VotingEngine.Migrations
                     JobPosterUserID = table.Column<int>(type: "int", nullable: true),
                     WinnerAuctionBidID = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    IsInternal = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     PublicAuctionEndDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    InternalAuctionEndDate = table.Column<DateTime>(type: "datetime", nullable: true)
+                    InternalAuctionEndDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DAOMemberCount = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,9 +51,9 @@ namespace DAO_VotingEngine.Migrations
                     VoteID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     VotingID = table.Column<int>(type: "int", nullable: false),
-                    Reputation = table.Column<double>(type: "double", nullable: false),
-                    Side = table.Column<string>(type: "text", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: false)
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Direction = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,7 +71,9 @@ namespace DAO_VotingEngine.Migrations
                     CreateDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    QuorumCount = table.Column<int>(type: "int", nullable: true),
+                    Type = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

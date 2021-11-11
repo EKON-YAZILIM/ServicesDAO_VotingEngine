@@ -1,6 +1,8 @@
 ﻿using DAO_VotingEngine.Contexts;
 using DAO_VotingEngine.Models;
 using Helpers.Constants;
+using Helpers.Models.DtoModels.ReputationDbDto;
+using Helpers.Models.SharedModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +23,7 @@ namespace DAO_VotingEngine
         /// </summary>
         public static void StartTimers()
         {
-            CheckAuctionStatus(null,null);
+            CheckAuctionStatus(null, null);
             CheckVotingStatus(null, null);
 
             //Auction status timer
@@ -92,6 +94,8 @@ namespace DAO_VotingEngine
                         voting.IsFormal = false;
                         voting.JobID = Convert.ToInt32(auction.JobID);
                         voting.Status = Enums.VoteStatusTypes.Active;
+                        voting.Type = Enums.VoteTypes.JobCompletion;
+
                         //Set quorum count based on DAO member count
                         voting.QuorumCount = Convert.ToInt32(Convert.ToDouble(auction.DAOMemberCount) * Program._settings.QuorumRatio);
                         db.Votings.Add(voting);
@@ -116,7 +120,7 @@ namespace DAO_VotingEngine
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    //Check if informal voting ended -> Start formal voting if quorum reached, else set voting status to Expired
+                    //Get ended informal votings -> Start formal voting if quorum reached, else set voting status to Expired
                     var informalVotings = db.Votings.Where(x => x.IsFormal == false && x.EndDate < DateTime.Now).ToList();
 
                     foreach (var voting in informalVotings)
@@ -138,6 +142,8 @@ namespace DAO_VotingEngine
                             formalVoting.IsFormal = true;
                             formalVoting.JobID = Convert.ToInt32(voting.JobID);
                             formalVoting.Status = Enums.VoteStatusTypes.Active;
+                            formalVoting.Type = voting.Type;
+
                             //Set quorum count based on DAO member count
                             formalVoting.QuorumCount = voting.QuorumCount;
                             db.Votings.Add(formalVoting);
@@ -151,9 +157,12 @@ namespace DAO_VotingEngine
                             db.SaveChanges();
                         }
 
+                        //Release staked reputations
+                        var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakes?referenceProcessID=" + voting.VotingID);
+                        SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
                     }
 
-                    //Check if formal voting ended
+                    //Get ended formal votings -> Distribute or release reputations
                     var formalVotings = db.Votings.Where(x => x.IsFormal == true && x.EndDate < DateTime.Now).ToList();
 
                     foreach (var voting in formalVotings)
@@ -166,6 +175,23 @@ namespace DAO_VotingEngine
                             voting.Status = Enums.VoteStatusTypes.Completed;
                             db.Entry(voting).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                             db.SaveChanges();
+
+                            //Get total reputation stakes for this vote
+                            var stakesJson = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/GetByProcessId?referenceProcessID=" + voting.VotingID);
+                            List<UserReputationStakeDto> parsedStakes = Helpers.Serializers.DeserializeJson<List<UserReputationStakeDto>>(stakesJson);
+
+                            //Find winning side
+                            Enums.VoteDirection winnerSide = Enums.VoteDirection.For;
+                            double forReps = parsedStakes.Where(x => x.Direction == Enums.VoteDirection.For).Sum(x => x.Amount);
+                            double againstReps = parsedStakes.Where(x => x.Direction == Enums.VoteDirection.Against).Sum(x => x.Amount);
+                            if (againstReps > forReps)
+                            {
+                                winnerSide = Enums.VoteDirection.Against;
+                            }
+
+                            //Distribute staked reputations
+                            var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/DistributeStakes?referenceProcessID=" + voting.VotingID + "&winnerDirection=" + winnerSide);
+                            SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
                         }
                         //Quorum isn't reached -> Set voting status to Expired
                         else
@@ -173,6 +199,10 @@ namespace DAO_VotingEngine
                             voting.Status = Enums.VoteStatusTypes.Expired;
                             db.Entry(voting).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                             db.SaveChanges();
+
+                            //Release staked reputations
+                            var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakes?referenceProcessID=" + voting.VotingID);
+                            SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
                         }
                     }
                 }

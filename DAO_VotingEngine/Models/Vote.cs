@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using static Helpers.Constants.Enums;
 
 namespace DAO_VotingEngine.Models
 {
@@ -12,9 +13,8 @@ namespace DAO_VotingEngine.Models
         public int VoteID { get; set; }
         public int VotingID { get; set; }
         public int UserID { get; set; }
-        public double Reputation { get; set; }
-        public string Side { get; set; }
         public DateTime Date { get; set; }
+        public VoteDirection Direction { get; set; }
 
     }
 }

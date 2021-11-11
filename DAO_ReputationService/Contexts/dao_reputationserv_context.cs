@@ -25,8 +25,8 @@ namespace DAO_ReputationService.Contexts
             }
         }
 
-        // public DbSet<Reputation> Reputations { get; set; }
-        public DbSet<UserReputation> UserReputations { get; set; }
         public DbSet<UserReputationHistory> UserReputationHistories { get; set; }
+        public DbSet<UserReputationStake> UserReputationStakes { get; set; }
+
     }
 }

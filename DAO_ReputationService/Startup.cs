@@ -24,10 +24,26 @@ namespace DAO_ReputationService
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            LoadConfig(configuration);
+            InitializeService();
+        }
 
-            var config = Configuration.GetSection("PlatformSettings");
+
+        /// <summary>
+        ///  Loads application config from appsettings.json
+        /// </summary>
+        /// <param name="configuration"></param>
+        public static void LoadConfig(IConfiguration configuration)
+        {
+            var config = configuration.GetSection("PlatformSettings");
             config.Bind(_settings);
+        }
 
+        /// <summary>
+        ///  Initializes application (Db migrations, connection check, timer construction)
+        /// </summary>
+        public static void InitializeService()
+        {
             monitizer = new Monitizer(_settings.RabbitMQUrl, _settings.RabbitMQUsername, _settings.RabbitMQPassword);
 
             ApplicationStartResult rabbitControl = rabbitMq.Initialize(_settings.RabbitMQUrl, _settings.RabbitMQUsername, _settings.RabbitMQPassword);
@@ -37,12 +53,11 @@ namespace DAO_ReputationService
                 monitizer.AddException(rabbitControl.Exception, LogTypes.ApplicationError, true);
             }
 
-
             ApplicationStartResult mysqlMigrationcontrol = mysql.Migrate(new dao_reputationserv_context().Database);
             if (!mysqlMigrationcontrol.Success)
             {
                 monitizer.startSuccesful = -1;
-                monitizer.AddException(rabbitControl.Exception, LogTypes.ApplicationError, true);
+                monitizer.AddException(mysqlMigrationcontrol.Exception, LogTypes.ApplicationError, true);
             }
 
             ApplicationStartResult mysqlcontrol = mysql.Connect(_settings.DbConnectionString);
@@ -87,9 +102,7 @@ namespace DAO_ReputationService
             {
                 db.Database.Migrate();
                 db.Database.EnsureCreated();
-            }
-
-        
+            }     
             
             app.UseEndpoints(endpoints =>
             {

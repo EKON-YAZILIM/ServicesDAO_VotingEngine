@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAO_VotingEngine.Migrations
 {
     [DbContext(typeof(dao_votesdb_context))]
-    [Migration("20211111101704_auction_membercount_added")]
-    partial class auction_membercount_added
+    [Migration("20211111183212_dbinit")]
+    partial class dbinit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,9 +33,6 @@ namespace DAO_VotingEngine.Migrations
 
                     b.Property<DateTime?>("InternalAuctionEndDate")
                         .HasColumnType("datetime");
-
-                    b.Property<bool?>("IsInternal")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<int?>("JobID")
                         .HasColumnType("int");
@@ -69,9 +66,6 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double");
 
-                    b.Property<double>("ReputationStake")
-                        .HasColumnType("double");
-
                     b.Property<string>("Time")
                         .HasColumnType("text");
 
@@ -92,11 +86,11 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime");
 
-                    b.Property<double>("Reputation")
-                        .HasColumnType("double");
+                    b.Property<int>("Direction")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Side")
-                        .HasColumnType("text");
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.Property<int>("VotingID")
                         .HasColumnType("int");
@@ -124,10 +118,16 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<int>("JobID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("QuorumCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime");
 
                     b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("VotingID");
