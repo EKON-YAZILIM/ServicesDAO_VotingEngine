@@ -15,7 +15,7 @@ namespace DAO_VotingEngine.Migrations
                     AuctionBidID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     AuctionID = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "double", nullable: false),
                     Time = table.Column<string>(type: "text", nullable: true),
                     ReputationStake = table.Column<double>(type: "double", nullable: false)
@@ -33,7 +33,7 @@ namespace DAO_VotingEngine.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     JobID = table.Column<int>(type: "int", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    JobPosterUserId = table.Column<int>(type: "int", nullable: true),
+                    JobPosterUserID = table.Column<int>(type: "int", nullable: true),
                     WinnerAuctionBidID = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     IsInternal = table.Column<bool>(type: "tinyint(1)", nullable: true),
@@ -49,16 +49,16 @@ namespace DAO_VotingEngine.Migrations
                 name: "Votes",
                 columns: table => new
                 {
-                    VoteId = table.Column<int>(type: "int", nullable: false)
+                    VoteID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    VoteJobID = table.Column<int>(type: "int", nullable: false),
+                    VotingID = table.Column<int>(type: "int", nullable: false),
                     Reputation = table.Column<double>(type: "double", nullable: false),
                     Side = table.Column<string>(type: "text", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Votes", x => x.VoteId);
+                    table.PrimaryKey("PK_Votes", x => x.VoteID);
                 });
 
             migrationBuilder.CreateTable(

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAO_VotingEngine.Migrations
 {
     [DbContext(typeof(dao_votesdb_context))]
-    [Migration("20211111092723_db_init")]
+    [Migration("20211111100908_db_init")]
     partial class db_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<int?>("JobID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("JobPosterUserId")
+                    b.Property<int?>("JobPosterUserID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("PublicAuctionEndDate")
@@ -72,7 +72,7 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<string>("Time")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("AuctionBidID");
@@ -82,7 +82,7 @@ namespace DAO_VotingEngine.Migrations
 
             modelBuilder.Entity("DAO_VotingEngine.Models.Vote", b =>
                 {
-                    b.Property<int>("VoteId")
+                    b.Property<int>("VoteID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -95,10 +95,10 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<string>("Side")
                         .HasColumnType("text");
 
-                    b.Property<int>("VoteJobID")
+                    b.Property<int>("VotingID")
                         .HasColumnType("int");
 
-                    b.HasKey("VoteId");
+                    b.HasKey("VoteID");
 
                     b.ToTable("Votes");
                 });

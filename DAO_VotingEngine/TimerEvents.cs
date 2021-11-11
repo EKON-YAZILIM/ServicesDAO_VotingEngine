@@ -115,7 +115,10 @@ namespace DAO_VotingEngine
 
                     foreach (var vote in informalVotings)
                     {                     
-                        //
+                        //Check if quorum is reached
+                        //var votes = db.Votes.Where(x=>x.)
+
+
                         vote.Status = Enums.VoteStatusTypes.Completed;
                         db.Entry(vote).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                         db.SaveChanges();

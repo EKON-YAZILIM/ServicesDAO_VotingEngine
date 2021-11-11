@@ -9,10 +9,11 @@ namespace DAO_VotingEngine.Models
     public class Vote
     {
         [Key]
-        public int VoteId { get; set; }
-        public int VoteJobID { get; set; }
+        public int VoteID { get; set; }
+        public int VotingID { get; set; }
         public double Reputation { get; set; }
         public string Side { get; set; }
         public DateTime Date { get; set; }
+
     }
 }
