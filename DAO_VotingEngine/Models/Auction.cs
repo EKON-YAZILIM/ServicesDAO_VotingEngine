@@ -16,8 +16,8 @@ namespace DAO_VotingEngine.Models
         public int? JobPosterUserID { get; set; }
         public int? WinnerAuctionBidID { get; set; }
         public AuctionStatusTypes Status { get; set; }
-        public bool? IsInternal { get; set; }
         public DateTime? PublicAuctionEndDate { get; set; }
         public DateTime? InternalAuctionEndDate { get; set; }
+        public int? DAOMemberCount { get; set; }
     }
 }

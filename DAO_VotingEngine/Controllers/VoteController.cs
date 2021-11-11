@@ -175,16 +175,16 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
-        [Route("GetAllVote")]
+        [Route("GetAllVotesByVotingId")]
         [HttpGet]
-        public List<VoteDto> GetAllVote(int VoteJobID)
+        public List<VoteDto> GetAllVotesByVotingId(int votingid)
         {
             List<Vote> model = new List<Vote>();
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    model = db.Votes.Where(x => x.VoteID == VoteJobID).ToList();
+                    model = db.Votes.Where(x => x.VoteID == votingid).ToList();
 
                 }
             }

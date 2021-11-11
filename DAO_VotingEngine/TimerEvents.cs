@@ -21,6 +21,9 @@ namespace DAO_VotingEngine
         /// </summary>
         public static void StartTimers()
         {
+            CheckAuctionStatus(null,null);
+            CheckVotingStatus(null, null);
+
             //Auction status timer
             auctionStatusTimer = new System.Timers.Timer(10000);
             auctionStatusTimer.Elapsed += CheckAuctionStatus;
@@ -51,15 +54,16 @@ namespace DAO_VotingEngine
                     foreach (var auction in publicAuctions)
                     {
                         auction.Status = Enums.AuctionStatusTypes.PublicBidding;
+                        auction.PublicAuctionEndDate = DateTime.Now.AddDays(Program._settings.PublicAuctionDays);
                         db.Entry(auction).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                         db.SaveChanges();
                     }
 
 
                     //Check if auction public bidding ended without any winner -> Set auction status to Expired
-                    var ongoingAuctions = db.Auctions.Where(x => x.Status == Enums.AuctionStatusTypes.PublicBidding && x.PublicAuctionEndDate < DateTime.Now).ToList();
+                    var expiredAuctions = db.Auctions.Where(x => x.Status == Enums.AuctionStatusTypes.PublicBidding && x.PublicAuctionEndDate < DateTime.Now).ToList();
 
-                    foreach (var auction in ongoingAuctions)
+                    foreach (var auction in expiredAuctions)
                     {
                         //No winners selected. Auction expired.
                         if (auction.WinnerAuctionBidID == null)
@@ -88,6 +92,8 @@ namespace DAO_VotingEngine
                         voting.IsFormal = false;
                         voting.JobID = Convert.ToInt32(auction.JobID);
                         voting.Status = Enums.VoteStatusTypes.Active;
+                        //Set quorum count based on DAO member count
+                        voting.QuorumCount = Convert.ToInt32(Convert.ToDouble(auction.DAOMemberCount) * Program._settings.QuorumRatio);
                         db.Votings.Add(voting);
                         db.SaveChanges();
                     }
@@ -113,19 +119,62 @@ namespace DAO_VotingEngine
                     //Check if informal voting ended -> Start formal voting if quorum reached, else set voting status to Expired
                     var informalVotings = db.Votings.Where(x => x.IsFormal == false && x.EndDate < DateTime.Now).ToList();
 
-                    foreach (var vote in informalVotings)
-                    {                     
+                    foreach (var voting in informalVotings)
+                    {
                         //Check if quorum is reached
-                        //var votes = db.Votes.Where(x=>x.)
+                        var votes = db.Votes.Where(x => x.VotingID == voting.VotingID);
+                        //Quorum reached -> Start formal voting
+                        if (voting.QuorumCount != null && votes.Count() >= Convert.ToInt32(voting.QuorumCount))
+                        {
+                            voting.Status = Enums.VoteStatusTypes.Completed;
+                            db.Entry(voting).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                            db.SaveChanges();
 
+                            //Start formal voting
+                            Voting formalVoting = new Voting();
+                            formalVoting.CreateDate = DateTime.Now;
+                            formalVoting.StartDate = DateTime.Now;
+                            formalVoting.EndDate = DateTime.Now.AddDays(Program._settings.FormalVotingDays);
+                            formalVoting.IsFormal = true;
+                            formalVoting.JobID = Convert.ToInt32(voting.JobID);
+                            formalVoting.Status = Enums.VoteStatusTypes.Active;
+                            //Set quorum count based on DAO member count
+                            formalVoting.QuorumCount = voting.QuorumCount;
+                            db.Votings.Add(formalVoting);
+                            db.SaveChanges();
+                        }
+                        //Quorum isn't reached -> Set voting status to Expired
+                        else
+                        {
+                            voting.Status = Enums.VoteStatusTypes.Expired;
+                            db.Entry(voting).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                            db.SaveChanges();
+                        }
 
-                        vote.Status = Enums.VoteStatusTypes.Completed;
-                        db.Entry(vote).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                        db.SaveChanges();
                     }
 
-                  
+                    //Check if formal voting ended
+                    var formalVotings = db.Votings.Where(x => x.IsFormal == true && x.EndDate < DateTime.Now).ToList();
 
+                    foreach (var voting in formalVotings)
+                    {
+                        //Check if quorum is reached
+                        var votes = db.Votes.Where(x => x.VotingID == voting.VotingID);
+                        //Quorum reached -> Start formal voting
+                        if (voting.QuorumCount != null && votes.Count() >= Convert.ToInt32(voting.QuorumCount))
+                        {
+                            voting.Status = Enums.VoteStatusTypes.Completed;
+                            db.Entry(voting).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                        //Quorum isn't reached -> Set voting status to Expired
+                        else
+                        {
+                            voting.Status = Enums.VoteStatusTypes.Expired;
+                            db.Entry(voting).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
                 }
 
             }

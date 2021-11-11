@@ -3,14 +3,16 @@ using System;
 using DAO_VotingEngine.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAO_VotingEngine.Migrations
 {
     [DbContext(typeof(dao_votesdb_context))]
-    partial class dao_votesdb_contextModelSnapshot : ModelSnapshot
+    [Migration("20211111101704_auction_membercount_added")]
+    partial class auction_membercount_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,6 +33,9 @@ namespace DAO_VotingEngine.Migrations
 
                     b.Property<DateTime?>("InternalAuctionEndDate")
                         .HasColumnType("datetime");
+
+                    b.Property<bool?>("IsInternal")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int?>("JobID")
                         .HasColumnType("int");
@@ -93,9 +98,6 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<string>("Side")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
                     b.Property<int>("VotingID")
                         .HasColumnType("int");
 
@@ -120,9 +122,6 @@ namespace DAO_VotingEngine.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<int>("JobID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("QuorumCount")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")

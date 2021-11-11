@@ -25,6 +25,7 @@ namespace DAO_VotingEngine
             public int InformalVotingDays { get; set; }
             public int FormalVotingDays { get; set; }
 
+            public double QuorumRatio { get; set; }
         }
 
         public static Monitizer monitizer;

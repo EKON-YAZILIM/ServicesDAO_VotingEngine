@@ -174,5 +174,27 @@ namespace DAO_VotingEngine.Controllers
 
             return res;
         }
+
+        [Route("GetByAuctionId")]
+        [HttpGet]
+        public List<AuctionBidDto> GetByAuctionId(int auctionid)
+        {
+            List<AuctionBid> model = new List<AuctionBid>();
+
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    model = db.AuctionBids.Where(x=>x.AuctionID == auctionid).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                model = new List<AuctionBid>();
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return _mapper.Map<List<AuctionBid>, List<AuctionBidDto>>(model).ToList();
+        }
     }
 }
