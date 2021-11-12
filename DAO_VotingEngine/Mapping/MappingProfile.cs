@@ -8,12 +8,6 @@ namespace DAO_VotingEngine.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Auction, AuctionDto>();
-            CreateMap<AuctionDto, Auction>();
-
-            CreateMap<AuctionBid, AuctionBidDto>();
-            CreateMap<AuctionBidDto, AuctionBid>();
-
             CreateMap<Vote, VoteDto>();
             CreateMap<VoteDto, Vote>();
 

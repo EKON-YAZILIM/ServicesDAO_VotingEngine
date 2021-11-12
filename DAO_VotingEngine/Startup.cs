@@ -62,7 +62,7 @@ namespace DAO_VotingEngine
                 monitizer.AddException(mysqlcontrol.Exception, LogTypes.ApplicationError, true);
             }
             
-            TimerEvents.StartTimers();
+            TimedEvents.StartTimers();
 
             if (monitizer.startSuccesful != -1)
             {

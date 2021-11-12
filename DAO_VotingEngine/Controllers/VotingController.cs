@@ -11,6 +11,7 @@ using static DAO_VotingEngine.Mapping.AutoMapperBase;
 using PagedList.Core;
 using DAO_VotingEngine.Mapping;
 using Helpers.Models.SharedModels;
+using Helpers.Constants;
 
 namespace DAO_VotingEngine.Controllers
 {
@@ -197,13 +198,74 @@ namespace DAO_VotingEngine.Controllers
             }
             catch (Exception ex)
             {
-                model = new List<Voting>(); 
+                model = new List<Voting>();
                 Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
             }
 
             return _mapper.Map<List<Voting>, List<VotingDto>>(model).ToList();
         }
 
+        [Route("GetByJobId")]
+        [HttpGet]
+        public VotingDto GetByJobId(int jobid)
+        {
+            VotingDto res = new VotingDto();
 
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    Voting vt = db.Votings.OrderByDescending(x => x.VotingID).FirstOrDefault(x => x.JobID == jobid);
+
+                    res = _mapper.Map<Voting, VotingDto>(vt);
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return res;
+        }
+
+        [Route("StartInformalVoting")]
+        [HttpPost]
+        public SimpleResponse StartInformalVoting([FromBody]VotingDto model)
+        {
+            SimpleResponse res = new SimpleResponse();
+
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    if(db.Votings.Count(x=>x.JobID == model.JobID && x.IsFormal == false && x.Type == VoteTypes.JobCompletion) > 0)
+                    {
+                        return new SimpleResponse() { Success = false, Message = "There is an existing informal voting process for this auction." };
+                    }
+
+                    //Start informal voting
+                    Voting voting = new Voting();
+                    voting.CreateDate = DateTime.Now;
+                    voting.StartDate = model.StartDate;
+                    voting.EndDate = model.EndDate;
+                    voting.IsFormal = false;
+                    voting.JobID = model.JobID;
+                    voting.Status = Enums.VoteStatusTypes.Active;
+                    voting.Type = Enums.VoteTypes.JobCompletion;
+                    //Set quorum count based on DAO member count
+                    voting.QuorumCount = model.QuorumCount;
+                    db.Votings.Add(voting);
+                    db.SaveChanges();
+
+                    return new SimpleResponse() { Success = true, Message = "Informal voting started successfully.", Content = voting };
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return res;
+        }
     }
 }

@@ -22,8 +22,6 @@ namespace DAO_VotingEngine.Contexts
             }
         }
 
-        public DbSet<Auction> Auctions { get; set; }
-        public DbSet<AuctionBid> AuctionBids { get; set; }
         public DbSet<Voting> Votings { get; set; }
         public DbSet<Vote> Votes { get; set; }
 
