@@ -101,10 +101,11 @@
         /// <summary>
         ///  Enum of vote directions
         /// </summary>
-        public enum VoteDirection
+        public enum StakeType
         {
             For,
-            Against
+            Against,
+            Bid
         }
 
         /// <summary>
@@ -114,16 +115,6 @@
         {
             Staked,
             Released
-        }
-
-
-        /// <summary>
-        ///  Enum of current status of a reputation stake
-        /// </summary>
-        public enum StakeReferenceType
-        {
-            Auction,
-            Voting
         }
     }
 }

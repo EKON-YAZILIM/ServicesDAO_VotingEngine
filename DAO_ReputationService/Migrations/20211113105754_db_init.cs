@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace DAO_ReputationService.Migrations
 {
-    public partial class dbinit : Migration
+    public partial class db_init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,14 +16,15 @@ namespace DAO_ReputationService.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: true),
+                    Explanation = table.Column<string>(type: "text", nullable: true),
                     EarnedAmount = table.Column<double>(type: "double", nullable: false),
                     LostAmount = table.Column<double>(type: "double", nullable: false),
                     StakedAmount = table.Column<double>(type: "double", nullable: false),
                     StakeReleasedAmount = table.Column<double>(type: "double", nullable: false),
                     LastTotal = table.Column<double>(type: "double", nullable: false),
                     LastStakedTotal = table.Column<double>(type: "double", nullable: false),
-                    LastUsableTotal = table.Column<double>(type: "double", nullable: false),
-                    Explanation = table.Column<string>(type: "text", nullable: true)
+                    LastUsableTotal = table.Column<double>(type: "double", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,11 +39,10 @@ namespace DAO_ReputationService.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ReferenceType = table.Column<int>(type: "int", nullable: false),
                     ReferenceID = table.Column<int>(type: "int", nullable: true),
                     ReferenceProcessID = table.Column<int>(type: "int", nullable: true),
                     Amount = table.Column<double>(type: "double", nullable: false),
-                    Direction = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

@@ -103,12 +103,12 @@ namespace DAO_VotingEngine
                             List<UserReputationStakeDto> parsedStakes = Helpers.Serializers.DeserializeJson<List<UserReputationStakeDto>>(stakesJson);
 
                             //Find winning side
-                            Enums.VoteDirection winnerSide = Enums.VoteDirection.For;
-                            double forReps = parsedStakes.Where(x => x.Direction == Enums.VoteDirection.For).Sum(x => x.Amount);
-                            double againstReps = parsedStakes.Where(x => x.Direction == Enums.VoteDirection.Against).Sum(x => x.Amount);
+                            Enums.StakeType winnerSide = Enums.StakeType.For;
+                            double forReps = parsedStakes.Where(x => x.Type == Enums.StakeType.For).Sum(x => x.Amount);
+                            double againstReps = parsedStakes.Where(x => x.Type == Enums.StakeType.Against).Sum(x => x.Amount);
                             if (againstReps > forReps)
                             {
-                                winnerSide = Enums.VoteDirection.Against;
+                                winnerSide = Enums.StakeType.Against;
                             }
 
                             //Distribute staked reputations

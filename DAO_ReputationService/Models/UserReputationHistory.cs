@@ -12,6 +12,8 @@ namespace DAO_ReputationService.Models
         public int UserReputationHistoryID { get; set; }
         public int UserID { get; set; }
         public DateTime Date { get; set; }
+        public string Title { get; set; }
+        public string Explanation { get; set; }
         public double EarnedAmount { get; set; }
         public double LostAmount { get; set; }
         public double StakedAmount { get; set; }
@@ -19,6 +21,5 @@ namespace DAO_ReputationService.Models
         public double LastTotal { get; set; }
         public double LastStakedTotal { get; set; }
         public double LastUsableTotal { get; set; }
-        public string Explanation { get; set; }
     }
 }

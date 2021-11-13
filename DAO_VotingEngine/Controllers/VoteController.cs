@@ -200,7 +200,7 @@ namespace DAO_VotingEngine.Controllers
 
         [Route("SubmitVote")]
         [HttpPost]
-        public SimpleResponse SubmitVote(int VotingID, int UserID, VoteDirection direction, double? reputationStake)
+        public SimpleResponse SubmitVote(int VotingID, int UserID, StakeType direction, double? reputationStake)
         {
             SimpleResponse res = new SimpleResponse();
 
@@ -226,7 +226,7 @@ namespace DAO_VotingEngine.Controllers
                         repModel.ReferenceProcessID = vote.VotingID;
                         repModel.UserID = vote.UserID;
                         repModel.Amount = Convert.ToDouble(reputationStake);
-                        repModel.Direction = direction;
+                        repModel.Type = direction;
 
                         var jsonResult = Helpers.Request.Post(Program._settings.Service_Reputation_Url + "/UserReputationStake/SubmitStake", Helpers.Serializers.SerializeJson(repModel));
 

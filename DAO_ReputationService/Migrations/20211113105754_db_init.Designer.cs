@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAO_ReputationService.Migrations
 {
     [DbContext(typeof(dao_reputationserv_context))]
-    [Migration("20211111183300_dbinit")]
-    partial class dbinit
+    [Migration("20211113105754_db_init")]
+    partial class db_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,9 @@ namespace DAO_ReputationService.Migrations
                     b.Property<double>("StakedAmount")
                         .HasColumnType("double");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
@@ -72,19 +75,16 @@ namespace DAO_ReputationService.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("Direction")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ReferenceID")
                         .HasColumnType("int");
 
                     b.Property<int?>("ReferenceProcessID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReferenceType")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.Property<int>("UserID")

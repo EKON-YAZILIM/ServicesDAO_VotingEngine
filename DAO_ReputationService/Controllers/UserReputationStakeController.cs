@@ -179,7 +179,7 @@ namespace DAO_ReputationService.Controllers
 
         [Route("GetByProcessId")]
         [HttpGet]
-        public List<UserReputationStakeDto> GetByProcessId(int referenceProcessID, StakeReferenceType reftype)
+        public List<UserReputationStakeDto> GetByProcessId(int referenceProcessID, StakeType reftype)
         {
             List<UserReputationStake> model = new List<UserReputationStake>();
 
@@ -187,7 +187,16 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-                    model = db.UserReputationStakes.Where(x=>x.ReferenceProcessID == referenceProcessID && x.ReferenceType == reftype).ToList();
+                    //Stake for voting process
+                    if (reftype == StakeType.Against || reftype == StakeType.For)
+                    {
+                        model = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && (x.Type == StakeType.Against || x.Type == StakeType.For)).ToList();
+                    }
+                    //Stake for auction process
+                    else if (reftype == StakeType.Bid)
+                    {
+                        model = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Type == StakeType.Bid).ToList();
+                    }
                 }
             }
             catch (Exception ex)
@@ -211,15 +220,15 @@ namespace DAO_ReputationService.Controllers
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
                     //Check if user already staked reputation for same process
-                    if(db.UserReputationStakes.Count(x=>x.ReferenceProcessID == model.ReferenceProcessID && x.UserID == model.UserID) > 0)
+                    if (db.UserReputationStakes.Count(x => x.ReferenceProcessID == model.ReferenceProcessID && x.UserID == model.UserID) > 0)
                     {
                         return new SimpleResponse() { Success = false, Message = "User have already staked reputation for this process." };
                     }
 
-                    //Check if user have sufficient reputation
-                    if (db.UserReputationHistories.Count(x=>x.UserID == model.UserID) > 0 && db.UserReputationHistories.Last(x => x.UserID == model.UserID).LastUsableTotal >= model.Amount)
+                    //Check if user already staked reputation for same process
+                    if (db.UserReputationStakes.Count(x => x.ReferenceProcessID == model.ReferenceProcessID && x.ReferenceID == model.ReferenceID) > 0)
                     {
-                        return new SimpleResponse() { Success = false, Message = "User does not have sufficient reputation." };
+                        return new SimpleResponse() { Success = false, Message = "User have already staked reputation for this process." };
                     }
 
                     //Check if user tries to submit negative stake
@@ -227,6 +236,34 @@ namespace DAO_ReputationService.Controllers
                     {
                         return new SimpleResponse() { Success = false, Message = "Reputation stake must be greater than 0" };
                     }
+
+                    //Get last user reputation record
+                    UserReputationHistoryController cont = new UserReputationHistoryController();
+                    UserReputationHistoryDto lastHst = cont.GetLastReputation(model.UserID);
+
+                    //Check if user have sufficient reputation
+                    if (lastHst.LastUsableTotal < model.Amount)
+                    {
+                        return new SimpleResponse() { Success = false, Message = "User does not have sufficient reputation." };
+                    }
+
+                    string type = "vote";
+                    if (model.Type == StakeType.Bid) type = "auction";
+
+                    //Add record to ReputationHistory
+                    UserReputationHistoryDto repHst = new UserReputationHistoryDto();
+                    repHst.Date = DateTime.Now; 
+                    repHst.EarnedAmount = 0;
+                    repHst.StakedAmount = model.Amount;
+                    repHst.LostAmount = 0;
+                    repHst.StakeReleasedAmount = 0;
+                    repHst.LastStakedTotal = lastHst.LastStakedTotal + model.Amount;
+                    repHst.LastUsableTotal = lastHst.LastUsableTotal - model.Amount;
+                    repHst.LastTotal = lastHst.LastTotal;
+                    repHst.Title = type.ToUpper()+ " Stake";
+                    repHst.Explanation = "User staked reputation for " + type + " process #" + model.ReferenceProcessID;
+                    repHst.UserID = model.UserID;
+                    cont.Post(repHst);
 
                     model.CreateDate = DateTime.Now;
                     model.Status = ReputationStakeStatus.Staked;
@@ -248,11 +285,11 @@ namespace DAO_ReputationService.Controllers
         /// <summary>
         ///  This method should be used in cases which staked reputation should be returned to the owner
         /// </summary>
-        /// <param name="referenceProcessID"></param>
+        /// <param name="referenceID"></param>
         /// <returns></returns>
-        [Route("ReleaseStakes")]
+        [Route("ReleaseSingleStake")]
         [HttpGet]
-        public SimpleResponse ReleaseStakes(int referenceProcessID, StakeReferenceType reftype)
+        public SimpleResponse ReleaseSingleStake(int referenceID, StakeType reftype)
         {
             SimpleResponse res = new SimpleResponse();
 
@@ -260,13 +297,87 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-                    foreach (var item in db.UserReputationStakes.Where(x=>x.ReferenceProcessID == referenceProcessID && x.ReferenceType == reftype && x.Status == ReputationStakeStatus.Staked))
+                    UserReputationStake stake = new UserReputationStake();
+                    //Get staked reputations for voting
+                    if (reftype == StakeType.Against || reftype == StakeType.For)
+                    {
+                        stake = db.UserReputationStakes.FirstOrDefault(x => x.ReferenceID == referenceID && x.Status == ReputationStakeStatus.Staked && (x.Type == StakeType.Against || x.Type == StakeType.For));
+                    }
+                    //Get staked reputations for auction
+                    else if (reftype == StakeType.Bid)
+                    {
+                        stake = db.UserReputationStakes.FirstOrDefault(x => x.ReferenceID == referenceID && x.Status == ReputationStakeStatus.Staked && x.Status == ReputationStakeStatus.Staked && x.Type == StakeType.Bid);
+                    }
+
+                        stake.Status = ReputationStakeStatus.Released;
+                        db.Entry(stake).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        db.SaveChanges();
+
+                        UserReputationHistory lastReputationHistory = db.UserReputationHistories.Last(x => x.UserID == stake.UserID);
+
+                        UserReputationHistory historyItem = new UserReputationHistory();
+                        historyItem.Date = DateTime.Now;
+                        historyItem.UserID = stake.UserID;
+                        historyItem.EarnedAmount = 0;
+                        historyItem.LostAmount = 0;
+                        historyItem.StakedAmount = 0;
+                        historyItem.StakeReleasedAmount = stake.Amount;
+                        historyItem.LastStakedTotal = lastReputationHistory.LastStakedTotal - stake.Amount;
+                        historyItem.LastTotal = lastReputationHistory.LastTotal;
+                        historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal + stake.Amount;
+                        historyItem.Explanation = "Staked reputation released from ProcessId:" + stake.ReferenceProcessID;
+
+                        db.UserReputationHistories.Add(historyItem);
+                        db.SaveChanges();
+                    
+
+                    return new SimpleResponse() { Success = true, Message = "Release successful." };
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        ///  This method should be used in cases which staked reputation should be returned to the owner
+        /// </summary>
+        /// <param name="referenceProcessID"></param>
+        /// <returns></returns>
+        [Route("ReleaseStakes")]
+        [HttpGet]
+        public SimpleResponse ReleaseStakes(int referenceProcessID, StakeType reftype)
+        {
+            SimpleResponse res = new SimpleResponse();
+
+            try
+            {
+                using (dao_reputationserv_context db = new dao_reputationserv_context())
+                {
+                    List<UserReputationStake> stakes = new List<UserReputationStake>();
+                    //Get staked reputations for voting
+                    if (reftype == StakeType.Against || reftype == StakeType.For)
+                    {
+                        stakes = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Status == ReputationStakeStatus.Staked && (x.Type == StakeType.Against || x.Type == StakeType.For)).ToList();
+                    }
+                    //Get staked reputations for auction
+                    else if (reftype == StakeType.Bid)
+                    {
+                        stakes = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Status == ReputationStakeStatus.Staked && x.Type == StakeType.Bid).ToList();
+                    }
+
+                    foreach (var item in stakes)
                     {
                         item.Status = ReputationStakeStatus.Released;
                         db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                         db.SaveChanges();
 
-                        UserReputationHistory lastReputationHistory = db.UserReputationHistories.Last(x=>x.UserID == item.UserID);
+                        //Get last user reputation record
+                        UserReputationHistoryController cont = new UserReputationHistoryController();
+                        UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(item.UserID);
 
                         UserReputationHistory historyItem = new UserReputationHistory();
                         historyItem.Date = DateTime.Now;
@@ -302,7 +413,7 @@ namespace DAO_ReputationService.Controllers
         /// <returns></returns>
         [Route("DistributeStakes")]
         [HttpGet]
-        public SimpleResponse DistributeStakes(int referenceProcessID, StakeReferenceType reftype, Enums.VoteDirection winnerDirection)
+        public SimpleResponse DistributeStakes(int referenceProcessID, StakeType reftype, StakeType winnerDirection)
         {
             SimpleResponse res = new SimpleResponse();
 
@@ -310,9 +421,11 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-                    var stakeList = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.ReferenceType == reftype && x.Status == ReputationStakeStatus.Staked).ToList();
-                    var winnersList = stakeList.Where(x => x.Direction == winnerDirection).ToList();
-                    var losersList = stakeList.Where(x => x.Direction != winnerDirection).ToList();
+                    //Get all stakes of voting
+                    var stakeList = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Status == ReputationStakeStatus.Staked && (x.Type == StakeType.For || x.Type == StakeType.Against)).ToList();
+
+                    var winnersList = stakeList.Where(x => x.Type == winnerDirection).ToList();
+                    var losersList = stakeList.Where(x => x.Type != winnerDirection).ToList();
 
                     double losingSideTotalStake = losersList.Sum(x => x.Amount);
                     double winnerSideTotalStake = winnersList.Sum(x => x.Amount);
@@ -321,10 +434,10 @@ namespace DAO_ReputationService.Controllers
                     {
                         item.Status = ReputationStakeStatus.Released;
                         db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                        
+
                         //User is in the winning side
-                        if(winnersList.Count(x=>x.UserID == item.UserID) > 0)
-                        { 
+                        if (winnersList.Count(x => x.UserID == item.UserID) > 0)
+                        {
                             double usersStakePerc = item.Amount / winnerSideTotalStake;
                             double earnedReputation = losingSideTotalStake * usersStakePerc;
 

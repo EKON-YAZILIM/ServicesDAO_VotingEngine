@@ -50,6 +50,9 @@ namespace DAO_ReputationService.Migrations
                     b.Property<double>("StakedAmount")
                         .HasColumnType("double");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
@@ -70,19 +73,16 @@ namespace DAO_ReputationService.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("Direction")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ReferenceID")
                         .HasColumnType("int");
 
                     b.Property<int?>("ReferenceProcessID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReferenceType")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.Property<int>("UserID")

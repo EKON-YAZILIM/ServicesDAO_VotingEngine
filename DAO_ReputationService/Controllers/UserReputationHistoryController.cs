@@ -255,7 +255,7 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-                    model = db.UserReputationHistories.LastOrDefault(x => x.UserID == userid);
+                    model = db.UserReputationHistories.Where(x=>x.UserID == userid).OrderByDescending(x=>x.UserReputationHistoryID).FirstOrDefault();
                 }
             }
             catch (Exception ex)

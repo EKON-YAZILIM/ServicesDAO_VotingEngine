@@ -14,7 +14,7 @@ namespace DAO_VotingEngine.Models
         public int VotingID { get; set; }
         public int UserID { get; set; }
         public DateTime Date { get; set; }
-        public VoteDirection Direction { get; set; }
+        public StakeType Direction { get; set; }
 
     }
 }
