@@ -42,7 +42,7 @@ namespace DAO_VotingEngine
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
                     //Get ended informal votings -> Start formal voting if quorum reached, else set voting status to Expired
-                    var informalVotings = db.Votings.Where(x => x.IsFormal == false && x.EndDate < DateTime.Now).ToList();
+                    var informalVotings = db.Votings.Where(x => x.IsFormal == false && x.EndDate < DateTime.Now && x.Status == Enums.VoteStatusTypes.Active).ToList();
 
                     foreach (var voting in informalVotings)
                     {
@@ -60,7 +60,7 @@ namespace DAO_VotingEngine
                             formalVoting.CreateDate = DateTime.Now;
                             formalVoting.StartDate = DateTime.Now;
                             TimeSpan ts = voting.EndDate - voting.StartDate;
-                            formalVoting.EndDate = DateTime.Now.AddDays(ts.Days);
+                            formalVoting.EndDate = DateTime.Now.Add(ts);
                             formalVoting.IsFormal = true;
                             formalVoting.JobID = Convert.ToInt32(voting.JobID);
                             formalVoting.Status = Enums.VoteStatusTypes.Active;
@@ -85,7 +85,7 @@ namespace DAO_VotingEngine
                     }
 
                     //Get ended formal votings -> Distribute or release reputations
-                    var formalVotings = db.Votings.Where(x => x.IsFormal == true && x.EndDate < DateTime.Now).ToList();
+                    var formalVotings = db.Votings.Where(x => x.IsFormal == true && x.EndDate < DateTime.Now && x.Status == Enums.VoteStatusTypes.Active).ToList();
 
                     foreach (var voting in formalVotings)
                     {

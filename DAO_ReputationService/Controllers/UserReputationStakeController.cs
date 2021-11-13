@@ -242,17 +242,17 @@ namespace DAO_ReputationService.Controllers
                     UserReputationHistoryDto lastHst = cont.GetLastReputation(model.UserID);
 
                     //Check if user have sufficient reputation
-                    if (lastHst.LastUsableTotal < model.Amount)
+                    if (lastHst == null || lastHst.LastUsableTotal < model.Amount)
                     {
                         return new SimpleResponse() { Success = false, Message = "User does not have sufficient reputation." };
                     }
 
-                    string type = "vote";
-                    if (model.Type == StakeType.Bid) type = "auction";
+                    string type = "Vote";
+                    if (model.Type == StakeType.Bid) type = "Auction";
 
                     //Add record to ReputationHistory
                     UserReputationHistoryDto repHst = new UserReputationHistoryDto();
-                    repHst.Date = DateTime.Now; 
+                    repHst.Date = DateTime.Now;
                     repHst.EarnedAmount = 0;
                     repHst.StakedAmount = model.Amount;
                     repHst.LostAmount = 0;
@@ -260,7 +260,7 @@ namespace DAO_ReputationService.Controllers
                     repHst.LastStakedTotal = lastHst.LastStakedTotal + model.Amount;
                     repHst.LastUsableTotal = lastHst.LastUsableTotal - model.Amount;
                     repHst.LastTotal = lastHst.LastTotal;
-                    repHst.Title = type.ToUpper()+ " Stake";
+                    repHst.Title = type + " Stake";
                     repHst.Explanation = "User staked reputation for " + type + " process #" + model.ReferenceProcessID;
                     repHst.UserID = model.UserID;
                     cont.Post(repHst);
@@ -271,7 +271,7 @@ namespace DAO_ReputationService.Controllers
                     db.UserReputationStakes.Add(model);
                     db.SaveChanges();
 
-                    return new SimpleResponse() { Success = true, Message = "Stake successful.", Content = model };
+                    return new SimpleResponse() { Success = true, Message = "Stake successful." };
                 }
             }
             catch (Exception ex)
@@ -309,27 +309,30 @@ namespace DAO_ReputationService.Controllers
                         stake = db.UserReputationStakes.FirstOrDefault(x => x.ReferenceID == referenceID && x.Status == ReputationStakeStatus.Staked && x.Status == ReputationStakeStatus.Staked && x.Type == StakeType.Bid);
                     }
 
-                        stake.Status = ReputationStakeStatus.Released;
-                        db.Entry(stake).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                        db.SaveChanges();
+                    stake.Status = ReputationStakeStatus.Released;
+                    db.Entry(stake).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    db.SaveChanges();
 
-                        UserReputationHistory lastReputationHistory = db.UserReputationHistories.Last(x => x.UserID == stake.UserID);
+                    //Get last user reputation record
+                    UserReputationHistoryController cont = new UserReputationHistoryController();
+                    UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(stake.UserID);
 
-                        UserReputationHistory historyItem = new UserReputationHistory();
-                        historyItem.Date = DateTime.Now;
-                        historyItem.UserID = stake.UserID;
-                        historyItem.EarnedAmount = 0;
-                        historyItem.LostAmount = 0;
-                        historyItem.StakedAmount = 0;
-                        historyItem.StakeReleasedAmount = stake.Amount;
-                        historyItem.LastStakedTotal = lastReputationHistory.LastStakedTotal - stake.Amount;
-                        historyItem.LastTotal = lastReputationHistory.LastTotal;
-                        historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal + stake.Amount;
-                        historyItem.Explanation = "Staked reputation released from ProcessId:" + stake.ReferenceProcessID;
+                    UserReputationHistory historyItem = new UserReputationHistory();
+                    historyItem.Date = DateTime.Now;
+                    historyItem.UserID = stake.UserID;
+                    historyItem.EarnedAmount = 0;
+                    historyItem.LostAmount = 0;
+                    historyItem.StakedAmount = 0;
+                    historyItem.StakeReleasedAmount = stake.Amount;
+                    historyItem.LastStakedTotal = lastReputationHistory.LastStakedTotal - stake.Amount;
+                    historyItem.LastTotal = lastReputationHistory.LastTotal;
+                    historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal + stake.Amount;
+                    historyItem.Title = "Stake Release";
+                    historyItem.Explanation = "Staked reputation released from ProcessId:" + stake.ReferenceProcessID;
 
-                        db.UserReputationHistories.Add(historyItem);
-                        db.SaveChanges();
-                    
+                    db.UserReputationHistories.Add(historyItem);
+                    db.SaveChanges();
+
 
                     return new SimpleResponse() { Success = true, Message = "Release successful." };
                 }
@@ -389,6 +392,7 @@ namespace DAO_ReputationService.Controllers
                         historyItem.LastStakedTotal = lastReputationHistory.LastStakedTotal - item.Amount;
                         historyItem.LastTotal = lastReputationHistory.LastTotal;
                         historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal + item.Amount;
+                        historyItem.Title = "Stake Release";
                         historyItem.Explanation = "Staked reputation released from ProcessId:" + referenceProcessID;
 
                         db.UserReputationHistories.Add(historyItem);
@@ -413,9 +417,11 @@ namespace DAO_ReputationService.Controllers
         /// <returns></returns>
         [Route("DistributeStakes")]
         [HttpGet]
-        public SimpleResponse DistributeStakes(int referenceProcessID, StakeType reftype, StakeType winnerDirection)
+        public SimpleResponse DistributeStakes(int referenceProcessID, StakeType winnerDirection)
         {
             SimpleResponse res = new SimpleResponse();
+
+            UserReputationHistoryController cont = new UserReputationHistoryController();
 
             try
             {
@@ -432,8 +438,7 @@ namespace DAO_ReputationService.Controllers
 
                     foreach (var item in stakeList)
                     {
-                        item.Status = ReputationStakeStatus.Released;
-                        db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        ReleaseSingleStake(Convert.ToInt32(item.ReferenceID), item.Type);
 
                         //User is in the winning side
                         if (winnersList.Count(x => x.UserID == item.UserID) > 0)
@@ -441,7 +446,8 @@ namespace DAO_ReputationService.Controllers
                             double usersStakePerc = item.Amount / winnerSideTotalStake;
                             double earnedReputation = losingSideTotalStake * usersStakePerc;
 
-                            UserReputationHistory lastReputationHistory = db.UserReputationHistories.Last(x => x.UserID == item.UserID);
+                            //Get last user reputation record
+                            UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(item.UserID);
 
                             UserReputationHistory historyItem = new UserReputationHistory();
                             historyItem.Date = DateTime.Now;
@@ -453,13 +459,15 @@ namespace DAO_ReputationService.Controllers
                             historyItem.LastStakedTotal = lastReputationHistory.LastStakedTotal;
                             historyItem.LastTotal = lastReputationHistory.LastTotal + earnedReputation;
                             historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal + earnedReputation;
+                            historyItem.Title = "Reputation Earned";
                             historyItem.Explanation = "User earned repuatation from ProcessId:" + referenceProcessID;
                             db.UserReputationHistories.Add(historyItem);
                         }
                         //User is in the losing side
                         else
                         {
-                            UserReputationHistory lastReputationHistory = db.UserReputationHistories.Last(x => x.UserID == item.UserID);
+                            //Get last user reputation record
+                            UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(item.UserID);
 
                             UserReputationHistory historyItem = new UserReputationHistory();
                             historyItem.Date = DateTime.Now;
@@ -472,6 +480,8 @@ namespace DAO_ReputationService.Controllers
                             historyItem.LastTotal = lastReputationHistory.LastTotal - item.Amount;
                             historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal - item.Amount;
                             historyItem.Explanation = "User lost repuatation from ProcessId:" + referenceProcessID;
+                            historyItem.Title = "Reputation Loss";
+
                             db.UserReputationHistories.Add(historyItem);
                         }
 

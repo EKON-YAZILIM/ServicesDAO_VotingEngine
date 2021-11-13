@@ -181,12 +181,12 @@ namespace DAO_VotingEngine.Controllers
         public List<VoteDto> GetAllVotesByVotingId(int votingid)
         {
             List<Vote> model = new List<Vote>();
+
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    model = db.Votes.Where(x => x.VoteID == votingid).ToList();
-
+                    model = db.Votes.Where(x => x.VotingID == votingid).ToList();
                 }
             }
             catch (Exception ex)
@@ -199,8 +199,8 @@ namespace DAO_VotingEngine.Controllers
         }
 
         [Route("SubmitVote")]
-        [HttpPost]
-        public SimpleResponse SubmitVote(int VotingID, int UserID, StakeType direction, double? reputationStake)
+        [HttpGet]
+        public SimpleResponse SubmitVote(int VotingID, int UserID, StakeType Direction, double? ReputationStake)
         {
             SimpleResponse res = new SimpleResponse();
 
@@ -211,7 +211,7 @@ namespace DAO_VotingEngine.Controllers
                     //Save vote into database
                     Vote vote = new Vote();
                     vote.Date = DateTime.Now;
-                    vote.Direction = direction;
+                    vote.Direction = Direction;
                     vote.VotingID = VotingID;
                     vote.UserID = UserID;
                     db.Votes.Add(vote);
@@ -219,14 +219,15 @@ namespace DAO_VotingEngine.Controllers
 
                     //Check if reputation is staked
                     Voting voteProcess = db.Votings.Find(VotingID);
-                    if (reputationStake != null && voteProcess.Type != VoteTypes.Simple && voteProcess.Type != VoteTypes.Governance && voteProcess.Type != VoteTypes.Simple)
+                    if (ReputationStake != null && voteProcess.Type != VoteTypes.Simple && voteProcess.Type != VoteTypes.Governance && voteProcess.Type != VoteTypes.Simple)
                     {
                         UserReputationStakeDto repModel = new UserReputationStakeDto();
                         repModel.ReferenceID = vote.VoteID;
                         repModel.ReferenceProcessID = vote.VotingID;
                         repModel.UserID = vote.UserID;
-                        repModel.Amount = Convert.ToDouble(reputationStake);
-                        repModel.Type = direction;
+                        repModel.Amount = Convert.ToDouble(ReputationStake);
+                        repModel.Type = Direction;
+                        repModel.CreateDate = DateTime.Now;
 
                         var jsonResult = Helpers.Request.Post(Program._settings.Service_Reputation_Url + "/UserReputationStake/SubmitStake", Helpers.Serializers.SerializeJson(repModel));
 
