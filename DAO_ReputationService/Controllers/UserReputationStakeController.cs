@@ -232,7 +232,7 @@ namespace DAO_ReputationService.Controllers
                     }
 
                     //Check if user tries to submit negative stake
-                    if (model.Amount <= 0)
+                    if (Math.Round(model.Amount, 5) <= 0)
                     {
                         return new SimpleResponse() { Success = false, Message = "Reputation stake must be greater than 0" };
                     }
@@ -240,28 +240,38 @@ namespace DAO_ReputationService.Controllers
                     //Get last user reputation record
                     UserReputationHistoryController cont = new UserReputationHistoryController();
                     UserReputationHistoryDto lastHst = cont.GetLastReputation(model.UserID);
-
-                    //Check if user have sufficient reputation
-                    if (lastHst == null || lastHst.LastUsableTotal < model.Amount)
+                    
+                    //Check if user have sufficient reputation unless it's a minting request
+                    if (model.Type != StakeType.Mint && (lastHst == null || lastHst.LastUsableTotal < model.Amount))
                     {
                         return new SimpleResponse() { Success = false, Message = "User does not have sufficient reputation." };
                     }
-
-                    string type = "Vote";
-                    if (model.Type == StakeType.Bid) type = "Auction";
 
                     //Add record to ReputationHistory
                     UserReputationHistoryDto repHst = new UserReputationHistoryDto();
                     repHst.Date = DateTime.Now;
                     repHst.EarnedAmount = 0;
-                    repHst.StakedAmount = model.Amount;
+                    repHst.StakedAmount = Math.Round(model.Amount, 5);
                     repHst.LostAmount = 0;
                     repHst.StakeReleasedAmount = 0;
-                    repHst.LastStakedTotal = lastHst.LastStakedTotal + model.Amount;
-                    repHst.LastUsableTotal = lastHst.LastUsableTotal - model.Amount;
-                    repHst.LastTotal = lastHst.LastTotal;
-                    repHst.Title = type + " Stake";
-                    repHst.Explanation = "User staked reputation for " + type + " process #" + model.ReferenceProcessID;
+                    repHst.LastStakedTotal = Math.Round(lastHst.LastStakedTotal + model.Amount, 5);
+                    repHst.LastUsableTotal = Math.Round(lastHst.LastUsableTotal - model.Amount, 5);
+                    repHst.LastTotal = Math.Round(lastHst.LastTotal, 5);
+                    if(model.Type == StakeType.For || model.Type == StakeType.Against)
+                    {
+                        repHst.Title = "Vote Stake";
+                        repHst.Explanation = "User staked reputation for voting process #" + model.ReferenceProcessID;
+                    }
+                    else if (model.Type == StakeType.Bid)
+                    {
+                        repHst.Title = "Bid Stake";
+                        repHst.Explanation = "User staked reputation for auction process #" + model.ReferenceProcessID;
+                    }
+                    else if (model.Type == StakeType.Mint)
+                    {
+                        repHst.Title = "Minting";
+                        repHst.Explanation = "User minted reputation for job #" + model.ReferenceProcessID;
+                    }
                     repHst.UserID = model.UserID;
                     cont.Post(repHst);
 
@@ -298,16 +308,22 @@ namespace DAO_ReputationService.Controllers
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
                     UserReputationStake stake = new UserReputationStake();
-                    //Get staked reputations for voting
+                    //Get staked reputations for voting (referenceID = VotingID)
                     if (reftype == StakeType.Against || reftype == StakeType.For)
                     {
                         stake = db.UserReputationStakes.FirstOrDefault(x => x.ReferenceID == referenceID && x.Status == ReputationStakeStatus.Staked && (x.Type == StakeType.Against || x.Type == StakeType.For));
                     }
-                    //Get staked reputations for auction
+                    //Get staked reputations for auction (referenceID = AuctionID)
                     else if (reftype == StakeType.Bid)
                     {
                         stake = db.UserReputationStakes.FirstOrDefault(x => x.ReferenceID == referenceID && x.Status == ReputationStakeStatus.Staked && x.Status == ReputationStakeStatus.Staked && x.Type == StakeType.Bid);
                     }
+                    //Get minted pending reputations for the job (referenceID = JobId)
+                    else if (reftype == StakeType.Mint)
+                    {
+                        stake = db.UserReputationStakes.FirstOrDefault(x => x.ReferenceID == referenceID && x.Status == ReputationStakeStatus.Staked && x.Status == ReputationStakeStatus.Staked && x.Type == StakeType.Mint);
+                    }
+
 
                     stake.Status = ReputationStakeStatus.Released;
                     db.Entry(stake).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
@@ -323,13 +339,25 @@ namespace DAO_ReputationService.Controllers
                     historyItem.EarnedAmount = 0;
                     historyItem.LostAmount = 0;
                     historyItem.StakedAmount = 0;
-                    historyItem.StakeReleasedAmount = stake.Amount;
-                    historyItem.LastStakedTotal = lastReputationHistory.LastStakedTotal - stake.Amount;
-                    historyItem.LastTotal = lastReputationHistory.LastTotal;
-                    historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal + stake.Amount;
-                    historyItem.Title = "Stake Release";
-                    historyItem.Explanation = "Staked reputation released from ProcessId:" + stake.ReferenceProcessID;
-
+                    historyItem.StakeReleasedAmount = Math.Round(stake.Amount, 5);
+                    historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal - stake.Amount, 5);
+                    historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal, 5);
+                    historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal + stake.Amount, 5);
+                    if (stake.Type == StakeType.For || stake.Type == StakeType.Against)
+                    {
+                        historyItem.Title = "Vote Stake Release";
+                        historyItem.Explanation = "Staked reputation released for voting process #" + stake.ReferenceProcessID;
+                    }
+                    else if (stake.Type == StakeType.Bid)
+                    {
+                        historyItem.Title = "Bid Stake Release";
+                        historyItem.Explanation = "Staked reputation released for auction process #" + stake.ReferenceProcessID;
+                    }
+                    else if (stake.Type == StakeType.Mint)
+                    {
+                        historyItem.Title = "Minting Stake Release";
+                        historyItem.Explanation = "Staked minted reputation released for job #" + stake.ReferenceProcessID;
+                    }
                     db.UserReputationHistories.Add(historyItem);
                     db.SaveChanges();
 
@@ -370,33 +398,16 @@ namespace DAO_ReputationService.Controllers
                     else if (reftype == StakeType.Bid)
                     {
                         stakes = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Status == ReputationStakeStatus.Staked && x.Type == StakeType.Bid).ToList();
+                    }   
+                    //Get minted pending reputations for the job (referenceID = JobId)
+                    else if (reftype == StakeType.Mint)
+                    {
+                        stakes = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Status == ReputationStakeStatus.Staked && x.Type == StakeType.Mint).ToList();
                     }
 
                     foreach (var item in stakes)
                     {
-                        item.Status = ReputationStakeStatus.Released;
-                        db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                        db.SaveChanges();
-
-                        //Get last user reputation record
-                        UserReputationHistoryController cont = new UserReputationHistoryController();
-                        UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(item.UserID);
-
-                        UserReputationHistory historyItem = new UserReputationHistory();
-                        historyItem.Date = DateTime.Now;
-                        historyItem.UserID = item.UserID;
-                        historyItem.EarnedAmount = 0;
-                        historyItem.LostAmount = 0;
-                        historyItem.StakedAmount = 0;
-                        historyItem.StakeReleasedAmount = item.Amount;
-                        historyItem.LastStakedTotal = lastReputationHistory.LastStakedTotal - item.Amount;
-                        historyItem.LastTotal = lastReputationHistory.LastTotal;
-                        historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal + item.Amount;
-                        historyItem.Title = "Stake Release";
-                        historyItem.Explanation = "Staked reputation released from ProcessId:" + referenceProcessID;
-
-                        db.UserReputationHistories.Add(historyItem);
-                        db.SaveChanges();
+                        ReleaseSingleStake(Convert.ToInt32(item.ReferenceID), item.Type);
                     }
 
                     return new SimpleResponse() { Success = true, Message = "Release successful." };
@@ -417,7 +428,7 @@ namespace DAO_ReputationService.Controllers
         /// <returns></returns>
         [Route("DistributeStakes")]
         [HttpGet]
-        public SimpleResponse DistributeStakes(int referenceProcessID, StakeType winnerDirection)
+        public SimpleResponse DistributeStakes(int votingId, int jobId, double jobDoerRatio)
         {
             SimpleResponse res = new SimpleResponse();
 
@@ -428,14 +439,28 @@ namespace DAO_ReputationService.Controllers
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
                     //Get all stakes of voting
-                    var stakeList = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Status == ReputationStakeStatus.Staked && (x.Type == StakeType.For || x.Type == StakeType.Against)).ToList();
+                    var stakeList = db.UserReputationStakes.Where(x => x.ReferenceProcessID == votingId && x.Status == ReputationStakeStatus.Staked && (x.Type == StakeType.For || x.Type == StakeType.Against)).ToList();
 
-                    var winnersList = stakeList.Where(x => x.Type == winnerDirection).ToList();
-                    var losersList = stakeList.Where(x => x.Type != winnerDirection).ToList();
+                    //Get all reputations minted for the job
+                    var mintList = db.UserReputationStakes.Where(x => x.ReferenceProcessID == jobId && x.Status == ReputationStakeStatus.Staked && x.Type == StakeType.Mint).ToList();
+
+
+                    //Find winning side
+                    Enums.StakeType winnerSide = Enums.StakeType.For;
+                    double forReps = stakeList.Where(x => x.Type == Enums.StakeType.For).Sum(x => x.Amount);
+                    double againstReps = stakeList.Where(x => x.Type == Enums.StakeType.Against).Sum(x => x.Amount);
+                    if (againstReps > forReps)
+                    {
+                        winnerSide = Enums.StakeType.Against;
+                    }
+
+                    var winnersList = stakeList.Where(x => x.Type == winnerSide).ToList();
+                    var losersList = stakeList.Where(x => x.Type != winnerSide).ToList();
 
                     double losingSideTotalStake = losersList.Sum(x => x.Amount);
                     double winnerSideTotalStake = winnersList.Sum(x => x.Amount);
 
+                    //Distribute reputitation from votes
                     foreach (var item in stakeList)
                     {
                         ReleaseSingleStake(Convert.ToInt32(item.ReferenceID), item.Type);
@@ -452,15 +477,15 @@ namespace DAO_ReputationService.Controllers
                             UserReputationHistory historyItem = new UserReputationHistory();
                             historyItem.Date = DateTime.Now;
                             historyItem.UserID = item.UserID;
-                            historyItem.EarnedAmount = earnedReputation;
+                            historyItem.EarnedAmount = Math.Round(earnedReputation, 5);
                             historyItem.LostAmount = 0;
                             historyItem.StakedAmount = 0;
                             historyItem.StakeReleasedAmount = 0;
-                            historyItem.LastStakedTotal = lastReputationHistory.LastStakedTotal;
-                            historyItem.LastTotal = lastReputationHistory.LastTotal + earnedReputation;
-                            historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal + earnedReputation;
+                            historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal, 5);
+                            historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal + earnedReputation, 5);
+                            historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal + earnedReputation, 5);
                             historyItem.Title = "Reputation Earned";
-                            historyItem.Explanation = "User earned repuatation from ProcessId:" + referenceProcessID;
+                            historyItem.Explanation = "User earned reputation from voting process #" + votingId;
                             db.UserReputationHistories.Add(historyItem);
                         }
                         //User is in the losing side
@@ -473,15 +498,98 @@ namespace DAO_ReputationService.Controllers
                             historyItem.Date = DateTime.Now;
                             historyItem.UserID = item.UserID;
                             historyItem.EarnedAmount = 0;
-                            historyItem.LostAmount = item.Amount;
+                            historyItem.LostAmount = Math.Round(item.Amount, 5);
                             historyItem.StakedAmount = 0;
                             historyItem.StakeReleasedAmount = 0;
-                            historyItem.LastStakedTotal = lastReputationHistory.LastStakedTotal;
-                            historyItem.LastTotal = lastReputationHistory.LastTotal - item.Amount;
-                            historyItem.LastUsableTotal = lastReputationHistory.LastUsableTotal - item.Amount;
-                            historyItem.Explanation = "User lost repuatation from ProcessId:" + referenceProcessID;
+                            historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal, 5);
+                            historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal - item.Amount, 5);
+                            historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal - item.Amount, 5);
+                            historyItem.Explanation = "User lost reputation from voting process #" + votingId;
                             historyItem.Title = "Reputation Loss";
 
+                            db.UserReputationHistories.Add(historyItem);
+                        }
+
+                        db.SaveChanges();
+                    }
+
+                    //Distribute or delete minted  reputation according to voting result
+                    foreach (var mintedStake in mintList)
+                    {
+                        ReleaseSingleStake(Convert.ToInt32(mintedStake.ReferenceID), mintedStake.Type);
+
+                        //If voting result is FOR -> Job completed succesfully and minted reputations should be released
+                        if(winnerSide == StakeType.For)
+                        {
+                            double jobDoerEarned = mintedStake.Amount * jobDoerRatio;
+                            double votersEarnedFromMint = mintedStake.Amount - jobDoerEarned;
+
+                            //Distribute job doers share
+                            if (jobDoerEarned > 0)
+                            {
+                                //Get last user reputation record (ReferenceID = JobDoerUserID)
+                                UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(Convert.ToInt32(mintedStake.ReferenceID));
+
+                                UserReputationHistory historyItem = new UserReputationHistory();
+                                historyItem.Date = DateTime.Now;
+                                historyItem.UserID = mintedStake.UserID;
+                                historyItem.EarnedAmount = Math.Round(jobDoerEarned, 5);
+                                historyItem.LostAmount = 0;
+                                historyItem.StakedAmount = 0;
+                                historyItem.StakeReleasedAmount = 0;
+                                historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal, 5);
+                                historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal + jobDoerEarned, 5);
+                                historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal + jobDoerEarned, 5);
+                                historyItem.Title = "Reputation Earned";
+                                historyItem.Explanation = "User earned minted reputation from job #" + jobId;
+                                db.UserReputationHistories.Add(historyItem);
+                            }
+
+                            //Distribute voters share
+                            if (votersEarnedFromMint > 0)
+                            {
+                                foreach (var user in winnersList)
+                                {
+                                    double usersStakePerc = user.Amount / winnerSideTotalStake;
+                                    double earnedReputation = votersEarnedFromMint * usersStakePerc;
+
+                                    //Get last user reputation record
+                                    UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(user.UserID);
+
+                                    UserReputationHistory historyItem = new UserReputationHistory();
+                                    historyItem.Date = DateTime.Now;
+                                    historyItem.UserID = mintedStake.UserID;
+                                    historyItem.EarnedAmount = Math.Round(earnedReputation, 5);
+                                    historyItem.LostAmount = 0;
+                                    historyItem.StakedAmount = 0;
+                                    historyItem.StakeReleasedAmount = 0;
+                                    historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal, 5);
+                                    historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal + earnedReputation, 5);
+                                    historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal + earnedReputation, 5);
+                                    historyItem.Title = "Reputation Earned";
+                                    historyItem.Explanation = "User earned minted repuatation from voting process #" + votingId;
+                                    db.UserReputationHistories.Add(historyItem);
+                                }
+                            }
+                        }
+                        //If voting result is AGAINST -> Minted reputation should be deleted from job doer
+                        else
+                        {
+                            //Get last user reputation record (ReferenceID = JobDoerUserID)
+                            UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(Convert.ToInt32(mintedStake.ReferenceID));
+
+                            UserReputationHistory historyItem = new UserReputationHistory();
+                            historyItem.Date = DateTime.Now;
+                            historyItem.UserID = mintedStake.UserID;
+                            historyItem.EarnedAmount = 0;
+                            historyItem.LostAmount = Math.Round(mintedStake.Amount, 5);
+                            historyItem.StakedAmount = 0;
+                            historyItem.StakeReleasedAmount = 0;
+                            historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal, 5);
+                            historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal - mintedStake.Amount, 5);
+                            historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal - mintedStake.Amount, 5);
+                            historyItem.Title = "Reputation Lost";
+                            historyItem.Explanation = "User lost minted repuatation from voting process #" + votingId;
                             db.UserReputationHistories.Add(historyItem);
                         }
 

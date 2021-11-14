@@ -19,5 +19,7 @@ namespace Helpers.Models.DtoModels.VoteDbDto
         public int? QuorumCount { get; set; }
         public VoteTypes Type { get; set; }
 
+        //How much of the new minted reputation will be distributed to job doer.
+        public double ReputationDistributionRatio { get; set; }
     }
 }

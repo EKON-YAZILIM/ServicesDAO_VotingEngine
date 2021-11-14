@@ -65,8 +65,7 @@ namespace DAO_VotingEngine
                             formalVoting.JobID = Convert.ToInt32(voting.JobID);
                             formalVoting.Status = Enums.VoteStatusTypes.Active;
                             formalVoting.Type = voting.Type;
-
-                            //Set quorum count based on DAO member count
+                            formalVoting.ReputationDistributionRatio = voting.ReputationDistributionRatio;
                             formalVoting.QuorumCount = voting.QuorumCount;
                             db.Votings.Add(formalVoting);
                             db.SaveChanges();
@@ -91,28 +90,15 @@ namespace DAO_VotingEngine
                     {
                         //Check if quorum is reached
                         var votes = db.Votes.Where(x => x.VotingID == voting.VotingID);
-                        //Quorum reached -> Start formal voting
+                        //Quorum reached -> Set voting status to completed and distribute reputations
                         if (voting.QuorumCount != null && votes.Count() >= Convert.ToInt32(voting.QuorumCount))
-                        {
+                        {                            
                             voting.Status = Enums.VoteStatusTypes.Completed;
                             db.Entry(voting).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                             db.SaveChanges();
 
-                            //Get total reputation stakes for this vote
-                            var stakesJson = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/GetByProcessId?referenceProcessID=" + voting.VotingID);
-                            List<UserReputationStakeDto> parsedStakes = Helpers.Serializers.DeserializeJson<List<UserReputationStakeDto>>(stakesJson);
-
-                            //Find winning side
-                            Enums.StakeType winnerSide = Enums.StakeType.For;
-                            double forReps = parsedStakes.Where(x => x.Type == Enums.StakeType.For).Sum(x => x.Amount);
-                            double againstReps = parsedStakes.Where(x => x.Type == Enums.StakeType.Against).Sum(x => x.Amount);
-                            if (againstReps > forReps)
-                            {
-                                winnerSide = Enums.StakeType.Against;
-                            }
-
                             //Distribute staked reputations
-                            var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/DistributeStakes?referenceProcessID=" + voting.VotingID + "&winnerDirection=" + winnerSide);
+                            var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/DistributeStakes?votingId=" + voting.VotingID+"&jobId="+ voting.JobID + "&jobDoerRatio="+voting.ReputationDistributionRatio);
                             SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
                         }
                         //Quorum isn't reached -> Set voting status to Expired

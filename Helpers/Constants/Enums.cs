@@ -105,7 +105,8 @@
         {
             For,
             Against,
-            Bid
+            Bid,
+            Mint
         }
 
         /// <summary>

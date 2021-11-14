@@ -178,7 +178,7 @@ namespace DAO_VotingEngine.Controllers
 
         [Route("GetVotingByStatus")]
         [HttpGet]
-        public List<VotingDto> GetVotingByStatus(Helpers.Constants.Enums.VoteStatusTypes? status)
+        public List<VotingDto> GetVotingByStatus(Enums.VoteStatusTypes? status)
         {
             List<Voting> model = new List<Voting>();
 
@@ -228,9 +228,32 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
+        [Route("GetCompletedVotingsByJobIds")]
+        [HttpPost]
+        public List<VotingDto> GetCompletedVotingsByJobIds(List<int> jobids)
+        {
+            List<VotingDto> res = new List<VotingDto>();
+
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    List<Voting> vt = db.Votings.Where(x => jobids.Contains(x.JobID) && (x.Status == VoteStatusTypes.Completed || x.Status == VoteStatusTypes.Expired)).ToList();
+
+                    res = _mapper.Map<List<Voting>, List<VotingDto>>(vt);
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return res;
+        }
+
         [Route("StartInformalVoting")]
         [HttpPost]
-        public SimpleResponse StartInformalVoting([FromBody]VotingDto model)
+        public SimpleResponse StartInformalVoting([FromBody] VotingDto model)
         {
             SimpleResponse res = new SimpleResponse();
 
@@ -238,7 +261,7 @@ namespace DAO_VotingEngine.Controllers
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    if(db.Votings.Count(x=>x.JobID == model.JobID && x.IsFormal == false && x.Type == VoteTypes.JobCompletion) > 0)
+                    if (db.Votings.Count(x => x.JobID == model.JobID && x.IsFormal == false && x.Type == VoteTypes.JobCompletion) > 0)
                     {
                         return new SimpleResponse() { Success = false, Message = "There is an existing informal voting process for this auction." };
                     }
@@ -252,6 +275,7 @@ namespace DAO_VotingEngine.Controllers
                     voting.JobID = model.JobID;
                     voting.Status = Enums.VoteStatusTypes.Active;
                     voting.Type = Enums.VoteTypes.JobCompletion;
+                    voting.ReputationDistributionRatio = model.ReputationDistributionRatio;
                     //Set quorum count based on DAO member count
                     voting.QuorumCount = model.QuorumCount;
                     db.Votings.Add(voting);
