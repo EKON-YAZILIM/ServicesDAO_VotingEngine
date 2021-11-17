@@ -19,10 +19,12 @@ namespace DAO_VotingEngine.Models
         public VoteStatusTypes Status { get; set; }
         public int? QuorumCount { get; set; }
         public VoteTypes Type { get; set; }
+        public int VoteCount { get; set; }
+        public double? StakedFor { get; set; }
+        public double? StakedAgainst { get; set; }
 
         //How much of the new minted reputation will be distributed to job doer.
-        public double ReputationDistributionRatio { get; set; }
-
+        public double PolicingRate { get; set; }
     }
 
 

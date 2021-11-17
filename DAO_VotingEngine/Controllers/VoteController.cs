@@ -233,9 +233,22 @@ namespace DAO_VotingEngine.Controllers
 
                         SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
 
-                        if(parsedResult.Success == false)
+                        if (parsedResult.Success == false)
                         {
                             db.Votes.Remove(vote);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            voteProcess.VoteCount += 1;
+                            if (repModel.Type == StakeType.For)
+                            {
+                                voteProcess.StakedFor += repModel.Amount;
+                            }
+                            else if (repModel.Type == StakeType.Against)
+                            {
+                                voteProcess.StakedAgainst += repModel.Amount;
+                            }
                             db.SaveChanges();
                         }
 

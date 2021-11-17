@@ -65,8 +65,10 @@ namespace DAO_VotingEngine
                             formalVoting.JobID = Convert.ToInt32(voting.JobID);
                             formalVoting.Status = Enums.VoteStatusTypes.Active;
                             formalVoting.Type = voting.Type;
-                            formalVoting.ReputationDistributionRatio = voting.ReputationDistributionRatio;
+                            formalVoting.PolicingRate = voting.PolicingRate;
                             formalVoting.QuorumCount = voting.QuorumCount;
+                            formalVoting.StakedAgainst = 0;
+                            formalVoting.StakedFor = 0;
                             db.Votings.Add(formalVoting);
                             db.SaveChanges();
                         }
@@ -79,7 +81,7 @@ namespace DAO_VotingEngine
                         }
 
                         //Release staked reputations
-                        var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakes?referenceProcessID=" + voting.VotingID);
+                        var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakes?referenceProcessID=" + voting.VotingID+ "&reftype="+ Enums.StakeType.For);
                         SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
                     }
 
@@ -98,7 +100,7 @@ namespace DAO_VotingEngine
                             db.SaveChanges();
 
                             //Distribute staked reputations
-                            var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/DistributeStakes?votingId=" + voting.VotingID+"&jobId="+ voting.JobID + "&jobDoerRatio="+voting.ReputationDistributionRatio);
+                            var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/DistributeStakes?votingId=" + voting.VotingID+"&jobId="+ voting.JobID + "&jobDoerRatio="+voting.PolicingRate.ToString().Replace(",","."));
                             SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
                         }
                         //Quorum isn't reached -> Set voting status to Expired

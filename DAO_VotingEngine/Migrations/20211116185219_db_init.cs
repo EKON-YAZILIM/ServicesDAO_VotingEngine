@@ -37,7 +37,11 @@ namespace DAO_VotingEngine.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     QuorumCount = table.Column<int>(type: "int", nullable: true),
-                    Type = table.Column<int>(type: "int", nullable: false)
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    VoteCount = table.Column<int>(type: "int", nullable: false),
+                    StakedFor = table.Column<double>(type: "double", nullable: true),
+                    StakedAgainst = table.Column<double>(type: "double", nullable: true),
+                    PolicingRate = table.Column<double>(type: "double", nullable: false)
                 },
                 constraints: table =>
                 {

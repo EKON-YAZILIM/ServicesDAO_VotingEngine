@@ -461,49 +461,53 @@ namespace DAO_ReputationService.Controllers
                     double winnerSideTotalStake = winnersList.Sum(x => x.Amount);
 
                     //Distribute reputitation from votes
-                    foreach (var item in stakeList)
+                    foreach (var stake in stakeList)
                     {
-                        ReleaseSingleStake(Convert.ToInt32(item.ReferenceID), item.Type);
+                        ReleaseSingleStake(Convert.ToInt32(stake.ReferenceID), stake.Type);
 
                         //User is in the winning side
-                        if (winnersList.Count(x => x.UserID == item.UserID) > 0)
+                        if (winnersList.Count(x => x.UserID == stake.UserID) > 0)
                         {
-                            double usersStakePerc = item.Amount / winnerSideTotalStake;
+                            double usersStakePerc = stake.Amount / winnerSideTotalStake;
                             double earnedReputation = losingSideTotalStake * usersStakePerc;
 
-                            //Get last user reputation record
-                            UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(item.UserID);
+                            if(earnedReputation > 0)
+                            {
+                                //Get last user reputation record
+                                UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(stake.UserID);
 
-                            UserReputationHistory historyItem = new UserReputationHistory();
-                            historyItem.Date = DateTime.Now;
-                            historyItem.UserID = item.UserID;
-                            historyItem.EarnedAmount = Math.Round(earnedReputation, 5);
-                            historyItem.LostAmount = 0;
-                            historyItem.StakedAmount = 0;
-                            historyItem.StakeReleasedAmount = 0;
-                            historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal, 5);
-                            historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal + earnedReputation, 5);
-                            historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal + earnedReputation, 5);
-                            historyItem.Title = "Reputation Earned";
-                            historyItem.Explanation = "User earned reputation from voting process #" + votingId;
-                            db.UserReputationHistories.Add(historyItem);
+                                UserReputationHistory historyItem = new UserReputationHistory();
+                                historyItem.Date = DateTime.Now;
+                                historyItem.UserID = stake.UserID;
+                                historyItem.EarnedAmount = Math.Round(earnedReputation, 5);
+                                historyItem.LostAmount = 0;
+                                historyItem.StakedAmount = 0;
+                                historyItem.StakeReleasedAmount = 0;
+                                historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal, 5);
+                                historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal + earnedReputation, 5);
+                                historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal + earnedReputation, 5);
+                                historyItem.Title = "Reputation Earned";
+                                historyItem.Explanation = "User earned reputation from voting process #" + votingId;
+                                db.UserReputationHistories.Add(historyItem);
+                            }
+
                         }
                         //User is in the losing side
                         else
                         {
                             //Get last user reputation record
-                            UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(item.UserID);
+                            UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(stake.UserID);
 
                             UserReputationHistory historyItem = new UserReputationHistory();
                             historyItem.Date = DateTime.Now;
-                            historyItem.UserID = item.UserID;
+                            historyItem.UserID = stake.UserID;
                             historyItem.EarnedAmount = 0;
-                            historyItem.LostAmount = Math.Round(item.Amount, 5);
+                            historyItem.LostAmount = Math.Round(stake.Amount, 5);
                             historyItem.StakedAmount = 0;
                             historyItem.StakeReleasedAmount = 0;
                             historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal, 5);
-                            historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal - item.Amount, 5);
-                            historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal - item.Amount, 5);
+                            historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal - stake.Amount, 5);
+                            historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal - stake.Amount, 5);
                             historyItem.Explanation = "User lost reputation from voting process #" + votingId;
                             historyItem.Title = "Reputation Loss";
 

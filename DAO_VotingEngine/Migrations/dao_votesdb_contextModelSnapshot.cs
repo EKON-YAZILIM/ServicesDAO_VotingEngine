@@ -58,10 +58,16 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<int>("JobID")
                         .HasColumnType("int");
 
+                    b.Property<double>("PolicingRate")
+                        .HasColumnType("double");
+
                     b.Property<int?>("QuorumCount")
                         .HasColumnType("int");
 
-                    b.Property<double>("ReputationDistributionRatio")
+                    b.Property<double?>("StakedAgainst")
+                        .HasColumnType("double");
+
+                    b.Property<double?>("StakedFor")
                         .HasColumnType("double");
 
                     b.Property<DateTime>("StartDate")
@@ -71,6 +77,9 @@ namespace DAO_VotingEngine.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VoteCount")
                         .HasColumnType("int");
 
                     b.HasKey("VotingID");

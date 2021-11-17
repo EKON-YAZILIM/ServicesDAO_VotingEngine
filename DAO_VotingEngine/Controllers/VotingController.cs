@@ -275,7 +275,9 @@ namespace DAO_VotingEngine.Controllers
                     voting.JobID = model.JobID;
                     voting.Status = Enums.VoteStatusTypes.Active;
                     voting.Type = Enums.VoteTypes.JobCompletion;
-                    voting.ReputationDistributionRatio = model.ReputationDistributionRatio;
+                    voting.PolicingRate = model.PolicingRate;
+                    voting.StakedAgainst = 0;
+                    voting.StakedFor = 0;
                     //Set quorum count based on DAO member count
                     voting.QuorumCount = model.QuorumCount;
                     db.Votings.Add(voting);

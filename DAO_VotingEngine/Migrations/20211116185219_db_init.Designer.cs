@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAO_VotingEngine.Migrations
 {
     [DbContext(typeof(dao_votesdb_context))]
-    [Migration("20211114152439_vote_model_changed")]
-    partial class vote_model_changed
+    [Migration("20211116185219_db_init")]
+    partial class db_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,10 +60,16 @@ namespace DAO_VotingEngine.Migrations
                     b.Property<int>("JobID")
                         .HasColumnType("int");
 
+                    b.Property<double>("PolicingRate")
+                        .HasColumnType("double");
+
                     b.Property<int?>("QuorumCount")
                         .HasColumnType("int");
 
-                    b.Property<double>("ReputationDistributionRatio")
+                    b.Property<double?>("StakedAgainst")
+                        .HasColumnType("double");
+
+                    b.Property<double?>("StakedFor")
                         .HasColumnType("double");
 
                     b.Property<DateTime>("StartDate")
@@ -73,6 +79,9 @@ namespace DAO_VotingEngine.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VoteCount")
                         .HasColumnType("int");
 
                     b.HasKey("VotingID");
