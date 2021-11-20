@@ -233,7 +233,7 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-                    model = db.UserReputationHistories.Where(x => x.UserID == userid).ToList();
+                    model = db.UserReputationHistories.Where(x => x.UserID == userid).OrderByDescending(x=>x.Date).ToList();
                 }
             }
             catch (Exception ex)
