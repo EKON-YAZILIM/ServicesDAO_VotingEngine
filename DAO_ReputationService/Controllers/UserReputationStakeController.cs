@@ -220,13 +220,7 @@ namespace DAO_ReputationService.Controllers
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
                     //Check if user already staked reputation for same process
-                    if (db.UserReputationStakes.Count(x => x.ReferenceProcessID == model.ReferenceProcessID && x.UserID == model.UserID) > 0)
-                    {
-                        return new SimpleResponse() { Success = false, Message = "User have already staked reputation for this process." };
-                    }
-
-                    //Check if user already staked reputation for same process
-                    if (db.UserReputationStakes.Count(x => x.ReferenceProcessID == model.ReferenceProcessID && x.ReferenceID == model.ReferenceID) > 0)
+                    if (db.UserReputationStakes.Count(x => x.ReferenceProcessID == model.ReferenceProcessID && x.ReferenceID == model.ReferenceID && x.UserID == model.UserID && x.Status == ReputationStakeStatus.Staked) > 0)
                     {
                         return new SimpleResponse() { Success = false, Message = "User have already staked reputation for this process." };
                     }
@@ -612,3 +606,4 @@ namespace DAO_ReputationService.Controllers
         }
     }
 }
+ 
