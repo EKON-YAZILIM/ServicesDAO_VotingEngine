@@ -139,6 +139,7 @@ namespace DAO_ReputationService.Controllers
                     db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                 }
+                Program.monitizer.AddUserLog(model.UserID,UserLogType.Request,"Reputation stake updated. User Reputaing Reputation #" + model.UserReputationStakeID);
                 return _mapper.Map<UserReputationStake, UserReputationStakeDto>(item);
             }
             catch (Exception ex)
@@ -275,6 +276,8 @@ namespace DAO_ReputationService.Controllers
                     db.UserReputationStakes.Add(model);
                     db.SaveChanges();
 
+                    Program.monitizer.AddUserLog(model.UserID, UserLogType.Request, repHst.Explanation);
+
                     return new SimpleResponse() { Success = true, Message = "Stake successful." };
                 }
             }
@@ -355,7 +358,7 @@ namespace DAO_ReputationService.Controllers
                     db.UserReputationHistories.Add(historyItem);
                     db.SaveChanges();
 
-
+                    Program.monitizer.AddUserLog(stake.UserID,UserLogType.Request, historyItem.Explanation);
                     return new SimpleResponse() { Success = true, Message = "Release successful." };
                 }
             }
@@ -403,7 +406,7 @@ namespace DAO_ReputationService.Controllers
                     {
                         ReleaseSingleStake(Convert.ToInt32(item.ReferenceID), item.Type);
                     }
-
+                    Program.monitizer.AddApplicationLog(LogTypes.ApplicationLog, "Stakes released. referenceProcessID:"+ referenceProcessID);
                     return new SimpleResponse() { Success = true, Message = "Release successful." };
                 }
             }
@@ -593,6 +596,7 @@ namespace DAO_ReputationService.Controllers
 
                         db.SaveChanges();
                     }
+                    Program.monitizer.AddApplicationLog(LogTypes.ApplicationLog, "Stakes distributed. Job #:" + jobId);
 
                     return new SimpleResponse() { Success = true, Message = "Distribution successful." };
                 }

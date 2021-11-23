@@ -252,6 +252,8 @@ namespace DAO_VotingEngine.Controllers
                             db.SaveChanges();
                         }
 
+                        Program.monitizer.AddUserLog(UserID,UserLogType.Request,"User submitted vote. Voting # "+VotingID);
+
                         return parsedResult;
                     }
                 }
