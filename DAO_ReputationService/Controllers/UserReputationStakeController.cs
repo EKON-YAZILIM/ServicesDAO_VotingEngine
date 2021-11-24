@@ -208,6 +208,27 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<List<UserReputationStake>, List<UserReputationStakeDto>>(model).ToList();
         }
 
+        [Route("GetByUserId")]
+        [HttpGet]
+        public List<UserReputationStakeDto> GetByUserId(int userid)
+        {
+            List<UserReputationStake> model = new List<UserReputationStake>();
+
+            try
+            {
+                using (dao_reputationserv_context db = new dao_reputationserv_context())
+                {
+                    model = db.UserReputationStakes.Where(x => x.UserID == userid).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                model = new List<UserReputationStake>();
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return _mapper.Map<List<UserReputationStake>, List<UserReputationStakeDto>>(model).ToList();
+        }
 
         [Route("SubmitStake")]
         [HttpPost]
@@ -249,7 +270,14 @@ namespace DAO_ReputationService.Controllers
                     repHst.LostAmount = 0;
                     repHst.StakeReleasedAmount = 0;
                     repHst.LastStakedTotal = Math.Round(lastHst.LastStakedTotal + model.Amount, 5);
-                    repHst.LastUsableTotal = Math.Round(lastHst.LastUsableTotal - model.Amount, 5);
+                    if(model.Type != StakeType.Mint)
+                    {
+                        repHst.LastUsableTotal = Math.Round(lastHst.LastUsableTotal - model.Amount, 5);
+                    }
+                    else
+                    {
+                        repHst.LastUsableTotal = Math.Round(lastHst.LastUsableTotal, 5);
+                    }
                     repHst.LastTotal = Math.Round(lastHst.LastTotal, 5);
                     if(model.Type == StakeType.For || model.Type == StakeType.Against)
                     {

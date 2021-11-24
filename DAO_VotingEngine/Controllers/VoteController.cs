@@ -208,6 +208,27 @@ namespace DAO_VotingEngine.Controllers
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
+                    Voting voteProcess = db.Votings.Find(VotingID);
+
+                    //Check if user has vote in informal
+                    if (voteProcess.IsFormal)
+                    {
+                        if (db.Votings.Count(x => x.IsFormal == false && x.JobID == voteProcess.JobID) > 0)
+                        {
+                            //Get informal voting
+                            var informalVoting = db.Votings.OrderByDescending(x => x.CreateDate).First(x => x.IsFormal == false && x.JobID == voteProcess.JobID);
+
+                            //Get votes from informal voting
+                            var reputationsJson = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/GetByProcessId?referenceProcessID=" + informalVoting.VotingID + "&reftype=" + StakeType.For);
+                            var reputations = Helpers.Serializers.DeserializeJson<List<UserReputationStakeDto>>(reputationsJson);
+
+                            if (reputations.Count(x => x.UserID == UserID) == 0)
+                            {
+                                return new SimpleResponse() { Success = false, Message = "User didn't vote on the informal voting."};
+                            }
+                        }
+                    }
+
                     //Save vote into database
                     Vote vote = new Vote();
                     vote.Date = DateTime.Now;
@@ -217,8 +238,7 @@ namespace DAO_VotingEngine.Controllers
                     db.Votes.Add(vote);
                     db.SaveChanges();
 
-                    //Check if reputation is staked
-                    Voting voteProcess = db.Votings.Find(VotingID);
+                    //Check if user staked reputation        
                     if (ReputationStake != null && voteProcess.Type != VoteTypes.Simple && voteProcess.Type != VoteTypes.Governance && voteProcess.Type != VoteTypes.Simple)
                     {
                         UserReputationStakeDto repModel = new UserReputationStakeDto();
