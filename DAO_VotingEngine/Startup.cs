@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using DAO_VotingEngine.Contexts;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using System.Collections.Generic;
 
 namespace DAO_VotingEngine
 {

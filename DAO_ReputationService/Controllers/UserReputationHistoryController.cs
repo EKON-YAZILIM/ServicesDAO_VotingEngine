@@ -233,7 +233,7 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-                    model = db.UserReputationHistories.Where(x => x.UserID == userid).OrderByDescending(x=>x.Date).ToList();
+                    model = db.UserReputationHistories.Where(x => x.UserID == userid).OrderByDescending(x => x.UserReputationHistoryID).ToList();
                 }
             }
             catch (Exception ex)
@@ -255,7 +255,14 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-                    model = db.UserReputationHistories.Where(x=>x.UserID == userid).OrderByDescending(x=>x.UserReputationHistoryID).FirstOrDefault();
+                    //If user does not have reputation history. Initialize history for the user
+                    if (db.UserReputationHistories.Count(x => x.UserID == userid) == 0)
+                    {
+                        db.UserReputationHistories.Add(new UserReputationHistory() { Date = DateTime.Now, Title = "Initial Reputation", Explanation = "Initial reputation record of the user.", EarnedAmount = 0, LastStakedTotal = 0, LastTotal = 0, LastUsableTotal = 0, LostAmount = 0, StakedAmount = 0, StakeReleasedAmount = 0, UserID = userid });
+                        db.SaveChanges();
+                    }
+
+                    model = db.UserReputationHistories.Where(x => x.UserID == userid).OrderByDescending(x => x.UserReputationHistoryID).FirstOrDefault();
                 }
             }
             catch (Exception ex)
