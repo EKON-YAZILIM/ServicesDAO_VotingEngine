@@ -16,6 +16,8 @@ using Helpers;
 using Helpers.Models.SharedModels;
 using DAO_ReputationService.Contexts;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace DAO_ReputationService
 {
@@ -115,6 +117,22 @@ namespace DAO_ReputationService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseStaticFiles();
+
+            var defaultDateCulture = "en-US";
+            var ci = new CultureInfo(defaultDateCulture);
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            ci.NumberFormat.NumberGroupSeparator = ",";
+
+            // Configure the Localization middleware
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(ci),
+                SupportedCultures = new List<CultureInfo> { ci, },
+                SupportedUICultures = new List<CultureInfo> { ci, }
             });
 
             DefaultFilesOptions DefaultFile = new DefaultFilesOptions();

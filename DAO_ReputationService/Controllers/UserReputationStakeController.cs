@@ -367,7 +367,17 @@ namespace DAO_ReputationService.Controllers
                     historyItem.StakeReleasedAmount = Math.Round(stake.Amount, 5);
                     historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal - stake.Amount, 5);
                     historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal, 5);
-                    historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal + stake.Amount, 5);
+
+                    //If minted pending is released it won't affect usable total
+                    if(reftype == StakeType.Mint)
+                    {
+                        historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal, 5);
+                    }
+                    else
+                    {
+                        historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal + stake.Amount, 5);
+                    }
+
                     if (stake.Type == StakeType.For || stake.Type == StakeType.Against)
                     {
                         historyItem.Title = "Vote Stake Release";
@@ -547,7 +557,7 @@ namespace DAO_ReputationService.Controllers
                     {
                         ReleaseSingleStake(Convert.ToInt32(mintedStake.ReferenceID), mintedStake.Type);
 
-                        //If voting result is FOR -> Job completed succesfully and minted reputations should be released
+                        //If voting result is FOR -> Job completed succesfully and minted reputations should be released and distributed
                         if(winnerSide == StakeType.For)
                         {
                             double jobDoerEarned = mintedStake.Amount * jobDoerRatio;
@@ -587,7 +597,7 @@ namespace DAO_ReputationService.Controllers
 
                                     UserReputationHistory historyItem = new UserReputationHistory();
                                     historyItem.Date = DateTime.Now;
-                                    historyItem.UserID = mintedStake.UserID;
+                                    historyItem.UserID = user.UserID;
                                     historyItem.EarnedAmount = Math.Round(earnedReputation, 5);
                                     historyItem.LostAmount = 0;
                                     historyItem.StakedAmount = 0;
@@ -600,26 +610,6 @@ namespace DAO_ReputationService.Controllers
                                     db.UserReputationHistories.Add(historyItem);
                                 }
                             }
-                        }
-                        //If voting result is AGAINST -> Minted reputation should be deleted from job doer
-                        else
-                        {
-                            //Get last user reputation record (ReferenceID = JobDoerUserID)
-                            UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(Convert.ToInt32(mintedStake.ReferenceID));
-
-                            UserReputationHistory historyItem = new UserReputationHistory();
-                            historyItem.Date = DateTime.Now;
-                            historyItem.UserID = mintedStake.UserID;
-                            historyItem.EarnedAmount = 0;
-                            historyItem.LostAmount = Math.Round(mintedStake.Amount, 5);
-                            historyItem.StakedAmount = 0;
-                            historyItem.StakeReleasedAmount = 0;
-                            historyItem.LastStakedTotal = Math.Round(lastReputationHistory.LastStakedTotal, 5);
-                            historyItem.LastTotal = Math.Round(lastReputationHistory.LastTotal - mintedStake.Amount, 5);
-                            historyItem.LastUsableTotal = Math.Round(lastReputationHistory.LastUsableTotal - mintedStake.Amount, 5);
-                            historyItem.Title = "Reputation Lost";
-                            historyItem.Explanation = "User lost minted repuatation from voting process #" + votingId;
-                            db.UserReputationHistories.Add(historyItem);
                         }
 
                         db.SaveChanges();
