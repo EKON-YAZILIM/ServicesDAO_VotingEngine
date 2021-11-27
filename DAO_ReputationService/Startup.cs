@@ -102,8 +102,6 @@ namespace DAO_ReputationService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();

@@ -99,8 +99,6 @@ namespace DAO_VotingEngine
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();

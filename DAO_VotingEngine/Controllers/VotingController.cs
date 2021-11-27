@@ -228,6 +228,29 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
+        [Route("GetInformalVotingByJobId")]
+        [HttpGet]
+        public VotingDto GetInformalVotingByJobId(int jobid)
+        {
+            VotingDto res = new VotingDto();
+
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    Voting vt = db.Votings.Where(x=>x.IsFormal == false && x.JobID == jobid).OrderByDescending(x => x.VotingID).FirstOrDefault();
+
+                    res = _mapper.Map<Voting, VotingDto>(vt);
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return res;
+        }
+
         [Route("GetCompletedVotingsByJobIds")]
         [HttpPost]
         public List<VotingDto> GetCompletedVotingsByJobIds(List<int> jobids)

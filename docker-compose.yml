@@ -1,0 +1,58 @@
+version: '3.4'
+
+volumes:
+  vote_datafiles:
+  reputation_datafiles:
+
+services:
+
+  dao_votedb:
+    image: mysql:5.7
+    volumes:
+      - vote_datafiles:/var/lib/mysql      
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=secred
+      - MYSQL_DATABASE=daovotedb
+    networks:
+      - daonetwork  
+
+  dao_reputationdb:
+    image: mysql:5.7
+    volumes:
+      - reputation_datafiles:/var/lib/mysql      
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=secred
+      - MYSQL_DATABASE=daoreputationdb
+    networks:
+      - daonetwork  
+
+  dao_votingengine:
+    image: ${DOCKER_REGISTRY-}daovotingengine
+    build:
+      context: .
+      dockerfile: DAO_VotingEngine/Dockerfile
+    restart: always
+    networks:
+      - daonetwork
+
+  dao_reputationservice:
+    image: ${DOCKER_REGISTRY-}daoreputationservice
+    build:
+      context: .
+      dockerfile: DAO_ReputationService/Dockerfile
+    restart: always
+    networks:
+      - daonetwork
+networks:
+  daonetwork:
+    name: daonetwork
+    driver: bridge
+
+
+
+
+
+
+

@@ -66,7 +66,7 @@ namespace DAO_VotingEngine
                             formalVoting.Status = Enums.VoteStatusTypes.Active;
                             formalVoting.Type = voting.Type;
                             formalVoting.PolicingRate = voting.PolicingRate;
-                            formalVoting.QuorumCount = voting.QuorumCount;
+                            formalVoting.QuorumCount = db.Votes.Count(x => x.VotingID == voting.VotingID);
                             formalVoting.StakedAgainst = 0;
                             formalVoting.StakedFor = 0;
                             db.Votings.Add(formalVoting);

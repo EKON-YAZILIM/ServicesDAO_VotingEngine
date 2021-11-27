@@ -20,3 +20,5 @@
 /DAO_VotingEngine/DAO_VotingEngine.csproj.user
 /DAO_ReputationService/appsettings.Production.json
 /DAO_VotingEngine/appsettings.Production.json
+/docker-compose-production.yml
+/docker-compose-production.override.yml
