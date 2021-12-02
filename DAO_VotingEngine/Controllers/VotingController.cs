@@ -303,6 +303,7 @@ namespace DAO_VotingEngine.Controllers
                     voting.StakedFor = 0;
                     //Set quorum count based on DAO member count
                     voting.QuorumCount = model.QuorumCount;
+                    voting.QuorumRatio = model.QuorumRatio;
                     db.Votings.Add(voting);
                     db.SaveChanges();
 

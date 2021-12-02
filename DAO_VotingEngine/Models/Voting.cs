@@ -18,6 +18,7 @@ namespace DAO_VotingEngine.Models
         public DateTime EndDate { get; set; }
         public VoteStatusTypes Status { get; set; }
         public int? QuorumCount { get; set; }
+        public double? QuorumRatio { get; set; }
         public VoteTypes Type { get; set; }
         public int VoteCount { get; set; }
         public double? StakedFor { get; set; }
@@ -25,6 +26,7 @@ namespace DAO_VotingEngine.Models
 
         //How much of the new minted reputation will be distributed to job doer.
         public double PolicingRate { get; set; }
+
     }
 
 
