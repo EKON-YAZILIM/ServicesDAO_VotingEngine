@@ -74,6 +74,7 @@ namespace DAO_VotingEngine
                             {
                                 formalVoting.QuorumCount = Convert.ToInt32(voting.QuorumRatio * 0.5);
                             }
+                            formalVoting.QuorumRatio = voting.QuorumRatio;
                             formalVoting.StakedAgainst = 0;
                             formalVoting.StakedFor = 0;
                             db.Votings.Add(formalVoting);

@@ -210,6 +210,12 @@ namespace DAO_VotingEngine.Controllers
                 {
                     Voting voteProcess = db.Votings.Find(VotingID);
 
+                    //Check if user already voted on the same voting
+                    if (db.Votes.Count(x=>x.UserID == UserID && x.VotingID == voteProcess.VotingID) > 0)
+                    {
+                        return new SimpleResponse() { Success = false, Message = "User already voted on this voting." };
+                    }
+
                     //Check if user has vote in informal
                     if (voteProcess.IsFormal)
                     {
@@ -224,7 +230,7 @@ namespace DAO_VotingEngine.Controllers
 
                             if (reputations.Count(x => x.UserID == UserID) == 0)
                             {
-                                return new SimpleResponse() { Success = false, Message = "User didn't vote on the informal voting."};
+                                return new SimpleResponse() { Success = false, Message = "User didn't vote on the informal voting." };
                             }
                         }
                     }
@@ -272,7 +278,7 @@ namespace DAO_VotingEngine.Controllers
                             db.SaveChanges();
                         }
 
-                        Program.monitizer.AddUserLog(UserID,UserLogType.Request,"User submitted vote. Voting # "+VotingID);
+                        Program.monitizer.AddUserLog(UserID, UserLogType.Request, "User submitted vote. Voting # " + VotingID);
 
                         return parsedResult;
                     }
@@ -284,6 +290,29 @@ namespace DAO_VotingEngine.Controllers
             }
 
             return res;
+        }
+
+
+        [Route("GetAllVotesByUserId")]
+        [HttpGet]
+        public List<VoteDto> GetAllVotesByUserId(int userid)
+        {
+            List<Vote> model = new List<Vote>();
+
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    model = db.Votes.Where(x => x.UserID == userid).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                model = new List<Vote>();
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return _mapper.Map<List<Vote>, List<VoteDto>>(model).ToList();
         }
     }
 }
