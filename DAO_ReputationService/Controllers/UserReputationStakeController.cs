@@ -198,6 +198,11 @@ namespace DAO_ReputationService.Controllers
                     {
                         model = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Type == StakeType.Bid).ToList();
                     }
+                    //Stake for minting
+                    else if (reftype == StakeType.Mint)
+                    {
+                        model = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Type == StakeType.Mint).ToList();
+                    }
                 }
             }
             catch (Exception ex)
