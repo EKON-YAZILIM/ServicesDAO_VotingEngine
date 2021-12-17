@@ -8,6 +8,7 @@ services:
 
   dao_votedb:
     image: mysql:5.7
+    platform: linux/x86_64
     volumes:
       - vote_datafiles:/var/lib/mysql      
     restart: always
@@ -19,6 +20,7 @@ services:
 
   dao_reputationdb:
     image: mysql:5.7
+    platform: linux/x86_64
     volumes:
       - reputation_datafiles:/var/lib/mysql      
     restart: always

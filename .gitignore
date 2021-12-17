@@ -22,3 +22,4 @@
 /DAO_VotingEngine/appsettings.Production.json
 /docker-compose-production.yml
 /docker-compose-production.override.yml
+.DS_Store

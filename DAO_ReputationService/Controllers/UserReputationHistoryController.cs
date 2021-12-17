@@ -274,5 +274,29 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<UserReputationHistory, UserReputationHistoryDto>(model);
         }
 
+        [Route("GetLastReputationByUserIds")]
+        [HttpPost]
+        public List<UserReputationHistoryDto> GetLastReputationByUserIds(List<int> userids)
+        {
+            List<UserReputationHistory> model = new List<UserReputationHistory>();
+
+            try
+            {
+                using (dao_reputationserv_context db = new dao_reputationserv_context())
+                {
+                    foreach (var userid in userids)
+                    {
+                        model.Add(db.UserReputationHistories.OrderByDescending(x=>x.UserReputationHistoryID).FirstOrDefault(x=>x.UserID == userid));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return _mapper.Map<List<UserReputationHistory>, List<UserReputationHistoryDto>>(model);
+        }
+
     }
 }
