@@ -7,13 +7,32 @@ jQuery UI - v1.10.4 and Razor was used to develop the frontend.<br>
 Test Environment<br>
 Votin engine and reputation service is a seperated module that works integrated with the "Services DAO" project.<br>
 The following test environment gives the opportunity to show and test how the module works integrated with the Services DAO <br>
-Address: 193.140.239.52:1098
-Test Admin User:
-username: Ekin
-password: 1parola1
+Address: 193.140.239.52:1098 <br>
+Test Admin User:<br>
+username: Ekin<br>
+password: 1parola1<br>
 
-Setup
-Docker must be installed on your system. <br>
+## Prerequisites
+To run the application, `Docker` should be installed and configured on your system. Necesseary information is [here](https://docs.docker.com/engine/install/).<br>
+<br>
+In order to access the database, mysql client is to be installed on your system. Necessary information is [here](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-install-linux-quick.html).<br>
+Example for Ubuntu:
+```shell
+sudo apt-get update
+sudo apt-get install mysql-client
+```
+In order to build microservices individually and run the tests from command prompt dotnet sdk 3.1 or higher should be installed on your system. Necessary information is [here](https://docs.microsoft.com/tr-tr/dotnet/core/install/linux-ubuntu).<br>
+Example for Ubuntu:
+```shell
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt update
+sudo apt install apt-transport-https
+sudo apt install dotnet-sdk-3.1
+```
+
+##Install and Run
+
 Build and run with docker-compose <br>
 
 Under project folder, type 
