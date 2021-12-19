@@ -238,7 +238,7 @@ namespace DAO_VotingEngine.Controllers
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    Voting vt = db.Votings.Where(x=>x.IsFormal == false && x.JobID == jobid).OrderByDescending(x => x.VotingID).FirstOrDefault();
+                    Voting vt = db.Votings.Where(x => x.IsFormal == false && x.JobID == jobid).OrderByDescending(x => x.VotingID).FirstOrDefault();
 
                     res = _mapper.Map<Voting, VotingDto>(vt);
                 }
@@ -297,17 +297,60 @@ namespace DAO_VotingEngine.Controllers
                     voting.IsFormal = false;
                     voting.JobID = model.JobID;
                     voting.Status = Enums.VoteStatusTypes.Active;
-                    voting.Type = Enums.VoteTypes.JobCompletion;
+                    voting.Type = model.Type;
                     voting.PolicingRate = model.PolicingRate;
                     voting.StakedAgainst = 0;
                     voting.StakedFor = 0;
                     //Set quorum count based on DAO member count
+                    voting.EligibleUserCount = model.EligibleUserCount;
                     voting.QuorumCount = model.QuorumCount;
                     voting.QuorumRatio = model.QuorumRatio;
                     db.Votings.Add(voting);
                     db.SaveChanges();
 
                     return new SimpleResponse() { Success = true, Message = "Informal voting started successfully.", Content = voting };
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return res;
+        }
+
+        [Route("RestartVoting")]
+        [HttpGet]
+        public SimpleResponse RestartVoting(int votingId, DateTime endDate)
+        {
+            SimpleResponse res = new SimpleResponse();
+
+            try
+            {
+                using (dao_votesdb_context db = new dao_votesdb_context())
+                {
+                    var voting = db.Votings.Find(votingId);
+
+                    if (voting.Status != Enums.VoteStatusTypes.Expired)
+                    {
+                        return new SimpleResponse() { Success = false, Message = "Only expired voting can be restarted." };
+                    }
+
+                    voting.StartDate = DateTime.Now;
+                    voting.EndDate = endDate;
+                    voting.Status = Enums.VoteStatusTypes.Active;
+                    voting.VoteCount = 0;
+                    voting.StakedFor = 0;
+                    voting.StakedAgainst = 0;
+
+                    foreach (var vote in db.Votes.Where(x => x.VotingID == votingId))
+                    {
+                        db.Votes.Remove(vote);
+                    }
+
+                    db.SaveChanges();
+
+                    return new SimpleResponse() { Success = true, Message = "Voting restarted successfully.", Content = voting };
                 }
             }
             catch (Exception ex)

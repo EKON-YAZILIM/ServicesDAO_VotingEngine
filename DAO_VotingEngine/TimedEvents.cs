@@ -66,7 +66,8 @@ namespace DAO_VotingEngine
                             formalVoting.Status = Enums.VoteStatusTypes.Active;
                             formalVoting.Type = voting.Type;
                             formalVoting.PolicingRate = voting.PolicingRate;
-                            if(voting.QuorumRatio != null && voting.QuorumRatio > 0)
+
+                            if (voting.QuorumRatio != null && voting.QuorumRatio > 0)
                             {
                                 formalVoting.QuorumCount = Convert.ToInt32(voting.QuorumRatio * Convert.ToDouble(db.Votes.Count(x => x.VotingID == voting.VotingID)));
                             }
@@ -74,6 +75,8 @@ namespace DAO_VotingEngine
                             {
                                 formalVoting.QuorumCount = Convert.ToInt32(voting.QuorumRatio * 0.5);
                             }
+
+                            formalVoting.EligibleUserCount = db.Votes.Count(x => x.VotingID == voting.VotingID);
                             formalVoting.QuorumRatio = voting.QuorumRatio;
                             formalVoting.StakedAgainst = 0;
                             formalVoting.StakedFor = 0;
@@ -89,7 +92,7 @@ namespace DAO_VotingEngine
                         }
 
                         //Release staked reputations
-                        var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakes?referenceProcessID=" + voting.VotingID+ "&reftype="+ Enums.StakeType.For);
+                        var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakes?referenceProcessID=" + voting.VotingID + "&reftype=" + Enums.StakeType.For);
                         SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
                     }
 
@@ -102,14 +105,23 @@ namespace DAO_VotingEngine
                         var votes = db.Votes.Where(x => x.VotingID == voting.VotingID);
                         //Quorum reached -> Set voting status to completed and distribute reputations
                         if (voting.QuorumCount != null && votes.Count() >= Convert.ToInt32(voting.QuorumCount))
-                        {                            
+                        {
                             voting.Status = Enums.VoteStatusTypes.Completed;
                             db.Entry(voting).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                             db.SaveChanges();
 
-                            //Distribute staked reputations
-                            var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/DistributeStakes?votingId=" + voting.VotingID+"&jobId="+ voting.JobID + "&jobDoerRatio="+voting.PolicingRate.ToString().Replace(",","."));
-                            SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
+                            //Distribute staked reputations (Only for job completion votings)
+                            if (voting.Type == Enums.VoteTypes.JobCompletion)
+                            {
+                                var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/DistributeStakes?votingId=" + voting.VotingID + "&jobId=" + voting.JobID + "&jobDoerRatio=" + voting.PolicingRate.ToString().Replace(",", "."));
+                                SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
+                            }
+                            else
+                            {
+                                //Release staked reputations
+                                var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakes?referenceProcessID=" + voting.VotingID);
+                                SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
+                            }
                         }
                         //Quorum isn't reached -> Set voting status to Expired
                         else

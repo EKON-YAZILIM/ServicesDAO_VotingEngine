@@ -32,6 +32,7 @@ services:
 
   dao_votingengine:
     image: ${DOCKER_REGISTRY-}daovotingengine
+    platform: linux/x86_64
     build:
       context: .
       dockerfile: DAO_VotingEngine/Dockerfile
@@ -41,6 +42,7 @@ services:
 
   dao_reputationservice:
     image: ${DOCKER_REGISTRY-}daoreputationservice
+    platform: linux/x86_64
     build:
       context: .
       dockerfile: DAO_ReputationService/Dockerfile
