@@ -73,8 +73,11 @@ daoreputataiondb<br>
 
 ## Usage
 
-Creating RFP
-When logged in to the application as an Admin user, there appears a 'New RFP' navigation button on the top left corner in addition to 'My Bids' and 'RFP List' navigation buttons. Clicking it redirects to an RFP form page including the fields below;
+Voting engine and Reputation service has been developed so that users can vote for a post using their reputation and decide whether the post is appropriate or accepted. Voting engine and Reputation service microservices can be used in relation to an application database where users and jobs are registered.<br>
+The application gets the user and post ids via an api and creates the voting environment.<br>
+
+
+
 
 
 ## Testing
