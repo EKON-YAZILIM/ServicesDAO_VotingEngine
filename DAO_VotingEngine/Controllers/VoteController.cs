@@ -245,7 +245,7 @@ namespace DAO_VotingEngine.Controllers
                     db.SaveChanges();
 
                     //Check if user staked reputation        
-                    if (ReputationStake != null && voteProcess.Type != VoteTypes.Simple && voteProcess.Type != VoteTypes.Governance && voteProcess.Type != VoteTypes.Simple)
+                    if (ReputationStake != null)
                     {
                         UserReputationStakeDto repModel = new UserReputationStakeDto();
                         repModel.ReferenceID = vote.VoteID;
@@ -261,11 +261,13 @@ namespace DAO_VotingEngine.Controllers
 
                         if (parsedResult.Success == false)
                         {
+                            //If staking fails for some reasoın remove vote.
                             db.Votes.Remove(vote);
                             db.SaveChanges();
                         }
                         else
                         {
+                            //If staking is successfull update voting model
                             voteProcess.VoteCount += 1;
                             if (repModel.Type == StakeType.For)
                             {
@@ -276,6 +278,11 @@ namespace DAO_VotingEngine.Controllers
                                 voteProcess.StakedAgainst += repModel.Amount;
                             }
                             db.SaveChanges();
+                        }
+
+                        //If this is an informal voting release stake immidiately.
+                        if(voteProcess.IsFormal == false){
+                            SimpleResponse releaseStakeResponse = Helpers.Serializers.DeserializeJson<SimpleResponse>(Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakesByType?referenceID=" + vote.VoteID + "&reftype=" + Helpers.Constants.Enums.StakeType.For+ "&userid=" + UserID));
                         }
 
                         Program.monitizer.AddUserLog(UserID, UserLogType.Request, "User submitted vote. Voting # " + VotingID);

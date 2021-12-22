@@ -321,7 +321,7 @@ namespace DAO_VotingEngine.Controllers
 
         [Route("RestartVoting")]
         [HttpGet]
-        public SimpleResponse RestartVoting(int votingId, DateTime endDate)
+        public SimpleResponse RestartVoting(int votingId)
         {
             SimpleResponse res = new SimpleResponse();
 
@@ -336,8 +336,10 @@ namespace DAO_VotingEngine.Controllers
                         return new SimpleResponse() { Success = false, Message = "Only expired voting can be restarted." };
                     }
 
+                    TimeSpan ts = voting.EndDate - voting.StartDate;
+
                     voting.StartDate = DateTime.Now;
-                    voting.EndDate = endDate;
+                    voting.EndDate = DateTime.Now.Add(ts); ;
                     voting.Status = Enums.VoteStatusTypes.Active;
                     voting.VoteCount = 0;
                     voting.StakedFor = 0;
@@ -350,7 +352,19 @@ namespace DAO_VotingEngine.Controllers
 
                     db.SaveChanges();
 
-                    return new SimpleResponse() { Success = true, Message = "Voting restarted successfully.", Content = voting };
+                    //Delete staked reputation records
+                    var repDeleteJson = Helpers.Request.Delete(Program._settings.Service_Reputation_Url + "/UserReputationStake/DeleteByProcessId?referenceProcessID=" + voting.VotingID + "&reftype=" + Enums.StakeType.For);
+                    bool repDeleteResult = Helpers.Serializers.DeserializeJson<bool>(repDeleteJson);
+
+                    if (repDeleteResult)
+                    {
+                        return new SimpleResponse() { Success = true, Message = "Voting restarted successfully.", Content = voting };
+                    }
+                    else
+                    {
+                        return new SimpleResponse() { Success = true, Message = "Voting restarted but couldn't delete reputation stakes.", Content = voting };
+                    }
+
                 }
             }
             catch (Exception ex)

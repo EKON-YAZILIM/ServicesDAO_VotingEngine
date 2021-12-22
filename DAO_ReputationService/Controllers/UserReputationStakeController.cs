@@ -323,13 +323,13 @@ namespace DAO_ReputationService.Controllers
         }
 
         /// <summary>
-        ///  This method should be used in cases which staked reputation should be returned to the owner
+        ///  This method should be used in cases which staked reputation should be returned to the owners
         /// </summary>
         /// <param name="referenceID"></param>
         /// <returns></returns>
-        [Route("ReleaseSingleStake")]
+        [Route("ReleaseStakesByType")]
         [HttpGet]
-        public SimpleResponse ReleaseSingleStake(int referenceID, StakeType reftype)
+        public SimpleResponse ReleaseStakesByType(int referenceID, StakeType reftype)
         {
             SimpleResponse res = new SimpleResponse();
 
@@ -413,6 +413,7 @@ namespace DAO_ReputationService.Controllers
             return res;
         }
 
+
         /// <summary>
         ///  This method should be used in cases which staked reputation should be returned to the owner
         /// </summary>
@@ -447,7 +448,7 @@ namespace DAO_ReputationService.Controllers
 
                     foreach (var item in stakes)
                     {
-                        ReleaseSingleStake(Convert.ToInt32(item.ReferenceID), item.Type);
+                        ReleaseStakesByType(Convert.ToInt32(item.ReferenceID), item.Type);
                     }
                     Program.monitizer.AddApplicationLog(LogTypes.ApplicationLog, "Stakes released. referenceProcessID:"+ referenceProcessID);
                     return new SimpleResponse() { Success = true, Message = "Release successful." };
@@ -503,7 +504,7 @@ namespace DAO_ReputationService.Controllers
                     //Distribute reputitation from votes
                     foreach (var stake in stakeList)
                     {
-                        ReleaseSingleStake(Convert.ToInt32(stake.ReferenceID), stake.Type);
+                        ReleaseStakesByType(Convert.ToInt32(stake.ReferenceID), stake.Type);
 
                         //User is in the winning side
                         if (winnersList.Count(x => x.UserID == stake.UserID) > 0)
@@ -560,7 +561,7 @@ namespace DAO_ReputationService.Controllers
                     //Distribute or delete minted  reputation according to voting result
                     foreach (var mintedStake in mintList)
                     {
-                        ReleaseSingleStake(Convert.ToInt32(mintedStake.ReferenceID), mintedStake.Type);
+                        ReleaseStakesByType(Convert.ToInt32(mintedStake.ReferenceID), mintedStake.Type);
 
                         //If voting result is FOR -> Job completed succesfully and minted reputations should be released and distributed
                         if(winnerSide == StakeType.For)
@@ -631,6 +632,51 @@ namespace DAO_ReputationService.Controllers
 
             return res;
         }
+   
+        [Route("DeleteByProcessId")]
+        [HttpDelete]
+        public bool DeleteByProcessId(int referenceProcessID, StakeType reftype)
+        {
+            try
+            {
+                using (dao_reputationserv_context db = new dao_reputationserv_context())
+                {
+                    List<UserReputationStake> query = new List<UserReputationStake>();
+
+                    //Stake for voting process
+                    if (reftype == StakeType.Against || reftype == StakeType.For)
+                    {
+                        query = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && (x.Type == StakeType.Against || x.Type == StakeType.For)).ToList();
+                    }
+                    //Stake for auction process
+                    else if (reftype == StakeType.Bid)
+                    {
+                        query = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Type == StakeType.Bid).ToList();
+                    }
+                    //Stake for minting
+                    else if (reftype == StakeType.Mint)
+                    {
+                        query = db.UserReputationStakes.Where(x => x.ReferenceProcessID == referenceProcessID && x.Type == StakeType.Mint).ToList();
+                    }
+
+                    foreach (var item in query){
+                        db.UserReputationStakes.Remove(item);
+                    }
+
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return false;
+        }
+
+   
     }
 }
  
