@@ -23,3 +23,8 @@
 /docker-compose-production.yml
 /docker-compose-production.override.yml
 .DS_Store
+/UnitTests/DAO_ReputationService.Tests/bin
+/UnitTests/DAO_VotingEngine.Tests/bin
+/UnitTests/DAO_ReputationService.Tests/obj
+/UnitTests/DAO_VotingEngine.Tests/obj
+
