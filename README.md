@@ -61,12 +61,12 @@ When all containers are up, you can access the application's "Welcome page"s and
 
 After proper setup, the two mysql instances should have database named 'daovotesdb' and 'daoreputataiondb'. The databases should have tables below;<br>
 ```shell
-daovotesdb<br>
+daovotesdb
 - Votes
 - Voting
 - __EFMigrationHistory
 
-daoreputataiondb<br>
+daoreputataiondb
 - UserReputationHistories
 - UserReputationStakes
 - __EFMigrationHistory
