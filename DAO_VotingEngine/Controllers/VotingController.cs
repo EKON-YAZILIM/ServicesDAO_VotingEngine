@@ -339,7 +339,7 @@ namespace DAO_VotingEngine.Controllers
                     TimeSpan ts = voting.EndDate - voting.StartDate;
 
                     voting.StartDate = DateTime.Now;
-                    voting.EndDate = DateTime.Now.Add(ts); ;
+                    voting.EndDate = DateTime.Now.Add(ts);
                     voting.Status = Enums.VoteStatusTypes.Active;
                     voting.VoteCount = 0;
                     voting.StakedFor = 0;

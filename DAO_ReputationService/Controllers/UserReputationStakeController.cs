@@ -573,7 +573,7 @@ namespace DAO_ReputationService.Controllers
                             if (jobDoerEarned > 0)
                             {
                                 //Get last user reputation record (ReferenceID = JobDoerUserID)
-                                UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(Convert.ToInt32(mintedStake.ReferenceID));
+                                UserReputationHistoryDto lastReputationHistory = cont.GetLastReputation(Convert.ToInt32(mintedStake.UserID));
 
                                 UserReputationHistory historyItem = new UserReputationHistory();
                                 historyItem.Date = DateTime.Now;
