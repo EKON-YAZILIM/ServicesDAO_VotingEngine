@@ -5,6 +5,27 @@ volumes:
   reputation_datafiles:
 
 services:
+  dao_rabbitmq:
+    image: rabbitmq:3-management
+    container_name: 'dao_rabbitmq'
+    environment:
+        RABBITMQ_DEFAULT_USER: "daorabbit"
+        RABBITMQ_DEFAULT_PASS: "dao2021*"
+    ports:
+        - 5673:5673
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/lib/log
+    healthcheck:
+        test: rabbitmq-diagnostics -q status
+        interval: 10s
+        timeout: 30s
+        retries: 15
+    
+    networks:
+        - daonetwork
 
   dao_votedb:
     image: mysql:5.7
@@ -36,6 +57,9 @@ services:
     build:
       context: .
       dockerfile: DAO_VotingEngine/Dockerfile
+    depends_on:      
+      dao_rabbitmq:
+        condition: service_healthy
     restart: always
     networks:
       - daonetwork
@@ -46,6 +70,9 @@ services:
     build:
       context: .
       dockerfile: DAO_ReputationService/Dockerfile
+    depends_on:      
+      dao_rabbitmq:
+        condition: service_healthy
     restart: always
     networks:
       - daonetwork
