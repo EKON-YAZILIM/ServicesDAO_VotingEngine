@@ -207,17 +207,17 @@ namespace DAO_VotingEngine.Controllers
 
         [Route("GetByJobId")]
         [HttpGet]
-        public VotingDto GetByJobId(int jobid)
+        public List<VotingDto> GetByJobId(int jobid)
         {
-            VotingDto res = new VotingDto();
+            List<VotingDto> res = new List<VotingDto>();
 
             try
             {
                 using (dao_votesdb_context db = new dao_votesdb_context())
                 {
-                    Voting vt = db.Votings.OrderByDescending(x => x.VotingID).FirstOrDefault(x => x.JobID == jobid);
+                    List<Voting> vt = db.Votings.Where(x => x.JobID == jobid).ToList();
 
-                    res = _mapper.Map<Voting, VotingDto>(vt);
+                    res = _mapper.Map<List<Voting>, List<VotingDto>>(vt);
                 }
             }
             catch (Exception ex)

@@ -479,11 +479,12 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-                    //Get all stakes of voting
+                    //Get all vote stakes of voting
                     var stakeList = db.UserReputationStakes.Where(x => x.ReferenceProcessID == votingId && x.Status == ReputationStakeStatus.Staked && (x.Type == StakeType.For || x.Type == StakeType.Against)).ToList();
 
                     //Get all reputations minted for the job
-                    var mintList = db.UserReputationStakes.Where(x => x.ReferenceProcessID == jobId && x.Status == ReputationStakeStatus.Staked && x.Type == StakeType.Mint).ToList();
+                    //Did not use "Staked" clause because when an expired voting is restarted minted stake is already released.
+                    var mintList = db.UserReputationStakes.Where(x => x.ReferenceProcessID == jobId && x.Type == StakeType.Mint).ToList();
 
 
                     //Find winning side
