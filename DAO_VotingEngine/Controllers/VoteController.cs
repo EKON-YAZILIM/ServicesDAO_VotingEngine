@@ -211,7 +211,7 @@ namespace DAO_VotingEngine.Controllers
                     Voting voteProcess = db.Votings.Find(VotingID);
 
                     //Check if user already voted on the same voting
-                    if (db.Votes.Count(x=>x.UserID == UserID && x.VotingID == voteProcess.VotingID) > 0)
+                    if (db.Votes.Count(x => x.UserID == UserID && x.VotingID == voteProcess.VotingID) > 0)
                     {
                         return new SimpleResponse() { Success = false, Message = "User already voted on this voting." };
                     }
@@ -281,8 +281,9 @@ namespace DAO_VotingEngine.Controllers
                         }
 
                         //If this is an informal voting release stake immidiately.
-                        if(voteProcess.IsFormal == false){
-                            SimpleResponse releaseStakeResponse = Helpers.Serializers.DeserializeJson<SimpleResponse>(Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakesByType?referenceID=" + vote.VoteID + "&reftype=" + Helpers.Constants.Enums.StakeType.For+ "&userid=" + UserID));
+                        if (voteProcess.IsFormal == false)
+                        {
+                            SimpleResponse releaseStakeResponse = Helpers.Serializers.DeserializeJson<SimpleResponse>(Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/ReleaseStakesByType?referenceID=" + vote.VoteID + "&reftype=" + Helpers.Constants.Enums.StakeType.For + "&userid=" + UserID));
                         }
 
                         Program.monitizer.AddUserLog(UserID, UserLogType.Request, "User submitted vote. Voting # " + VotingID);
