@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_fb0fb7a279d96da0b5ca42f7e92991b3" kind="dir">
+    <compoundname>DAO_VotingEngine/obj</compoundname>
+    <innerdir refid="dir_d497f138a53b21a77094e7fce52a5793">DAO_VotingEngine/obj/Debug</innerdir>
+    <innerdir refid="dir_86237155a8b41ccaed2ff7e6170ee1ab">DAO_VotingEngine/obj/Release</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/obj/"/>
+  </compounddef>
+</doxygen>

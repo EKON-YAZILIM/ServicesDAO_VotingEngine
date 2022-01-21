@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_65f07564a2ce86427bd9fc3d2cb23228" kind="dir">
+    <compoundname>DAO_VotingEngine/Migrations</compoundname>
+    <innerfile refid="20211116185219__db__init_8cs">20211116185219_db_init.cs</innerfile>
+    <innerfile refid="20211116185219__db__init_8_designer_8cs">20211116185219_db_init.Designer.cs</innerfile>
+    <innerfile refid="20211202181233__quorum__ratio__added_8cs">20211202181233_quorum_ratio_added.cs</innerfile>
+    <innerfile refid="20211202181233__quorum__ratio__added_8_designer_8cs">20211202181233_quorum_ratio_added.Designer.cs</innerfile>
+    <innerfile refid="20211218184140___eligible_user_count__added_8cs">20211218184140_EligibleUserCount_added.cs</innerfile>
+    <innerfile refid="20211218184140___eligible_user_count__added_8_designer_8cs">20211218184140_EligibleUserCount_added.Designer.cs</innerfile>
+    <innerfile refid="dao__votesdb__context_model_snapshot_8cs">dao_votesdb_contextModelSnapshot.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/Migrations/"/>
+  </compounddef>
+</doxygen>

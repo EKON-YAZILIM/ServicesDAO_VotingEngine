@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="namespace_d_a_o___reputation_service_1_1_migrations" kind="namespace" language="C#">
+    <compoundname>DAO_ReputationService::Migrations</compoundname>
+    <innerclass refid="class_d_a_o___reputation_service_1_1_migrations_1_1dao__reputationserv__context_model_snapshot" prot="public">DAO_ReputationService::Migrations::dao_reputationserv_contextModelSnapshot</innerclass>
+    <innerclass refid="class_d_a_o___reputation_service_1_1_migrations_1_1db__init" prot="public">DAO_ReputationService::Migrations::db_init</innerclass>
+    <innerclass refid="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces" prot="public">DAO_ReputationService::Migrations::minting_proces</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_ReputationService/Migrations/20211113105754_db_init.cs" line="5" column="1"/>
+  </compounddef>
+</doxygen>

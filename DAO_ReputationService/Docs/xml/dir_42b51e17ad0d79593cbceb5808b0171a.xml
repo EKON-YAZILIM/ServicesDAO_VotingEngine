@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_42b51e17ad0d79593cbceb5808b0171a" kind="dir">
+    <compoundname>DAO_ReputationService/obj/Release</compoundname>
+    <innerdir refid="dir_ad1484391bcbcea34c257f61772ffe2b">DAO_ReputationService/obj/Release/netcoreapp3.1</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_ReputationService/obj/Release/"/>
+  </compounddef>
+</doxygen>

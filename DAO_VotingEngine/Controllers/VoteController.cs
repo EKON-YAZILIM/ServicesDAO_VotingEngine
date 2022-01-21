@@ -15,10 +15,17 @@ using Helpers.Models.DtoModels.ReputationDbDto;
 
 namespace DAO_VotingEngine.Controllers
 {
+    /// <summary>
+    /// VoteController contains vote operation methods
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class VoteController : Controller
     {
+        /// <summary>
+        ///  Get votes list
+        /// </summary>
+        /// <returns>Votes List</returns>
         [Route("Get")]
         [HttpGet]
         public IEnumerable<VoteDto> Get()
@@ -41,6 +48,9 @@ namespace DAO_VotingEngine.Controllers
             return _mapper.Map<List<Vote>, List<VoteDto>>(model).ToArray();
         }
 
+        /// <summary>
+        /// Get vote by id
+        /// </summary>
         [Route("GetId")]
         [HttpGet]
         public VoteDto GetId(int id)
@@ -63,6 +73,9 @@ namespace DAO_VotingEngine.Controllers
             return _mapper.Map<Vote, VoteDto>(model);
         }
 
+        /// <summary>
+        /// Saves the vote using the post method.
+        /// </summary>
         [Route("Post")]
         [HttpPost]
         public VoteDto Post([FromBody] VoteDto model)
@@ -84,6 +97,9 @@ namespace DAO_VotingEngine.Controllers
             }
         }
 
+        /// <summary>
+        /// Saves the list of the votes model using post method.
+        /// </summary>
         [Route("PostMultiple")]
         [HttpPost]
         public List<VoteDto> PostMultiple([FromBody] List<VoteDto> model)
@@ -105,6 +121,10 @@ namespace DAO_VotingEngine.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes the votes by id
+        /// Closes current vote , vote ends.
+        /// </summary>
         [Route("Delete")]
         [HttpDelete]
         public bool Delete(int? ID)
@@ -126,6 +146,9 @@ namespace DAO_VotingEngine.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates the votes by model using put method
+        /// </summary>
         [Route("Update")]
         [HttpPut]
         public VoteDto Update([FromBody] VoteDto model)
@@ -147,6 +170,10 @@ namespace DAO_VotingEngine.Controllers
             }
         }
 
+        /// <summary>
+        /// Brings up the votes pages.
+        /// The selected page is fetched. Not all pages are returned
+        /// </summary>
         [Route("GetPaged")]
         [HttpGet]
         public PaginationEntity<VoteDto> GetPaged(int page = 1, int pageCount = 30)
@@ -176,6 +203,10 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gets all votes by votingId 
+        /// </summary>
+        /// <returns>Votes List</returns>
         [Route("GetAllVotesByVotingId")]
         [HttpGet]
         public List<VoteDto> GetAllVotesByVotingId(int votingid)
@@ -198,6 +229,13 @@ namespace DAO_VotingEngine.Controllers
             return _mapper.Map<List<Vote>, List<VoteDto>>(model).ToList();
         }
 
+        /// <summary>
+        /// Saves the vote using get method
+        /// </summary>
+        /// <param name="VotingID"></param>
+        /// <param name="UserID"></param>
+        /// <param name="Direction"></param>
+        /// <param name="ReputationStake"></param>
         [Route("SubmitVote")]
         [HttpGet]
         public SimpleResponse SubmitVote(int VotingID, int UserID, StakeType Direction, double? ReputationStake)
@@ -299,7 +337,10 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
-
+        /// <summary>
+        /// Gets all votes by userId 
+        /// </summary>
+        /// <returns>Votes List</returns>
         [Route("GetAllVotesByUserId")]
         [HttpGet]
         public List<VoteDto> GetAllVotesByUserId(int userid)

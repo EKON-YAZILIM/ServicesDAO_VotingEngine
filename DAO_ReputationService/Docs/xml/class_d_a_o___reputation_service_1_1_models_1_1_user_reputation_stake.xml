@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake" kind="class" language="C#" prot="public">
+    <compoundname>DAO_ReputationService::Models::UserReputationStake</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1af9646f77e588e2195539f11efb34166a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int DAO_ReputationService.Models.UserReputationStake.UserReputationStakeID</definition>
+        <argsstring></argsstring>
+        <name>UserReputationStakeID</name>
+        <qualifiedname>DAO_ReputationService.Models.UserReputationStake.UserReputationStakeID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Models/UserReputationStake.cs" line="13" column="20" bodyfile="DAO_ReputationService/Models/UserReputationStake.cs" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1ab0d7481a75e2c1db4f2044e5587ecd0e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int DAO_ReputationService.Models.UserReputationStake.UserID</definition>
+        <argsstring></argsstring>
+        <name>UserID</name>
+        <qualifiedname>DAO_ReputationService.Models.UserReputationStake.UserID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Models/UserReputationStake.cs" line="14" column="20" bodyfile="DAO_ReputationService/Models/UserReputationStake.cs" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1abb3cb5631d2eb34e516c1897bde8bc3b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>DateTime</type>
+        <definition>DateTime DAO_ReputationService.Models.UserReputationStake.CreateDate</definition>
+        <argsstring></argsstring>
+        <name>CreateDate</name>
+        <qualifiedname>DAO_ReputationService.Models.UserReputationStake.CreateDate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Models/UserReputationStake.cs" line="15" column="25" bodyfile="DAO_ReputationService/Models/UserReputationStake.cs" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a0ee2edc1783ea67c4fe26c3c4baed4e5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int?</type>
+        <definition>int? DAO_ReputationService.Models.UserReputationStake.ReferenceID</definition>
+        <argsstring></argsstring>
+        <name>ReferenceID</name>
+        <qualifiedname>DAO_ReputationService.Models.UserReputationStake.ReferenceID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Models/UserReputationStake.cs" line="16" column="20" bodyfile="DAO_ReputationService/Models/UserReputationStake.cs" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a2203fadae1fd8bc13e4575a9029f90cd" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int?</type>
+        <definition>int? DAO_ReputationService.Models.UserReputationStake.ReferenceProcessID</definition>
+        <argsstring></argsstring>
+        <name>ReferenceProcessID</name>
+        <qualifiedname>DAO_ReputationService.Models.UserReputationStake.ReferenceProcessID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Models/UserReputationStake.cs" line="17" column="20" bodyfile="DAO_ReputationService/Models/UserReputationStake.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a42388f6c20d2432313052998eef8d99a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>double</type>
+        <definition>double DAO_ReputationService.Models.UserReputationStake.Amount</definition>
+        <argsstring></argsstring>
+        <name>Amount</name>
+        <qualifiedname>DAO_ReputationService.Models.UserReputationStake.Amount</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Models/UserReputationStake.cs" line="18" column="23" bodyfile="DAO_ReputationService/Models/UserReputationStake.cs" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a3d4a6b05c23f1ff9015bd115ae890089" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>StakeType</type>
+        <definition>StakeType DAO_ReputationService.Models.UserReputationStake.Type</definition>
+        <argsstring></argsstring>
+        <name>Type</name>
+        <qualifiedname>DAO_ReputationService.Models.UserReputationStake.Type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Models/UserReputationStake.cs" line="19" column="26" bodyfile="DAO_ReputationService/Models/UserReputationStake.cs" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a888474f71fd784d855a2c4099c3b3571" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>ReputationStakeStatus</type>
+        <definition>ReputationStakeStatus DAO_ReputationService.Models.UserReputationStake.Status</definition>
+        <argsstring></argsstring>
+        <name>Status</name>
+        <qualifiedname>DAO_ReputationService.Models.UserReputationStake.Status</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Models/UserReputationStake.cs" line="20" column="38" bodyfile="DAO_ReputationService/Models/UserReputationStake.cs" bodystart="20" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_ReputationService/Models/UserReputationStake.cs" line="10" column="11" bodyfile="DAO_ReputationService/Models/UserReputationStake.cs" bodystart="11" bodyend="21"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a42388f6c20d2432313052998eef8d99a" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Models::UserReputationStake</scope><name>Amount</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1abb3cb5631d2eb34e516c1897bde8bc3b" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Models::UserReputationStake</scope><name>CreateDate</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a0ee2edc1783ea67c4fe26c3c4baed4e5" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Models::UserReputationStake</scope><name>ReferenceID</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a2203fadae1fd8bc13e4575a9029f90cd" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Models::UserReputationStake</scope><name>ReferenceProcessID</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a888474f71fd784d855a2c4099c3b3571" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Models::UserReputationStake</scope><name>Status</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1a3d4a6b05c23f1ff9015bd115ae890089" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Models::UserReputationStake</scope><name>Type</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1ab0d7481a75e2c1db4f2044e5587ecd0e" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Models::UserReputationStake</scope><name>UserID</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_models_1_1_user_reputation_stake_1af9646f77e588e2195539f11efb34166a" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Models::UserReputationStake</scope><name>UserReputationStakeID</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_fa203edc307263ce8266e10b9b9788f1" kind="dir">
+    <compoundname>DAO_VotingEngine/Mapping</compoundname>
+    <innerfile refid="_auto_mapper_base_8cs">AutoMapperBase.cs</innerfile>
+    <innerfile refid="_mapping_profile_8cs">MappingProfile.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/Mapping/"/>
+  </compounddef>
+</doxygen>

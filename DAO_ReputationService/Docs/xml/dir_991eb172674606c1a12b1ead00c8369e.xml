@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_991eb172674606c1a12b1ead00c8369e" kind="dir">
+    <compoundname>DAO_ReputationService</compoundname>
+    <innerdir refid="dir_f8ec23473362b7d03238d2fa54961e04">DAO_ReputationService/Contexts</innerdir>
+    <innerdir refid="dir_bb23a75ded24959fbdeef64af696685a">DAO_ReputationService/Controllers</innerdir>
+    <innerdir refid="dir_880ae655e9e878e12be947e913b3b2f5">DAO_ReputationService/Mapping</innerdir>
+    <innerdir refid="dir_0d2f87897e1df04500a046b6fdc4e3d0">DAO_ReputationService/Migrations</innerdir>
+    <innerdir refid="dir_7a1aff80a59ac2d569bb72909d35935e">DAO_ReputationService/Models</innerdir>
+    <innerdir refid="dir_30d96d59fd62b690e6a4825c6e40d9bf">DAO_ReputationService/obj</innerdir>
+    <innerfile refid="_program_8cs">Program.cs</innerfile>
+    <innerfile refid="_startup_8cs">Startup.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_ReputationService/"/>
+  </compounddef>
+</doxygen>

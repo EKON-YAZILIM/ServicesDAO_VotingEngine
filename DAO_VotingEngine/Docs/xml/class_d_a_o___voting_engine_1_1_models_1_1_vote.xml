@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___voting_engine_1_1_models_1_1_vote" kind="class" language="C#" prot="public">
+    <compoundname>DAO_VotingEngine::Models::Vote</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a9b0e217ec833b58d3a0bede7b3b1d069" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int DAO_VotingEngine.Models.Vote.VoteID</definition>
+        <argsstring></argsstring>
+        <name>VoteID</name>
+        <qualifiedname>DAO_VotingEngine.Models.Vote.VoteID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Models/Vote.cs" line="13" column="20" bodyfile="DAO_VotingEngine/Models/Vote.cs" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a15d84c6b7e8790a1140ae6beff0fb640" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int DAO_VotingEngine.Models.Vote.VotingID</definition>
+        <argsstring></argsstring>
+        <name>VotingID</name>
+        <qualifiedname>DAO_VotingEngine.Models.Vote.VotingID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Models/Vote.cs" line="14" column="20" bodyfile="DAO_VotingEngine/Models/Vote.cs" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a418e81dfd2c2d46fa30876750e0811e6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int DAO_VotingEngine.Models.Vote.UserID</definition>
+        <argsstring></argsstring>
+        <name>UserID</name>
+        <qualifiedname>DAO_VotingEngine.Models.Vote.UserID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Models/Vote.cs" line="15" column="20" bodyfile="DAO_VotingEngine/Models/Vote.cs" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a07a7fa36492087e9ee3a1c0e5aa94973" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>DateTime</type>
+        <definition>DateTime DAO_VotingEngine.Models.Vote.Date</definition>
+        <argsstring></argsstring>
+        <name>Date</name>
+        <qualifiedname>DAO_VotingEngine.Models.Vote.Date</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Models/Vote.cs" line="16" column="25" bodyfile="DAO_VotingEngine/Models/Vote.cs" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_models_1_1_vote_1aba58b839946cb7c29a808a0ecf43b85b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>StakeType</type>
+        <definition>StakeType DAO_VotingEngine.Models.Vote.Direction</definition>
+        <argsstring></argsstring>
+        <name>Direction</name>
+        <qualifiedname>DAO_VotingEngine.Models.Vote.Direction</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Models/Vote.cs" line="17" column="26" bodyfile="DAO_VotingEngine/Models/Vote.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/Models/Vote.cs" line="10" column="11" bodyfile="DAO_VotingEngine/Models/Vote.cs" bodystart="11" bodyend="19"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a07a7fa36492087e9ee3a1c0e5aa94973" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Models::Vote</scope><name>Date</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1aba58b839946cb7c29a808a0ecf43b85b" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Models::Vote</scope><name>Direction</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a418e81dfd2c2d46fa30876750e0811e6" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Models::Vote</scope><name>UserID</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a9b0e217ec833b58d3a0bede7b3b1d069" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Models::Vote</scope><name>VoteID</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a15d84c6b7e8790a1140ae6beff0fb640" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Models::Vote</scope><name>VotingID</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

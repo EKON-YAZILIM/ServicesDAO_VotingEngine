@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="namespace_d_a_o___voting_engine_1_1_contexts" kind="namespace" language="C#">
+    <compoundname>DAO_VotingEngine::Contexts</compoundname>
+    <innerclass refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context" prot="public">DAO_VotingEngine::Contexts::dao_votesdb_context</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" line="8" column="1"/>
+  </compounddef>
+</doxygen>

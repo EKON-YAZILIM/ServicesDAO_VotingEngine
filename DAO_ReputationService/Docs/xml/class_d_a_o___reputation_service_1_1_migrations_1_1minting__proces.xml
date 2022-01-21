@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces" kind="class" language="C#" prot="public">
+    <compoundname>DAO_ReputationService::Migrations::minting_proces</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Migration</basecompoundref>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces_1abf1b629d49d8e46949301af72c92f452" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_ReputationService.Migrations.minting_proces.Up</definition>
+        <argsstring>(MigrationBuilder migrationBuilder)</argsstring>
+        <name>Up</name>
+        <qualifiedname>DAO_ReputationService.Migrations.minting_proces.Up</qualifiedname>
+        <param>
+          <type>MigrationBuilder</type>
+          <declname>migrationBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Migrations/20211114152335_minting_proces.cs" line="7" column="33" bodyfile="DAO_ReputationService/Migrations/20211114152335_minting_proces.cs" bodystart="7" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces_1abdfd1a38404c7dcab7a1046031f4ad67" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_ReputationService.Migrations.minting_proces.Down</definition>
+        <argsstring>(MigrationBuilder migrationBuilder)</argsstring>
+        <name>Down</name>
+        <qualifiedname>DAO_ReputationService.Migrations.minting_proces.Down</qualifiedname>
+        <param>
+          <type>MigrationBuilder</type>
+          <declname>migrationBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Migrations/20211114152335_minting_proces.cs" line="12" column="33" bodyfile="DAO_ReputationService/Migrations/20211114152335_minting_proces.cs" bodystart="12" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces_1a2303c377f6be65fa4c917e3f956a45af" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_ReputationService.Migrations.minting_proces.BuildTargetModel</definition>
+        <argsstring>(ModelBuilder modelBuilder)</argsstring>
+        <name>BuildTargetModel</name>
+        <qualifiedname>DAO_ReputationService.Migrations.minting_proces.BuildTargetModel</qualifiedname>
+        <param>
+          <type>ModelBuilder</type>
+          <declname>modelBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Migrations/20211114152335_minting_proces.Designer.cs" line="15" column="33" bodyfile="DAO_ReputationService/Migrations/20211114152335_minting_proces.Designer.cs" bodystart="15" bodyend="98"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>DAO_ReputationService.Migrations.minting_proces</label>
+        <link refid="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Migration</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>DAO_ReputationService.Migrations.minting_proces</label>
+        <link refid="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Migration</label>
+      </node>
+    </collaborationgraph>
+    <location file="DAO_ReputationService/Migrations/20211114152335_minting_proces.cs" line="5" column="19" bodyfile="DAO_ReputationService/Migrations/20211114152335_minting_proces.cs" bodystart="6" bodyend="16"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces_1a2303c377f6be65fa4c917e3f956a45af" prot="protected" virt="non-virtual"><scope>DAO_ReputationService::Migrations::minting_proces</scope><name>BuildTargetModel</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces_1abdfd1a38404c7dcab7a1046031f4ad67" prot="protected" virt="non-virtual"><scope>DAO_ReputationService::Migrations::minting_proces</scope><name>Down</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_migrations_1_1minting__proces_1abf1b629d49d8e46949301af72c92f452" prot="protected" virt="non-virtual"><scope>DAO_ReputationService::Migrations::minting_proces</scope><name>Up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

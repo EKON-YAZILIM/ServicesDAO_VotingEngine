@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added" kind="class" language="C#" prot="public">
+    <compoundname>DAO_VotingEngine::Migrations::EligibleUserCount_added</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Migration</basecompoundref>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added_1adc59531388e42255d56bda8f98faef7d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_VotingEngine.Migrations.EligibleUserCount_added.Up</definition>
+        <argsstring>(MigrationBuilder migrationBuilder)</argsstring>
+        <name>Up</name>
+        <qualifiedname>DAO_VotingEngine.Migrations.EligibleUserCount_added.Up</qualifiedname>
+        <param>
+          <type>MigrationBuilder</type>
+          <declname>migrationBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Migrations/20211218184140_EligibleUserCount_added.cs" line="7" column="33" bodyfile="DAO_VotingEngine/Migrations/20211218184140_EligibleUserCount_added.cs" bodystart="7" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added_1a9bb3afa1bffb118f03cf0f2e69911ee0" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_VotingEngine.Migrations.EligibleUserCount_added.Down</definition>
+        <argsstring>(MigrationBuilder migrationBuilder)</argsstring>
+        <name>Down</name>
+        <qualifiedname>DAO_VotingEngine.Migrations.EligibleUserCount_added.Down</qualifiedname>
+        <param>
+          <type>MigrationBuilder</type>
+          <declname>migrationBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Migrations/20211218184140_EligibleUserCount_added.cs" line="16" column="33" bodyfile="DAO_VotingEngine/Migrations/20211218184140_EligibleUserCount_added.cs" bodystart="16" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added_1a30dddd27dd2030948f2b0efed58ca544" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_VotingEngine.Migrations.EligibleUserCount_added.BuildTargetModel</definition>
+        <argsstring>(ModelBuilder modelBuilder)</argsstring>
+        <name>BuildTargetModel</name>
+        <qualifiedname>DAO_VotingEngine.Migrations.EligibleUserCount_added.BuildTargetModel</qualifiedname>
+        <param>
+          <type>ModelBuilder</type>
+          <declname>modelBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Migrations/20211218184140_EligibleUserCount_added.Designer.cs" line="15" column="33" bodyfile="DAO_VotingEngine/Migrations/20211218184140_EligibleUserCount_added.Designer.cs" bodystart="15" bodyend="98"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>DAO_VotingEngine.Migrations.EligibleUserCount_added</label>
+        <link refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Migration</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>DAO_VotingEngine.Migrations.EligibleUserCount_added</label>
+        <link refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Migration</label>
+      </node>
+    </collaborationgraph>
+    <location file="DAO_VotingEngine/Migrations/20211218184140_EligibleUserCount_added.cs" line="5" column="19" bodyfile="DAO_VotingEngine/Migrations/20211218184140_EligibleUserCount_added.cs" bodystart="6" bodyend="22"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added_1a30dddd27dd2030948f2b0efed58ca544" prot="protected" virt="non-virtual"><scope>DAO_VotingEngine::Migrations::EligibleUserCount_added</scope><name>BuildTargetModel</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added_1a9bb3afa1bffb118f03cf0f2e69911ee0" prot="protected" virt="non-virtual"><scope>DAO_VotingEngine::Migrations::EligibleUserCount_added</scope><name>Down</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added_1adc59531388e42255d56bda8f98faef7d" prot="protected" virt="non-virtual"><scope>DAO_VotingEngine::Migrations::EligibleUserCount_added</scope><name>Up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

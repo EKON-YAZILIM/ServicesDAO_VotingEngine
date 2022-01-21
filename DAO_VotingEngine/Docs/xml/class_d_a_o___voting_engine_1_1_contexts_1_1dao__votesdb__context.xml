@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context" kind="class" language="C#" prot="public">
+    <compoundname>DAO_VotingEngine::Contexts::dao_votesdb_context</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">DbContext</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1acead40db1e3316f0124e08baddd9d34c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>DbSet&lt; <ref refid="class_d_a_o___voting_engine_1_1_models_1_1_voting" kindref="compound">Voting</ref> &gt;</type>
+        <definition>DbSet&lt;Voting&gt; DAO_VotingEngine.Contexts.dao_votesdb_context.Votings</definition>
+        <argsstring></argsstring>
+        <name>Votings</name>
+        <qualifiedname>DAO_VotingEngine.Contexts.dao_votesdb_context.Votings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" line="25" column="22" bodyfile="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1a9361f247db942742b3ed736df9c39db1" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>DbSet&lt; <ref refid="class_d_a_o___voting_engine_1_1_models_1_1_vote" kindref="compound">Vote</ref> &gt;</type>
+        <definition>DbSet&lt;Vote&gt; DAO_VotingEngine.Contexts.dao_votesdb_context.Votes</definition>
+        <argsstring></argsstring>
+        <name>Votes</name>
+        <qualifiedname>DAO_VotingEngine.Contexts.dao_votesdb_context.Votes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" line="26" column="22" bodyfile="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" bodystart="26" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1a19d719184ca2d07f5f38e18bc6741a97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>DAO_VotingEngine.Contexts.dao_votesdb_context.dao_votesdb_context</definition>
+        <argsstring>()</argsstring>
+        <name>dao_votesdb_context</name>
+        <qualifiedname>DAO_VotingEngine.Contexts.dao_votesdb_context.dao_votesdb_context</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" line="12" column="16" bodyfile="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" bodystart="12" bodyend="15"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1a299325b9a34928fa687c1b3d3acbdc87" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_VotingEngine.Contexts.dao_votesdb_context.OnConfiguring</definition>
+        <argsstring>(DbContextOptionsBuilder optionsBuilder)</argsstring>
+        <name>OnConfiguring</name>
+        <qualifiedname>DAO_VotingEngine.Contexts.dao_votesdb_context.OnConfiguring</qualifiedname>
+        <param>
+          <type>DbContextOptionsBuilder</type>
+          <declname>optionsBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" line="17" column="33" bodyfile="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" bodystart="17" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>DAO_VotingEngine.Contexts.dao_votesdb_context</label>
+        <link refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DbContext</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>DAO_VotingEngine.Contexts.dao_votesdb_context</label>
+        <link refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DbContext</label>
+      </node>
+    </collaborationgraph>
+    <location file="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" line="10" column="11" bodyfile="DAO_VotingEngine/Contexts/dao_votesdb_context.cs" bodystart="11" bodyend="28"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1a19d719184ca2d07f5f38e18bc6741a97" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Contexts::dao_votesdb_context</scope><name>dao_votesdb_context</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1a299325b9a34928fa687c1b3d3acbdc87" prot="protected" virt="non-virtual"><scope>DAO_VotingEngine::Contexts::dao_votesdb_context</scope><name>OnConfiguring</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1a9361f247db942742b3ed736df9c39db1" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Contexts::dao_votesdb_context</scope><name>Votes</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1acead40db1e3316f0124e08baddd9d34c" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Contexts::dao_votesdb_context</scope><name>Votings</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

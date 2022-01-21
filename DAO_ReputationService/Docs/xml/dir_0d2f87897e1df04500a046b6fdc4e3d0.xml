@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_0d2f87897e1df04500a046b6fdc4e3d0" kind="dir">
+    <compoundname>DAO_ReputationService/Migrations</compoundname>
+    <innerfile refid="20211113105754__db__init_8cs">20211113105754_db_init.cs</innerfile>
+    <innerfile refid="20211113105754__db__init_8_designer_8cs">20211113105754_db_init.Designer.cs</innerfile>
+    <innerfile refid="20211114152335__minting__proces_8cs">20211114152335_minting_proces.cs</innerfile>
+    <innerfile refid="20211114152335__minting__proces_8_designer_8cs">20211114152335_minting_proces.Designer.cs</innerfile>
+    <innerfile refid="dao__reputationserv__context_model_snapshot_8cs">dao_reputationserv_contextModelSnapshot.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_ReputationService/Migrations/"/>
+  </compounddef>
+</doxygen>

@@ -15,11 +15,17 @@ using Helpers.Models.DtoModels.ReputationDbDto;
 
 namespace DAO_ReputationService.Controllers
 {
+    /// <summary>
+    /// UserReputationStakeController contains User reputation stake operation methods
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class UserReputationStakeController : ControllerBase
     {
-
+        /// <summary>
+        /// Get all user reputation stake list
+        /// </summary>
+        ///<returns>UserReputationStake List</returns>
         [Route("Get")]
         [HttpGet]
         public IEnumerable<UserReputationStakeDto> Get()
@@ -42,6 +48,10 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<List<UserReputationStake>, List<UserReputationStakeDto>>(model).ToArray();
         }
 
+        /// <summary>
+        /// Gets user reputation stake by id 
+        /// </summary>
+        /// <returns>UserReputationStake Class </returns>
         [Route("GetId")]
         [HttpGet]
         public UserReputationStakeDto GetId(int id)
@@ -64,6 +74,9 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<UserReputationStake, UserReputationStakeDto>(model);
         }
 
+        /// <summary>
+        /// Saves the user reputation stake using the post method.
+        /// </summary>
         [Route("Post")]
         [HttpPost]
         public UserReputationStakeDto Post([FromBody] UserReputationStakeDto model)
@@ -85,6 +98,9 @@ namespace DAO_ReputationService.Controllers
             }
         }
 
+        /// <summary>
+        /// Saves the list of the user reputation stake model using post method.
+        /// </summary>
         [Route("PostMultiple")]
         [HttpPost]
         public List<UserReputationStakeDto> PostMultiple([FromBody] List<UserReputationStakeDto> model)
@@ -106,6 +122,10 @@ namespace DAO_ReputationService.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes the user reputation stake by id
+        /// remove current user reputation stake
+        /// </summary>
         [Route("Delete")]
         [HttpDelete]
         public bool Delete(int? ID)
@@ -127,6 +147,9 @@ namespace DAO_ReputationService.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates the user reputation stake by model using put method
+        /// </summary>
         [Route("Update")]
         [HttpPut]
         public UserReputationStakeDto Update([FromBody] UserReputationStakeDto model)
@@ -149,6 +172,10 @@ namespace DAO_ReputationService.Controllers
             }
         }
 
+        /// <summary>
+        /// Brings up the user reputation stake pages.
+        /// The selected page is fetched. Not all pages are returned
+        /// </summary>
         [Route("GetPaged")]
         [HttpGet]
         public PaginationEntity<UserReputationStakeDto> GetPaged(int page = 1, int pageCount = 30)
@@ -178,6 +205,11 @@ namespace DAO_ReputationService.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Get UserReputationStakes list by processId
+        /// </summary>
+        /// <param name="referenceProcessID"></param>
+        /// <param name="reftype"></param>
         [Route("GetByProcessId")]
         [HttpGet]
         public List<UserReputationStakeDto> GetByProcessId(int referenceProcessID, StakeType reftype)
@@ -214,6 +246,10 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<List<UserReputationStake>, List<UserReputationStakeDto>>(model).ToList();
         }
 
+        /// <summary>
+        /// Gets user reputation stake by userid 
+        /// </summary>
+        /// <returns>UserReputationStake List </returns>
         [Route("GetByUserId")]
         [HttpGet]
         public List<UserReputationStakeDto> GetByUserId(int userid)
@@ -236,6 +272,10 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<List<UserReputationStake>, List<UserReputationStakeDto>>(model).ToList();
         }
 
+        /// <summary>
+        /// Saves the user reputation stake using the post method.
+        /// </summary>
+        /// <param name="model"></param>
         [Route("SubmitStake")]
         [HttpPost]
         public SimpleResponse SubmitStake([FromBody] UserReputationStake model)
@@ -326,7 +366,6 @@ namespace DAO_ReputationService.Controllers
         ///  This method should be used in cases which staked reputation should be returned to the owners
         /// </summary>
         /// <param name="referenceID"></param>
-        /// <returns></returns>
         [Route("ReleaseStakesByType")]
         [HttpGet]
         public SimpleResponse ReleaseStakesByType(int referenceID, StakeType reftype)
@@ -413,7 +452,6 @@ namespace DAO_ReputationService.Controllers
             return res;
         }
 
-
         /// <summary>
         ///  This method should be used in cases which staked reputation should be returned to the owner
         /// </summary>
@@ -465,7 +503,6 @@ namespace DAO_ReputationService.Controllers
         /// <summary>
         ///  This method should be used in cases which staked reputation should be distributed according to voting results
         /// </summary>
-        /// <param name="referenceProcessID"></param>
         /// <returns></returns>
         [Route("DistributeStakes")]
         [HttpGet]
@@ -633,7 +670,13 @@ namespace DAO_ReputationService.Controllers
 
             return res;
         }
-   
+
+        /// <summary>
+        /// Remove the user reputation stake by processId
+        /// </summary>
+        /// <param name="referenceProcessID"></param>
+        /// <param name="reftype"></param>
+        /// <returns></returns>
         [Route("DeleteByProcessId")]
         [HttpDelete]
         public bool DeleteByProcessId(int referenceProcessID, StakeType reftype)

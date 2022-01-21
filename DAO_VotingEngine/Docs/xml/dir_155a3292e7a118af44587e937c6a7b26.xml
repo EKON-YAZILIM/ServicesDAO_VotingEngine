@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_155a3292e7a118af44587e937c6a7b26" kind="dir">
+    <compoundname>DAO_VotingEngine</compoundname>
+    <innerdir refid="dir_bb8c6b48c657fa54d270739eda875bca">DAO_VotingEngine/Contexts</innerdir>
+    <innerdir refid="dir_a0def12df04fb73445318b636c50b514">DAO_VotingEngine/Controllers</innerdir>
+    <innerdir refid="dir_fa203edc307263ce8266e10b9b9788f1">DAO_VotingEngine/Mapping</innerdir>
+    <innerdir refid="dir_65f07564a2ce86427bd9fc3d2cb23228">DAO_VotingEngine/Migrations</innerdir>
+    <innerdir refid="dir_d671dd1ffb2392453fb514ab78dc28c2">DAO_VotingEngine/Models</innerdir>
+    <innerdir refid="dir_fb0fb7a279d96da0b5ca42f7e92991b3">DAO_VotingEngine/obj</innerdir>
+    <innerfile refid="_program_8cs">Program.cs</innerfile>
+    <innerfile refid="_startup_8cs">Startup.cs</innerfile>
+    <innerfile refid="_timed_events_8cs">TimedEvents.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/"/>
+  </compounddef>
+</doxygen>

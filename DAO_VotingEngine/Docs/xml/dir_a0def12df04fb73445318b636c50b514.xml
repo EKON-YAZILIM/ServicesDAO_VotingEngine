@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_a0def12df04fb73445318b636c50b514" kind="dir">
+    <compoundname>DAO_VotingEngine/Controllers</compoundname>
+    <innerfile refid="_info_controller_8cs">InfoController.cs</innerfile>
+    <innerfile refid="_vote_controller_8cs">VoteController.cs</innerfile>
+    <innerfile refid="_voting_controller_8cs">VotingController.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/Controllers/"/>
+  </compounddef>
+</doxygen>

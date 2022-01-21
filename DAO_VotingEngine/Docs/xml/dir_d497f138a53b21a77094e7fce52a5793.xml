@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_d497f138a53b21a77094e7fce52a5793" kind="dir">
+    <compoundname>DAO_VotingEngine/obj/Debug</compoundname>
+    <innerdir refid="dir_5c8949b2ef4f94b325a5e12a01b488fb">DAO_VotingEngine/obj/Debug/netcoreapp3.1</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/obj/Debug/"/>
+  </compounddef>
+</doxygen>

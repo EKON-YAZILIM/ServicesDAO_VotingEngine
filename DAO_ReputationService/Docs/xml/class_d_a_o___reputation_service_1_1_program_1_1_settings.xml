@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___reputation_service_1_1_program_1_1_settings" kind="class" language="C#" prot="public">
+    <compoundname>DAO_ReputationService::Program::Settings</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_program_1_1_settings_1a8e953b3decdec88b97ef537ec779b043" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string DAO_ReputationService.Program.Settings.RabbitMQUrl</definition>
+        <argsstring></argsstring>
+        <name>RabbitMQUrl</name>
+        <qualifiedname>DAO_ReputationService.Program.Settings.RabbitMQUrl</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Program.cs" line="18" column="27" bodyfile="DAO_ReputationService/Program.cs" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_program_1_1_settings_1af0b6f9a758ccbbf2e7065ef614665a8e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string DAO_ReputationService.Program.Settings.RabbitMQUsername</definition>
+        <argsstring></argsstring>
+        <name>RabbitMQUsername</name>
+        <qualifiedname>DAO_ReputationService.Program.Settings.RabbitMQUsername</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Program.cs" line="19" column="27" bodyfile="DAO_ReputationService/Program.cs" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_program_1_1_settings_1ab7a5f094ea923aff0f5f30a7f82833a2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string DAO_ReputationService.Program.Settings.RabbitMQPassword</definition>
+        <argsstring></argsstring>
+        <name>RabbitMQPassword</name>
+        <qualifiedname>DAO_ReputationService.Program.Settings.RabbitMQPassword</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Program.cs" line="20" column="27" bodyfile="DAO_ReputationService/Program.cs" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___reputation_service_1_1_program_1_1_settings_1a7b61f547df08e3d34cb0132d834bdb78" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string DAO_ReputationService.Program.Settings.DbConnectionString</definition>
+        <argsstring></argsstring>
+        <name>DbConnectionString</name>
+        <qualifiedname>DAO_ReputationService.Program.Settings.DbConnectionString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_ReputationService/Program.cs" line="21" column="27" bodyfile="DAO_ReputationService/Program.cs" bodystart="21" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_ReputationService/Program.cs" line="16" column="15" bodyfile="DAO_ReputationService/Program.cs" bodystart="17" bodyend="22"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___reputation_service_1_1_program_1_1_settings_1a7b61f547df08e3d34cb0132d834bdb78" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Program::Settings</scope><name>DbConnectionString</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_program_1_1_settings_1ab7a5f094ea923aff0f5f30a7f82833a2" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Program::Settings</scope><name>RabbitMQPassword</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_program_1_1_settings_1a8e953b3decdec88b97ef537ec779b043" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Program::Settings</scope><name>RabbitMQUrl</name></member>
+      <member refid="class_d_a_o___reputation_service_1_1_program_1_1_settings_1af0b6f9a758ccbbf2e7065ef614665a8e" prot="public" virt="non-virtual"><scope>DAO_ReputationService::Program::Settings</scope><name>RabbitMQUsername</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

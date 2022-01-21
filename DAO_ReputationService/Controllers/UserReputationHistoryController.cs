@@ -14,10 +14,17 @@ using Helpers.Models.DtoModels.ReputationDbDto;
 
 namespace DAO_ReputationService.Controllers
 {
+    /// <summary>
+    ///  UserReputationHistoryController contains User reputation history operation methods
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class UserReputationHistoryController : Controller
     {
+        /// <summary>
+        /// Get all user reputation history list
+        /// </summary>
+        ///<returns>UserReputationHistory List</returns>
         [Route("Get")]
         [HttpGet]
         public IEnumerable<UserReputationHistoryDto> Get()
@@ -40,6 +47,10 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<List<UserReputationHistory>, List<UserReputationHistoryDto>>(model).ToArray();
         }
 
+        /// <summary>
+        /// Gets user reputation history by id 
+        /// </summary>
+        /// <returns>UserReputationHistory model </returns>
         [Route("GetId")]
         [HttpGet]
         public UserReputationHistoryDto GetId(int id)
@@ -62,6 +73,9 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<UserReputationHistory, UserReputationHistoryDto>(model);
         }
 
+        /// <summary>
+        /// Saves the user reputation history using the post method.
+        /// </summary>
         [Route("Post")]
         [HttpPost]
         public UserReputationHistoryDto Post([FromBody] UserReputationHistoryDto model)
@@ -83,6 +97,9 @@ namespace DAO_ReputationService.Controllers
             }
         }
 
+        /// <summary>
+        /// Saves the list of user reputation history model using post method.
+        /// </summary>
         [Route("PostMultiple")]
         [HttpPost]
         public List<UserReputationHistoryDto> PostMultiple([FromBody] List<UserReputationHistoryDto> model)
@@ -104,6 +121,10 @@ namespace DAO_ReputationService.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes the user reputation history by id
+        /// Closes current auction bid , auction ends.
+        /// </summary>
         [Route("Delete")]
         [HttpDelete]
         public bool Delete(int? ID)
@@ -125,6 +146,9 @@ namespace DAO_ReputationService.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates the user reputation history by model using put method
+        /// </summary>
         [Route("Update")]
         [HttpPut]
         public UserReputationHistoryDto Update([FromBody] UserReputationHistoryDto model)
@@ -146,6 +170,10 @@ namespace DAO_ReputationService.Controllers
             }
         }
 
+        /// <summary>
+        /// Brings up the user reputation history pages.
+        /// The selected page is fetched. Not all pages are returned
+        /// </summary>
         [Route("GetPaged")]
         [HttpGet]
         public PaginationEntity<UserReputationHistoryDto> GetPaged(int page = 1, int pageCount = 30)
@@ -156,13 +184,10 @@ namespace DAO_ReputationService.Controllers
             {
                 using (dao_reputationserv_context db = new dao_reputationserv_context())
                 {
-
                     IPagedList<UserReputationHistoryDto> lst = AutoMapperBase.ToMappedPagedList<UserReputationHistory, UserReputationHistoryDto>(db.UserReputationHistories.OrderByDescending(x => x.UserReputationHistoryID).ToPagedList(page, pageCount));
 
                     res.Items = lst;
                     res.MetaData = new PaginationMetaData() { Count = lst.Count, FirstItemOnPage = lst.FirstItemOnPage, HasNextPage = lst.HasNextPage, HasPreviousPage = lst.HasPreviousPage, IsFirstPage = lst.IsFirstPage, IsLastPage = lst.IsLastPage, LastItemOnPage = lst.LastItemOnPage, PageCount = lst.PageCount, PageNumber = lst.PageNumber, PageSize = lst.PageSize, TotalItemCount = lst.TotalItemCount };
-
-
 
                     return res;
                 }
@@ -175,6 +200,9 @@ namespace DAO_ReputationService.Controllers
             return res;
         }
 
+        /// <summary>
+        /// returns a list of all user reputation history by using title or descrpition as search key
+        /// </summary>
         [Route("UserReputationHistorySearch")]
         [HttpGet]
         public IEnumerable<UserReputationHistoryDto> UserReputationHistorySearch(string query)
@@ -197,6 +225,9 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<List<UserReputationHistory>, List<UserReputationHistoryDto>>(res).ToArray();
         }
 
+        /// <summary>
+        /// returns a list containing desired amount of found user reputation history by using title or descrpition as search key
+        /// </summary>
         [Route("Search")]
         [HttpGet]
         public PaginationEntity<UserReputationHistoryDto> Search(string query, int page = 1, int pageCount = 30)
@@ -223,6 +254,10 @@ namespace DAO_ReputationService.Controllers
 
         }
 
+        /// <summary>
+        /// Gets user reputation history by userId 
+        /// </summary>
+        /// <returns>UserReputationHistory model </returns>
         [Route("GetByUserId")]
         [HttpGet]
         public IEnumerable<UserReputationHistoryDto> GetByUserId(int userid)
@@ -245,6 +280,10 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<List<UserReputationHistory>, List<UserReputationHistoryDto>>(model).ToArray();
         }
 
+        /// <summary>
+        /// Gets latest user reputation history 
+        /// </summary>
+        /// <returns>UserReputationHistory model </returns>
         [Route("GetLastReputation")]
         [HttpGet]
         public UserReputationHistoryDto GetLastReputation(int userid)
@@ -274,6 +313,10 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<UserReputationHistory, UserReputationHistoryDto>(model);
         }
 
+        /// <summary>
+        /// Gets latest user reputation history by userId
+        /// </summary>
+        /// <returns>UserReputationHistory List</returns>
         [Route("GetLastReputationByUserIds")]
         [HttpPost]
         public List<UserReputationHistoryDto> GetLastReputationByUserIds(List<int> userids)

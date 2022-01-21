@@ -15,10 +15,17 @@ using Helpers.Constants;
 
 namespace DAO_VotingEngine.Controllers
 {
+    /// <summary>
+    ///  AuctionController contains voting operation methods
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class VotingController : Controller
     {
+        /// <summary>
+        /// Get all votings list
+        /// </summary>
+        ///<returns>AuctionBid List</returns>
         [Route("Get")]
         [HttpGet]
         public IEnumerable<VotingDto> Get()
@@ -41,6 +48,10 @@ namespace DAO_VotingEngine.Controllers
             return _mapper.Map<List<Voting>, List<VotingDto>>(model).ToArray();
         }
 
+        /// <summary>
+        /// Gets votings by id 
+        /// </summary>
+        /// <returns>Votings Class </returns>
         [Route("GetId")]
         [HttpGet]
         public VotingDto GetId(int id)
@@ -63,6 +74,9 @@ namespace DAO_VotingEngine.Controllers
             return _mapper.Map<Voting, VotingDto>(model);
         }
 
+        /// <summary>
+        /// Saves the voting using the post method.
+        /// </summary>
         [Route("Post")]
         [HttpPost]
         public VotingDto Post([FromBody] VotingDto model)
@@ -84,6 +98,9 @@ namespace DAO_VotingEngine.Controllers
             }
         }
 
+        /// <summary>
+        /// Saves the list of the votings model using post method.
+        /// </summary>
         [Route("PostMultiple")]
         [HttpPost]
         public List<VotingDto> PostMultiple([FromBody] List<VotingDto> model)
@@ -105,6 +122,10 @@ namespace DAO_VotingEngine.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes the votings by id
+        /// Removes vote.
+        /// </summary>
         [Route("Delete")]
         [HttpDelete]
         public bool Delete(int? ID)
@@ -126,6 +147,9 @@ namespace DAO_VotingEngine.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates the vote by model using put method
+        /// </summary>
         [Route("Update")]
         [HttpPut]
         public VotingDto Update([FromBody] VotingDto model)
@@ -147,6 +171,10 @@ namespace DAO_VotingEngine.Controllers
             }
         }
 
+        /// <summary>
+        /// Brings up the voting pages.
+        /// The selected page is fetched. Not all pages are returned
+        /// </summary>
         [Route("GetPaged")]
         [HttpGet]
         public PaginationEntity<VotingDto> GetPaged(int page = 1, int pageCount = 30)
@@ -176,6 +204,11 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gets votings by status
+        /// if status parameter is, null returned all votings list.
+        /// </summary>
+        /// <returns>Votings List </returns>
         [Route("GetVotingByStatus")]
         [HttpGet]
         public List<VotingDto> GetVotingByStatus(Enums.VoteStatusTypes? status)
@@ -205,6 +238,10 @@ namespace DAO_VotingEngine.Controllers
             return _mapper.Map<List<Voting>, List<VotingDto>>(model).ToList();
         }
 
+        /// <summary>
+        /// Gets votings by jobId
+        /// </summary>
+        /// <returns>Votings List </returns>
         [Route("GetByJobId")]
         [HttpGet]
         public List<VotingDto> GetByJobId(int jobid)
@@ -228,6 +265,10 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gets informal voting by jobId
+        /// </summary>
+        /// <returns>Votings Class </returns>
         [Route("GetInformalVotingByJobId")]
         [HttpGet]
         public VotingDto GetInformalVotingByJobId(int jobid)
@@ -251,6 +292,10 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gets completed votings by jobId
+        /// </summary>
+        /// <returns>Votings List</returns>
         [Route("GetCompletedVotingsByJobIds")]
         [HttpPost]
         public List<VotingDto> GetCompletedVotingsByJobIds(List<int> jobids)
@@ -274,6 +319,10 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Saves the informal votiong using the post method.
+        /// </summary>
+        /// <param name="model"></param>
         [Route("StartInformalVoting")]
         [HttpPost]
         public SimpleResponse StartInformalVoting([FromBody] VotingDto model)
@@ -319,6 +368,10 @@ namespace DAO_VotingEngine.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Restart Voting using get method
+        /// </summary>
+        /// <param name="votingId"></param>
         [Route("RestartVoting")]
         [HttpGet]
         public SimpleResponse RestartVoting(int votingId)

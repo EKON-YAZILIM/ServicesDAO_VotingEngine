@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="namespace_d_a_o___reputation_service" kind="namespace" language="C#">
+    <compoundname>DAO_ReputationService</compoundname>
+    <innerclass refid="class_d_a_o___reputation_service_1_1_program" prot="public">DAO_ReputationService::Program</innerclass>
+    <innerclass refid="class_d_a_o___reputation_service_1_1_startup" prot="public">DAO_ReputationService::Startup</innerclass>
+    <innernamespace refid="namespace_d_a_o___reputation_service_1_1_contexts">DAO_ReputationService::Contexts</innernamespace>
+    <innernamespace refid="namespace_d_a_o___reputation_service_1_1_controllers">DAO_ReputationService::Controllers</innernamespace>
+    <innernamespace refid="namespace_d_a_o___reputation_service_1_1_mapping">DAO_ReputationService::Mapping</innernamespace>
+    <innernamespace refid="namespace_d_a_o___reputation_service_1_1_migrations">DAO_ReputationService::Migrations</innernamespace>
+    <innernamespace refid="namespace_d_a_o___reputation_service_1_1_models">DAO_ReputationService::Models</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_ReputationService/Contexts/dao_reputationserv_context.cs" line="8" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___voting_engine_1_1_timed_events" kind="class" language="C#" prot="public">
+    <compoundname>DAO_VotingEngine::TimedEvents</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_d_a_o___voting_engine_1_1_timed_events_1a9b394db786a64d216deb6539acd09354" prot="public" static="yes" mutable="no">
+        <type>System.Timers.Timer</type>
+        <definition>System.Timers.Timer DAO_VotingEngine.TimedEvents.votingStatusTimer</definition>
+        <argsstring></argsstring>
+        <name>votingStatusTimer</name>
+        <qualifiedname>DAO_VotingEngine.TimedEvents.votingStatusTimer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/TimedEvents.cs" line="17" column="41" bodyfile="DAO_VotingEngine/TimedEvents.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_timed_events_1a57c2c382ed0d2dee6f09b772fd141fa3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DAO_VotingEngine.TimedEvents.StartTimers</definition>
+        <argsstring>()</argsstring>
+        <name>StartTimers</name>
+        <qualifiedname>DAO_VotingEngine.TimedEvents.StartTimers</qualifiedname>
+        <briefdescription>
+<para>Start timer controls of the application </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/TimedEvents.cs" line="22" column="28" bodyfile="DAO_VotingEngine/TimedEvents.cs" bodystart="22" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_timed_events_1afe655c70ff6304d92baa639556e1d88d" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DAO_VotingEngine.TimedEvents.CheckVotingStatus</definition>
+        <argsstring>(Object source, ElapsedEventArgs e)</argsstring>
+        <name>CheckVotingStatus</name>
+        <qualifiedname>DAO_VotingEngine.TimedEvents.CheckVotingStatus</qualifiedname>
+        <param>
+          <type>Object</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>ElapsedEventArgs</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>Check voting status </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>source</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/TimedEvents.cs" line="38" column="29" bodyfile="DAO_VotingEngine/TimedEvents.cs" bodystart="38" bodyend="154"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>DAO_VotingEngine.TimedEvents</label>
+        <link refid="class_d_a_o___voting_engine_1_1_timed_events"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>votingStatusTimer</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>static</label>
+      </node>
+    </collaborationgraph>
+    <location file="DAO_VotingEngine/TimedEvents.cs" line="14" column="11" bodyfile="DAO_VotingEngine/TimedEvents.cs" bodystart="15" bodyend="155"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___voting_engine_1_1_timed_events_1afe655c70ff6304d92baa639556e1d88d" prot="private" virt="non-virtual"><scope>DAO_VotingEngine::TimedEvents</scope><name>CheckVotingStatus</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_timed_events_1a57c2c382ed0d2dee6f09b772fd141fa3" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::TimedEvents</scope><name>StartTimers</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_timed_events_1a9b394db786a64d216deb6539acd09354" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::TimedEvents</scope><name>votingStatusTimer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

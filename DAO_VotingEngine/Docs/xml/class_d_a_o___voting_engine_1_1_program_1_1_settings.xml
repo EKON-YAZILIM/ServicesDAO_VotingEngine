@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___voting_engine_1_1_program_1_1_settings" kind="class" language="C#" prot="public">
+    <compoundname>DAO_VotingEngine::Program::Settings</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_program_1_1_settings_1a1f7888ad6aa7163e2063dad2bde596f8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string DAO_VotingEngine.Program.Settings.DbConnectionString</definition>
+        <argsstring></argsstring>
+        <name>DbConnectionString</name>
+        <qualifiedname>DAO_VotingEngine.Program.Settings.DbConnectionString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Program.cs" line="18" column="27" bodyfile="DAO_VotingEngine/Program.cs" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_program_1_1_settings_1a8ad21f701858d63f77eed8a4a9434849" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string DAO_VotingEngine.Program.Settings.RabbitMQUrl</definition>
+        <argsstring></argsstring>
+        <name>RabbitMQUrl</name>
+        <qualifiedname>DAO_VotingEngine.Program.Settings.RabbitMQUrl</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Program.cs" line="19" column="27" bodyfile="DAO_VotingEngine/Program.cs" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_program_1_1_settings_1afd0008038f24d0b61e91450cae135a0d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string DAO_VotingEngine.Program.Settings.RabbitMQUsername</definition>
+        <argsstring></argsstring>
+        <name>RabbitMQUsername</name>
+        <qualifiedname>DAO_VotingEngine.Program.Settings.RabbitMQUsername</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Program.cs" line="20" column="27" bodyfile="DAO_VotingEngine/Program.cs" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_program_1_1_settings_1a6dbb5c3d72a06e297dde78b777a0bdf5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string DAO_VotingEngine.Program.Settings.RabbitMQPassword</definition>
+        <argsstring></argsstring>
+        <name>RabbitMQPassword</name>
+        <qualifiedname>DAO_VotingEngine.Program.Settings.RabbitMQPassword</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Program.cs" line="21" column="27" bodyfile="DAO_VotingEngine/Program.cs" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="property" id="class_d_a_o___voting_engine_1_1_program_1_1_settings_1ab95399ab63b6725e3d4f315a0c72828d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string DAO_VotingEngine.Program.Settings.Service_Reputation_Url</definition>
+        <argsstring></argsstring>
+        <name>Service_Reputation_Url</name>
+        <qualifiedname>DAO_VotingEngine.Program.Settings.Service_Reputation_Url</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Program.cs" line="22" column="27" bodyfile="DAO_VotingEngine/Program.cs" bodystart="22" bodyend="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/Program.cs" line="16" column="15" bodyfile="DAO_VotingEngine/Program.cs" bodystart="17" bodyend="23"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1a1f7888ad6aa7163e2063dad2bde596f8" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Program::Settings</scope><name>DbConnectionString</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1a6dbb5c3d72a06e297dde78b777a0bdf5" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Program::Settings</scope><name>RabbitMQPassword</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1a8ad21f701858d63f77eed8a4a9434849" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Program::Settings</scope><name>RabbitMQUrl</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1afd0008038f24d0b61e91450cae135a0d" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Program::Settings</scope><name>RabbitMQUsername</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1ab95399ab63b6725e3d4f315a0c72828d" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Program::Settings</scope><name>Service_Reputation_Url</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

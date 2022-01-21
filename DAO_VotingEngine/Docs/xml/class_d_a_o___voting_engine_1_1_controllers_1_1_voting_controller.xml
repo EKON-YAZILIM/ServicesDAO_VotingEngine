@@ -1,0 +1,339 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller" kind="class" language="C#" prot="public">
+    <compoundname>DAO_VotingEngine::Controllers::VotingController</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Controller</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a09d01861b06d0944c25dd0d187e6ad15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; VotingDto &gt;</type>
+        <definition>IEnumerable&lt; VotingDto &gt; DAO_VotingEngine.Controllers.VotingController.Get</definition>
+        <argsstring>()</argsstring>
+        <name>Get</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.Get</qualifiedname>
+        <briefdescription>
+<para>Get all votings list </para>
+        </briefdescription>
+        <detaileddescription>
+<para>returns&gt;AuctionBid List</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="31" column="28" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="31" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a809374be75a1b04a6d084a263363959a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>VotingDto</type>
+        <definition>VotingDto DAO_VotingEngine.Controllers.VotingController.GetId</definition>
+        <argsstring>(int id)</argsstring>
+        <name>GetId</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.GetId</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Gets votings by id </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Votings Class </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="57" column="26" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="57" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ac329c5be1896ac4b75357861235e744a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>VotingDto</type>
+        <definition>VotingDto DAO_VotingEngine.Controllers.VotingController.Post</definition>
+        <argsstring>([FromBody] VotingDto model)</argsstring>
+        <name>Post</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.Post</qualifiedname>
+        <param>
+          <attributes>[FromBody]</attributes>
+          <type>VotingDto</type>
+          <declname>model</declname>
+        </param>
+        <briefdescription>
+<para>Saves the voting using the post method. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="82" column="26" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="82" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ab5f3f491d7a2699126de4c7817e991a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; VotingDto &gt;</type>
+        <definition>List&lt; VotingDto &gt; DAO_VotingEngine.Controllers.VotingController.PostMultiple</definition>
+        <argsstring>([FromBody] List&lt; VotingDto &gt; model)</argsstring>
+        <name>PostMultiple</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.PostMultiple</qualifiedname>
+        <param>
+          <attributes>[FromBody]</attributes>
+          <type>List&lt; VotingDto &gt;</type>
+          <declname>model</declname>
+        </param>
+        <briefdescription>
+<para>Saves the list of the votings model using post method. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="106" column="21" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="106" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ae154baa5912235c9e834c00cf69086f0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DAO_VotingEngine.Controllers.VotingController.Delete</definition>
+        <argsstring>(int? ID)</argsstring>
+        <name>Delete</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.Delete</qualifiedname>
+        <param>
+          <type>int?</type>
+          <declname>ID</declname>
+        </param>
+        <briefdescription>
+<para>Deletes the votings by id Removes vote. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="131" column="21" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="131" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a86a97bd3f0de7dc13966b2c16a794073" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>VotingDto</type>
+        <definition>VotingDto DAO_VotingEngine.Controllers.VotingController.Update</definition>
+        <argsstring>([FromBody] VotingDto model)</argsstring>
+        <name>Update</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.Update</qualifiedname>
+        <param>
+          <attributes>[FromBody]</attributes>
+          <type>VotingDto</type>
+          <declname>model</declname>
+        </param>
+        <briefdescription>
+<para>Updates the vote by model using put method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="155" column="26" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="155" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a16846e2d897a9fff7fc1bbb3ee79e71c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>PaginationEntity&lt; VotingDto &gt;</type>
+        <definition>PaginationEntity&lt; VotingDto &gt; DAO_VotingEngine.Controllers.VotingController.GetPaged</definition>
+        <argsstring>(int page=1, int pageCount=30)</argsstring>
+        <name>GetPaged</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.GetPaged</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>page</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pageCount</declname>
+          <defval>30</defval>
+        </param>
+        <briefdescription>
+<para>Brings up the voting pages. The selected page is fetched. Not all pages are returned </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="180" column="33" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="180" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a8619348a56d374a24fb864811f65fc92" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; VotingDto &gt;</type>
+        <definition>List&lt; VotingDto &gt; DAO_VotingEngine.Controllers.VotingController.GetVotingByStatus</definition>
+        <argsstring>(Enums.VoteStatusTypes? status)</argsstring>
+        <name>GetVotingByStatus</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.GetVotingByStatus</qualifiedname>
+        <param>
+          <type>Enums.VoteStatusTypes?</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+<para>Gets votings by status if status parameter is, null returned all votings list. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Votings List </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="214" column="21" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="214" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1acd5762e41e0dbf46cadf161d548b15f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; VotingDto &gt;</type>
+        <definition>List&lt; VotingDto &gt; DAO_VotingEngine.Controllers.VotingController.GetByJobId</definition>
+        <argsstring>(int jobid)</argsstring>
+        <name>GetByJobId</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.GetByJobId</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>jobid</declname>
+        </param>
+        <briefdescription>
+<para>Gets votings by jobId </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Votings List </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="247" column="21" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="247" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ac02db367d3101b6bbf1612535cfbf9c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>VotingDto</type>
+        <definition>VotingDto DAO_VotingEngine.Controllers.VotingController.GetInformalVotingByJobId</definition>
+        <argsstring>(int jobid)</argsstring>
+        <name>GetInformalVotingByJobId</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.GetInformalVotingByJobId</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>jobid</declname>
+        </param>
+        <briefdescription>
+<para>Gets informal voting by jobId </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Votings Class </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="274" column="26" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="274" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ad60d52c29e182b4c325fc32002705912" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; VotingDto &gt;</type>
+        <definition>List&lt; VotingDto &gt; DAO_VotingEngine.Controllers.VotingController.GetCompletedVotingsByJobIds</definition>
+        <argsstring>(List&lt; int &gt; jobids)</argsstring>
+        <name>GetCompletedVotingsByJobIds</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.GetCompletedVotingsByJobIds</qualifiedname>
+        <param>
+          <type>List&lt; int &gt;</type>
+          <declname>jobids</declname>
+        </param>
+        <briefdescription>
+<para>Gets completed votings by jobId </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Votings List</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="301" column="21" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="301" bodyend="320"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1acc4b3f90d3f40902ff27ec84ddb45476" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>SimpleResponse</type>
+        <definition>SimpleResponse DAO_VotingEngine.Controllers.VotingController.StartInformalVoting</definition>
+        <argsstring>([FromBody] VotingDto model)</argsstring>
+        <name>StartInformalVoting</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.StartInformalVoting</qualifiedname>
+        <param>
+          <attributes>[FromBody]</attributes>
+          <type>VotingDto</type>
+          <declname>model</declname>
+        </param>
+        <briefdescription>
+<para>Saves the informal votiong using the post method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>model</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="328" column="31" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="328" bodyend="369"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a2e54c2449d68bf52003054baad72d4c7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>SimpleResponse</type>
+        <definition>SimpleResponse DAO_VotingEngine.Controllers.VotingController.RestartVoting</definition>
+        <argsstring>(int votingId)</argsstring>
+        <name>RestartVoting</name>
+        <qualifiedname>DAO_VotingEngine.Controllers.VotingController.RestartVoting</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>votingId</declname>
+        </param>
+        <briefdescription>
+<para>Restart Voting using get method </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>votingId</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="377" column="31" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="377" bodyend="429"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>AuctionController contains voting operation methods </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Controller</label>
+      </node>
+      <node id="1">
+        <label>DAO_VotingEngine.Controllers.VotingController</label>
+        <link refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Controller</label>
+      </node>
+      <node id="1">
+        <label>DAO_VotingEngine.Controllers.VotingController</label>
+        <link refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="DAO_VotingEngine/Controllers/VotingController.cs" line="23" column="11" bodyfile="DAO_VotingEngine/Controllers/VotingController.cs" bodystart="24" bodyend="430"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ae154baa5912235c9e834c00cf69086f0" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>Delete</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a09d01861b06d0944c25dd0d187e6ad15" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>Get</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1acd5762e41e0dbf46cadf161d548b15f9" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>GetByJobId</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ad60d52c29e182b4c325fc32002705912" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>GetCompletedVotingsByJobIds</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a809374be75a1b04a6d084a263363959a" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>GetId</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ac02db367d3101b6bbf1612535cfbf9c9" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>GetInformalVotingByJobId</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a16846e2d897a9fff7fc1bbb3ee79e71c" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>GetPaged</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a8619348a56d374a24fb864811f65fc92" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>GetVotingByStatus</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ac329c5be1896ac4b75357861235e744a" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>Post</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ab5f3f491d7a2699126de4c7817e991a9" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>PostMultiple</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a2e54c2449d68bf52003054baad72d4c7" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>RestartVoting</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1acc4b3f90d3f40902ff27ec84ddb45476" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>StartInformalVoting</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a86a97bd3f0de7dc13966b2c16a794073" prot="public" virt="non-virtual"><scope>DAO_VotingEngine::Controllers::VotingController</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

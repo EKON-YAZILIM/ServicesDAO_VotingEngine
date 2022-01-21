@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.3" xml:lang="en-US">
+  <compound refid="class_d_a_o___voting_engine_1_1_mapping_1_1_auto_mapper_base" kind="class"><name>DAO_VotingEngine::Mapping::AutoMapperBase</name>
+    <member refid="class_d_a_o___voting_engine_1_1_mapping_1_1_auto_mapper_base_1a2113d03a1ae72321259906729fcd0f13" kind="variable"><name>_mapper</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_mapping_1_1_auto_mapper_base_1ad76c3ee55eabd8955eb8088800b254ad" kind="function"><name>AutoMapperBase</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_mapping_1_1_auto_mapper_base_1a09245578a8397127a84dc8a2af1763d5" kind="function"><name>ToMappedPagedList&lt; TSource, TDestination &gt;</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context" kind="class"><name>DAO_VotingEngine::Contexts::dao_votesdb_context</name>
+    <member refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1acead40db1e3316f0124e08baddd9d34c" kind="property"><name>Votings</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1a9361f247db942742b3ed736df9c39db1" kind="property"><name>Votes</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1a19d719184ca2d07f5f38e18bc6741a97" kind="function"><name>dao_votesdb_context</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_contexts_1_1dao__votesdb__context_1a299325b9a34928fa687c1b3d3acbdc87" kind="function"><name>OnConfiguring</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_migrations_1_1dao__votesdb__context_model_snapshot" kind="class"><name>DAO_VotingEngine::Migrations::dao_votesdb_contextModelSnapshot</name>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1dao__votesdb__context_model_snapshot_1ae06e80ba100a5d481591c2b853e6bd3c" kind="function"><name>BuildModel</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init" kind="class"><name>DAO_VotingEngine::Migrations::db_init</name>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init_1a2e7646e99d92fd34d32a042225863d4d" kind="function"><name>Up</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init_1a110ab996f1d5626d36590c43e8fc02e8" kind="function"><name>Down</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init_1a8a98f7dfabd286b55b7060e3b350af7d" kind="function"><name>BuildTargetModel</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added" kind="class"><name>DAO_VotingEngine::Migrations::EligibleUserCount_added</name>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added_1adc59531388e42255d56bda8f98faef7d" kind="function"><name>Up</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added_1a9bb3afa1bffb118f03cf0f2e69911ee0" kind="function"><name>Down</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added_1a30dddd27dd2030948f2b0efed58ca544" kind="function"><name>BuildTargetModel</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_controllers_1_1_info_controller" kind="class"><name>DAO_VotingEngine::Controllers::InfoController</name>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_info_controller_1af0d79afbeeee615e14671b170de3da5f" kind="function"><name>GetAppInfo</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_info_controller_1a82afa89e2780a130c0ddc47308321070" kind="function"><name>ResetErrors</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_mapping_1_1_mapping_profile" kind="class"><name>DAO_VotingEngine::Mapping::MappingProfile</name>
+    <member refid="class_d_a_o___voting_engine_1_1_mapping_1_1_mapping_profile_1a57966f99677f4c1db016289444209ada" kind="function"><name>MappingProfile</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_program" kind="class"><name>DAO_VotingEngine::Program</name>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1a855f0af9a3ae68956a783a0558544797" kind="variable"><name>monitizer</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1a404d96d6f78cab845524a37f1a8c676c" kind="variable"><name>rabbitMq</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1a589d3336e672d76568ecb74184fdf697" kind="variable"><name>mysql</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1a38b0538a0828df0dc96fb3ab75a05300" kind="variable"><name>dbOptions</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1aa7718c6268c2c158cc88fe3d8343610e" kind="property"><name>_settings</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1a1e92c0f5f79146df783032978605aaa8" kind="function"><name>Main</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1ad713213385aab58a489c76aaa3bb5ab9" kind="function"><name>CreateHostBuilder</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_migrations_1_1quorum__ratio__added" kind="class"><name>DAO_VotingEngine::Migrations::quorum_ratio_added</name>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1quorum__ratio__added_1a3dac2725c14fd4a1eb9364bd4d4ecf77" kind="function"><name>Up</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1quorum__ratio__added_1a4b383d3a368f44de5b2f312bc2de48ec" kind="function"><name>Down</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1quorum__ratio__added_1a3374c3379a0ffbc3f53e02e1707979f9" kind="function"><name>BuildTargetModel</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_program_1_1_settings" kind="class"><name>DAO_VotingEngine::Program::Settings</name>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1a1f7888ad6aa7163e2063dad2bde596f8" kind="property"><name>DbConnectionString</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1a8ad21f701858d63f77eed8a4a9434849" kind="property"><name>RabbitMQUrl</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1afd0008038f24d0b61e91450cae135a0d" kind="property"><name>RabbitMQUsername</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1a6dbb5c3d72a06e297dde78b777a0bdf5" kind="property"><name>RabbitMQPassword</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_program_1_1_settings_1ab95399ab63b6725e3d4f315a0c72828d" kind="property"><name>Service_Reputation_Url</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_startup" kind="class"><name>DAO_VotingEngine::Startup</name>
+    <member refid="class_d_a_o___voting_engine_1_1_startup_1a5647b90c833b1217d36b10de6842a974" kind="property"><name>Configuration</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_startup_1acdb031776bdef74150a56d9734aa6628" kind="function"><name>Startup</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_startup_1af8d0c3435c0a26939a9daae7ef34bd56" kind="function"><name>ConfigureServices</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_startup_1a2abf1123bf8dfabd0203cdb83f34b24b" kind="function"><name>Configure</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_startup_1ad557ff0fc474fb5c42446d37b6217f88" kind="function"><name>LoadConfig</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_startup_1a8073fb48bf02cc321513c9e57ee5e294" kind="function"><name>InitializeService</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_timed_events" kind="class"><name>DAO_VotingEngine::TimedEvents</name>
+    <member refid="class_d_a_o___voting_engine_1_1_timed_events_1a9b394db786a64d216deb6539acd09354" kind="variable"><name>votingStatusTimer</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_timed_events_1a57c2c382ed0d2dee6f09b772fd141fa3" kind="function"><name>StartTimers</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_timed_events_1afe655c70ff6304d92baa639556e1d88d" kind="function"><name>CheckVotingStatus</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_models_1_1_vote" kind="class"><name>DAO_VotingEngine::Models::Vote</name>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a9b0e217ec833b58d3a0bede7b3b1d069" kind="property"><name>VoteID</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a15d84c6b7e8790a1140ae6beff0fb640" kind="property"><name>VotingID</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a418e81dfd2c2d46fa30876750e0811e6" kind="property"><name>UserID</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1a07a7fa36492087e9ee3a1c0e5aa94973" kind="property"><name>Date</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_vote_1aba58b839946cb7c29a808a0ecf43b85b" kind="property"><name>Direction</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller" kind="class"><name>DAO_VotingEngine::Controllers::VoteController</name>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1af82642a943a00d062df96ea2a8f588d8" kind="function"><name>Get</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1ada5ff0186eeae1acd2813a9c57af802e" kind="function"><name>GetId</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1aea36604c6345100461b2de1ae5644f90" kind="function"><name>Post</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1a6796cf91b31e31b5e7916e7c757bc66c" kind="function"><name>PostMultiple</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1a788550f786ddf9e50116a46e818acaa4" kind="function"><name>Delete</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1a9e930614ea56520ea211f44c0532a20f" kind="function"><name>Update</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1a051661edb2d8975dbe5ba84472bcdb6a" kind="function"><name>GetPaged</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1a3cfaec75894035f115ea2a3ddab7a207" kind="function"><name>GetAllVotesByVotingId</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1a148e064b8ecdeaf9f73121f85b638d55" kind="function"><name>SubmitVote</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_vote_controller_1a4c75637896eea49f135beeec6b91408c" kind="function"><name>GetAllVotesByUserId</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_models_1_1_voting" kind="class"><name>DAO_VotingEngine::Models::Voting</name>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1a147bf620f85db06cad9bb69a845984a8" kind="property"><name>VotingID</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1aa2ed1a899ad7e7e7fd488e8a7e13c7f6" kind="property"><name>JobID</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1a9701ca4f3563492dc32b350c62007ec2" kind="property"><name>IsFormal</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1affebf8ae02cc8498e32715c12c31ca3c" kind="property"><name>CreateDate</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1aaf957ccb4cbd7afb5f00743fd20094f2" kind="property"><name>StartDate</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1ab26a0259c4055fb33bdaa474775e101f" kind="property"><name>EndDate</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1afef335923510c66be15a6f1d2564d5b3" kind="property"><name>Status</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1a7486648b5b4b02e1711d1a8dfd7dc81f" kind="property"><name>QuorumCount</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1a4ddbec771af7e6584a7224726ee6c645" kind="property"><name>EligibleUserCount</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1acc4f30c493f5d8c32e99b3bbad23938e" kind="property"><name>QuorumRatio</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1a035ca044c356018119e46b7baf87a907" kind="property"><name>Type</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1ad57cdca6dcecba95fd50db3194631ab7" kind="property"><name>VoteCount</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1afeb61def8afab6da391a92d4efb25053" kind="property"><name>StakedFor</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1a63cac467fe58d5764df67acc958aee9a" kind="property"><name>StakedAgainst</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_models_1_1_voting_1a2c9880b6e26de6d17e4b92b8168c96d7" kind="property"><name>PolicingRate</name></member>
+  </compound>
+  <compound refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller" kind="class"><name>DAO_VotingEngine::Controllers::VotingController</name>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a09d01861b06d0944c25dd0d187e6ad15" kind="function"><name>Get</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a809374be75a1b04a6d084a263363959a" kind="function"><name>GetId</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ac329c5be1896ac4b75357861235e744a" kind="function"><name>Post</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ab5f3f491d7a2699126de4c7817e991a9" kind="function"><name>PostMultiple</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ae154baa5912235c9e834c00cf69086f0" kind="function"><name>Delete</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a86a97bd3f0de7dc13966b2c16a794073" kind="function"><name>Update</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a16846e2d897a9fff7fc1bbb3ee79e71c" kind="function"><name>GetPaged</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a8619348a56d374a24fb864811f65fc92" kind="function"><name>GetVotingByStatus</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1acd5762e41e0dbf46cadf161d548b15f9" kind="function"><name>GetByJobId</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ac02db367d3101b6bbf1612535cfbf9c9" kind="function"><name>GetInformalVotingByJobId</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1ad60d52c29e182b4c325fc32002705912" kind="function"><name>GetCompletedVotingsByJobIds</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1acc4b3f90d3f40902ff27ec84ddb45476" kind="function"><name>StartInformalVoting</name></member>
+    <member refid="class_d_a_o___voting_engine_1_1_controllers_1_1_voting_controller_1a2e54c2449d68bf52003054baad72d4c7" kind="function"><name>RestartVoting</name></member>
+  </compound>
+  <compound refid="namespace_auto_mapper" kind="namespace"><name>AutoMapper</name>
+  </compound>
+  <compound refid="namespace_d_a_o___voting_engine" kind="namespace"><name>DAO_VotingEngine</name>
+  </compound>
+  <compound refid="namespace_d_a_o___voting_engine_1_1_contexts" kind="namespace"><name>DAO_VotingEngine::Contexts</name>
+  </compound>
+  <compound refid="namespace_d_a_o___voting_engine_1_1_controllers" kind="namespace"><name>DAO_VotingEngine::Controllers</name>
+  </compound>
+  <compound refid="namespace_d_a_o___voting_engine_1_1_mapping" kind="namespace"><name>DAO_VotingEngine::Mapping</name>
+  </compound>
+  <compound refid="namespace_d_a_o___voting_engine_1_1_mapping_1_1_auto_mapper_base" kind="namespace"><name>DAO_VotingEngine::Mapping::AutoMapperBase</name>
+  </compound>
+  <compound refid="namespace_d_a_o___voting_engine_1_1_migrations" kind="namespace"><name>DAO_VotingEngine::Migrations</name>
+  </compound>
+  <compound refid="namespace_d_a_o___voting_engine_1_1_models" kind="namespace"><name>DAO_VotingEngine::Models</name>
+  </compound>
+  <compound refid="namespace_d_a_o___voting_engine_1_1_program" kind="namespace"><name>DAO_VotingEngine::Program</name>
+  </compound>
+  <compound refid="namespace_helpers" kind="namespace"><name>Helpers</name>
+  </compound>
+  <compound refid="namespace_helpers_1_1_constants" kind="namespace"><name>Helpers::Constants</name>
+  </compound>
+  <compound refid="namespace_helpers_1_1_constants_1_1_enums" kind="namespace"><name>Helpers::Constants::Enums</name>
+  </compound>
+  <compound refid="namespace_helpers_1_1_models_1_1_dto_models_1_1_reputation_db_dto" kind="namespace"><name>Helpers::Models::DtoModels::ReputationDbDto</name>
+  </compound>
+  <compound refid="namespace_helpers_1_1_models_1_1_dto_models_1_1_vote_db_dto" kind="namespace"><name>Helpers::Models::DtoModels::VoteDbDto</name>
+  </compound>
+  <compound refid="namespace_helpers_1_1_models_1_1_shared_models" kind="namespace"><name>Helpers::Models::SharedModels</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_asp_net_core_1_1_builder" kind="namespace"><name>Microsoft::AspNetCore::Builder</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_asp_net_core_1_1_hosting" kind="namespace"><name>Microsoft::AspNetCore::Hosting</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_asp_net_core_1_1_https_policy" kind="namespace"><name>Microsoft::AspNetCore::HttpsPolicy</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_asp_net_core_1_1_localization" kind="namespace"><name>Microsoft::AspNetCore::Localization</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_asp_net_core_1_1_mvc" kind="namespace"><name>Microsoft::AspNetCore::Mvc</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_entity_framework_core" kind="namespace"><name>Microsoft::EntityFrameworkCore</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_entity_framework_core_1_1_infrastructure" kind="namespace"><name>Microsoft::EntityFrameworkCore::Infrastructure</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_entity_framework_core_1_1_migrations" kind="namespace"><name>Microsoft::EntityFrameworkCore::Migrations</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_entity_framework_core_1_1_storage_1_1_value_conversion" kind="namespace"><name>Microsoft::EntityFrameworkCore::Storage::ValueConversion</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_extensions_1_1_configuration" kind="namespace"><name>Microsoft::Extensions::Configuration</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_extensions_1_1_dependency_injection" kind="namespace"><name>Microsoft::Extensions::DependencyInjection</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_extensions_1_1_hosting" kind="namespace"><name>Microsoft::Extensions::Hosting</name>
+  </compound>
+  <compound refid="namespace_microsoft_1_1_extensions_1_1_logging" kind="namespace"><name>Microsoft::Extensions::Logging</name>
+  </compound>
+  <compound refid="namespace_my_sql_1_1_entity_framework_core_1_1_metadata" kind="namespace"><name>MySql::EntityFrameworkCore::Metadata</name>
+  </compound>
+  <compound refid="namespace_paged_list_1_1_core" kind="namespace"><name>PagedList::Core</name>
+  </compound>
+  <compound refid="namespacestatic" kind="namespace"><name>static</name>
+  </compound>
+  <compound refid="namespace_system" kind="namespace"><name>System</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections_1_1_generic" kind="namespace"><name>System::Collections::Generic</name>
+  </compound>
+  <compound refid="namespace_system_1_1_component_model_1_1_data_annotations" kind="namespace"><name>System::ComponentModel::DataAnnotations</name>
+  </compound>
+  <compound refid="namespace_system_1_1_globalization" kind="namespace"><name>System::Globalization</name>
+  </compound>
+  <compound refid="namespace_system_1_1_linq" kind="namespace"><name>System::Linq</name>
+  </compound>
+  <compound refid="namespace_system_1_1_reflection" kind="namespace"><name>System::Reflection</name>
+  </compound>
+  <compound refid="namespace_system_1_1_threading_1_1_tasks" kind="namespace"><name>System::Threading::Tasks</name>
+  </compound>
+  <compound refid="namespace_system_1_1_timers" kind="namespace"><name>System::Timers</name>
+  </compound>
+  <compound refid="dao__votesdb__context_8cs" kind="file"><name>dao_votesdb_context.cs</name>
+  </compound>
+  <compound refid="_info_controller_8cs" kind="file"><name>InfoController.cs</name>
+  </compound>
+  <compound refid="_vote_controller_8cs" kind="file"><name>VoteController.cs</name>
+  </compound>
+  <compound refid="_voting_controller_8cs" kind="file"><name>VotingController.cs</name>
+  </compound>
+  <compound refid="_auto_mapper_base_8cs" kind="file"><name>AutoMapperBase.cs</name>
+  </compound>
+  <compound refid="_mapping_profile_8cs" kind="file"><name>MappingProfile.cs</name>
+  </compound>
+  <compound refid="20211116185219__db__init_8cs" kind="file"><name>20211116185219_db_init.cs</name>
+  </compound>
+  <compound refid="20211116185219__db__init_8_designer_8cs" kind="file"><name>20211116185219_db_init.Designer.cs</name>
+  </compound>
+  <compound refid="20211202181233__quorum__ratio__added_8cs" kind="file"><name>20211202181233_quorum_ratio_added.cs</name>
+  </compound>
+  <compound refid="20211202181233__quorum__ratio__added_8_designer_8cs" kind="file"><name>20211202181233_quorum_ratio_added.Designer.cs</name>
+  </compound>
+  <compound refid="20211218184140___eligible_user_count__added_8cs" kind="file"><name>20211218184140_EligibleUserCount_added.cs</name>
+  </compound>
+  <compound refid="20211218184140___eligible_user_count__added_8_designer_8cs" kind="file"><name>20211218184140_EligibleUserCount_added.Designer.cs</name>
+  </compound>
+  <compound refid="dao__votesdb__context_model_snapshot_8cs" kind="file"><name>dao_votesdb_contextModelSnapshot.cs</name>
+  </compound>
+  <compound refid="_vote_8cs" kind="file"><name>Vote.cs</name>
+  </compound>
+  <compound refid="_voting_8cs" kind="file"><name>Voting.cs</name>
+  </compound>
+  <compound refid="_debug_2netcoreapp3_81_2_8_n_e_t_core_app_00_version_0av3_81_8_assembly_attributes_8cs" kind="file"><name>.NETCoreApp,Version=v3.1.AssemblyAttributes.cs</name>
+  </compound>
+  <compound refid="_release_2netcoreapp3_81_2_8_n_e_t_core_app_00_version_0av3_81_8_assembly_attributes_8cs" kind="file"><name>.NETCoreApp,Version=v3.1.AssemblyAttributes.cs</name>
+  </compound>
+  <compound refid="_debug_2netcoreapp3_81_2_d_a_o___voting_engine_8_assembly_info_8cs" kind="file"><name>DAO_VotingEngine.AssemblyInfo.cs</name>
+  </compound>
+  <compound refid="_release_2netcoreapp3_81_2_d_a_o___voting_engine_8_assembly_info_8cs" kind="file"><name>DAO_VotingEngine.AssemblyInfo.cs</name>
+  </compound>
+  <compound refid="_program_8cs" kind="file"><name>Program.cs</name>
+  </compound>
+  <compound refid="_startup_8cs" kind="file"><name>Startup.cs</name>
+  </compound>
+  <compound refid="_timed_events_8cs" kind="file"><name>TimedEvents.cs</name>
+  </compound>
+  <compound refid="dir_bb8c6b48c657fa54d270739eda875bca" kind="dir"><name>DAO_VotingEngine/Contexts</name>
+  </compound>
+  <compound refid="dir_a0def12df04fb73445318b636c50b514" kind="dir"><name>DAO_VotingEngine/Controllers</name>
+  </compound>
+  <compound refid="dir_155a3292e7a118af44587e937c6a7b26" kind="dir"><name>DAO_VotingEngine</name>
+  </compound>
+  <compound refid="dir_d497f138a53b21a77094e7fce52a5793" kind="dir"><name>DAO_VotingEngine/obj/Debug</name>
+  </compound>
+  <compound refid="dir_fa203edc307263ce8266e10b9b9788f1" kind="dir"><name>DAO_VotingEngine/Mapping</name>
+  </compound>
+  <compound refid="dir_65f07564a2ce86427bd9fc3d2cb23228" kind="dir"><name>DAO_VotingEngine/Migrations</name>
+  </compound>
+  <compound refid="dir_d671dd1ffb2392453fb514ab78dc28c2" kind="dir"><name>DAO_VotingEngine/Models</name>
+  </compound>
+  <compound refid="dir_5c8949b2ef4f94b325a5e12a01b488fb" kind="dir"><name>DAO_VotingEngine/obj/Debug/netcoreapp3.1</name>
+  </compound>
+  <compound refid="dir_27364af7a09153d80b36bc5542b98c9d" kind="dir"><name>DAO_VotingEngine/obj/Release/netcoreapp3.1</name>
+  </compound>
+  <compound refid="dir_fb0fb7a279d96da0b5ca42f7e92991b3" kind="dir"><name>DAO_VotingEngine/obj</name>
+  </compound>
+  <compound refid="dir_86237155a8b41ccaed2ff7e6170ee1ab" kind="dir"><name>DAO_VotingEngine/obj/Release</name>
+  </compound>
+</doxygenindex>

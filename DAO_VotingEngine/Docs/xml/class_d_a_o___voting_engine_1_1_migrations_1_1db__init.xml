@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="class_d_a_o___voting_engine_1_1_migrations_1_1db__init" kind="class" language="C#" prot="public">
+    <compoundname>DAO_VotingEngine::Migrations::db_init</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Migration</basecompoundref>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_migrations_1_1db__init_1a2e7646e99d92fd34d32a042225863d4d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_VotingEngine.Migrations.db_init.Up</definition>
+        <argsstring>(MigrationBuilder migrationBuilder)</argsstring>
+        <name>Up</name>
+        <qualifiedname>DAO_VotingEngine.Migrations.db_init.Up</qualifiedname>
+        <param>
+          <type>MigrationBuilder</type>
+          <declname>migrationBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Migrations/20211116185219_db_init.cs" line="9" column="33" bodyfile="DAO_VotingEngine/Migrations/20211116185219_db_init.cs" bodystart="9" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_migrations_1_1db__init_1a110ab996f1d5626d36590c43e8fc02e8" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_VotingEngine.Migrations.db_init.Down</definition>
+        <argsstring>(MigrationBuilder migrationBuilder)</argsstring>
+        <name>Down</name>
+        <qualifiedname>DAO_VotingEngine.Migrations.db_init.Down</qualifiedname>
+        <param>
+          <type>MigrationBuilder</type>
+          <declname>migrationBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Migrations/20211116185219_db_init.cs" line="52" column="33" bodyfile="DAO_VotingEngine/Migrations/20211116185219_db_init.cs" bodystart="52" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_a_o___voting_engine_1_1_migrations_1_1db__init_1a8a98f7dfabd286b55b7060e3b350af7d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void DAO_VotingEngine.Migrations.db_init.BuildTargetModel</definition>
+        <argsstring>(ModelBuilder modelBuilder)</argsstring>
+        <name>BuildTargetModel</name>
+        <qualifiedname>DAO_VotingEngine.Migrations.db_init.BuildTargetModel</qualifiedname>
+        <param>
+          <type>ModelBuilder</type>
+          <declname>modelBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DAO_VotingEngine/Migrations/20211116185219_db_init.Designer.cs" line="15" column="33" bodyfile="DAO_VotingEngine/Migrations/20211116185219_db_init.Designer.cs" bodystart="15" bodyend="92"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>DAO_VotingEngine.Migrations.db_init</label>
+        <link refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Migration</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>DAO_VotingEngine.Migrations.db_init</label>
+        <link refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Migration</label>
+      </node>
+    </collaborationgraph>
+    <location file="DAO_VotingEngine/Migrations/20211116185219_db_init.cs" line="7" column="19" bodyfile="DAO_VotingEngine/Migrations/20211116185219_db_init.cs" bodystart="8" bodyend="60"/>
+    <listofallmembers>
+      <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init_1a8a98f7dfabd286b55b7060e3b350af7d" prot="protected" virt="non-virtual"><scope>DAO_VotingEngine::Migrations::db_init</scope><name>BuildTargetModel</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init_1a110ab996f1d5626d36590c43e8fc02e8" prot="protected" virt="non-virtual"><scope>DAO_VotingEngine::Migrations::db_init</scope><name>Down</name></member>
+      <member refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init_1a2e7646e99d92fd34d32a042225863d4d" prot="protected" virt="non-virtual"><scope>DAO_VotingEngine::Migrations::db_init</scope><name>Up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

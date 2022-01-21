@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="namespace_d_a_o___voting_engine_1_1_migrations" kind="namespace" language="C#">
+    <compoundname>DAO_VotingEngine::Migrations</compoundname>
+    <innerclass refid="class_d_a_o___voting_engine_1_1_migrations_1_1dao__votesdb__context_model_snapshot" prot="public">DAO_VotingEngine::Migrations::dao_votesdb_contextModelSnapshot</innerclass>
+    <innerclass refid="class_d_a_o___voting_engine_1_1_migrations_1_1db__init" prot="public">DAO_VotingEngine::Migrations::db_init</innerclass>
+    <innerclass refid="class_d_a_o___voting_engine_1_1_migrations_1_1_eligible_user_count__added" prot="public">DAO_VotingEngine::Migrations::EligibleUserCount_added</innerclass>
+    <innerclass refid="class_d_a_o___voting_engine_1_1_migrations_1_1quorum__ratio__added" prot="public">DAO_VotingEngine::Migrations::quorum_ratio_added</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DAO_VotingEngine/Migrations/20211116185219_db_init.cs" line="5" column="1"/>
+  </compounddef>
+</doxygen>
