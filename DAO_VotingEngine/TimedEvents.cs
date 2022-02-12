@@ -55,41 +55,37 @@ namespace DAO_VotingEngine
                             db.Entry(voting).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                             db.SaveChanges();
 
-                            //If informal voting passed start formal voting
-                            if(voting.StakedFor >= voting.StakedAgainst)
-                            {                          
-                                Voting formalVoting = new Voting();
-                                formalVoting.CreateDate = DateTime.Now;
-                                formalVoting.StartDate = DateTime.Now;
-                                TimeSpan ts = voting.EndDate - voting.StartDate;
-                                formalVoting.EndDate = DateTime.Now.Add(ts);
-                                formalVoting.IsFormal = true;
-                                formalVoting.JobID = Convert.ToInt32(voting.JobID);
-                                formalVoting.Status = Enums.VoteStatusTypes.Active;
-                                formalVoting.Type = voting.Type;
-                                formalVoting.PolicingRate = voting.PolicingRate;
+                            Voting formalVoting = new Voting();
+                            formalVoting.CreateDate = DateTime.Now;
+                            formalVoting.StartDate = DateTime.Now;
+                            TimeSpan ts = voting.EndDate - voting.StartDate;
+                            formalVoting.EndDate = DateTime.Now.Add(ts);
+                            formalVoting.IsFormal = true;
+                            formalVoting.JobID = Convert.ToInt32(voting.JobID);
+                            formalVoting.Status = Enums.VoteStatusTypes.Active;
+                            formalVoting.Type = voting.Type;
+                            formalVoting.PolicingRate = voting.PolicingRate;
 
-                                if (voting.QuorumRatio != null && voting.QuorumRatio > 0)
-                                {
-                                    formalVoting.QuorumCount = Convert.ToInt32(voting.QuorumRatio * Convert.ToDouble(db.Votes.Count(x => x.VotingID == voting.VotingID)));
-                                }
-                                else
-                                {
-                                    formalVoting.QuorumCount = Convert.ToInt32(voting.QuorumRatio * 0.5);
-                                }
-
-                                formalVoting.EligibleUserCount = db.Votes.Count(x => x.VotingID == voting.VotingID);
-                                formalVoting.QuorumRatio = voting.QuorumRatio;
-                                formalVoting.StakedAgainst = 0;
-                                formalVoting.StakedFor = 0;
-                                db.Votings.Add(formalVoting);
-                                db.SaveChanges();
-
-
-                                //Send email notification to VAs
-                                SendEmailModel emailModel = new SendEmailModel() { Subject = "Formal Voting Started For Job #" + voting.JobID, Content = "Formal voting process started for job #" + voting.JobID + "<br><br>Please submit your vote until " + formalVoting.EndDate.ToString(), TargetGroup = Enums.UserIdentityType.VotingAssociate };
-                                Program.rabbitMq.Publish(Helpers.Constants.FeedNames.NotificationFeed, "email", Helpers.Serializers.Serialize(emailModel));
+                            if (voting.QuorumRatio != null && voting.QuorumRatio > 0)
+                            {
+                                formalVoting.QuorumCount = Convert.ToInt32(voting.QuorumRatio * Convert.ToDouble(db.Votes.Count(x => x.VotingID == voting.VotingID)));
                             }
+                            else
+                            {
+                                formalVoting.QuorumCount = Convert.ToInt32(voting.QuorumRatio * 0.5);
+                            }
+
+                            formalVoting.EligibleUserCount = db.Votes.Count(x => x.VotingID == voting.VotingID);
+                            formalVoting.QuorumRatio = voting.QuorumRatio;
+                            formalVoting.StakedAgainst = 0;
+                            formalVoting.StakedFor = 0;
+                            db.Votings.Add(formalVoting);
+                            db.SaveChanges();
+
+
+                            //Send email notification to VAs
+                            SendEmailModel emailModel = new SendEmailModel() { Subject = "Formal Voting Started For Job #" + voting.JobID, Content = "Formal voting process started for job #" + voting.JobID + "<br><br>Please submit your vote until " + formalVoting.EndDate.ToString(), TargetGroup = Enums.UserIdentityType.VotingAssociate };
+                            Program.rabbitMq.Publish(Helpers.Constants.FeedNames.NotificationFeed, "email", Helpers.Serializers.Serialize(emailModel));
 
                         }
                         //Quorum isn't reached -> Set voting status to Expired

@@ -298,5 +298,31 @@ namespace DAO_ReputationService.Controllers
             return _mapper.Map<List<UserReputationHistory>, List<UserReputationHistoryDto>>(model);
         }
 
+        [Route("GetByUserIdDate")]
+        [HttpGet]
+        public IEnumerable<UserReputationHistoryDto> GetByUserIdDate(int? userid, DateTime? start, DateTime? end)
+        {
+            List<UserReputationHistory> model = new List<UserReputationHistory>();
+
+            try
+            {
+                using (dao_reputationserv_context db = new dao_reputationserv_context())
+                {
+                    model = db.UserReputationHistories.Where(x => 
+                    (userid == null || x.UserID == userid) &&
+                    (start == null || x.Date >= start) &&
+                    (end == null || x.Date <= end) 
+                    )         
+                    .OrderByDescending(x => x.UserReputationHistoryID).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                model = new List<UserReputationHistory>();
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+
+            return _mapper.Map<List<UserReputationHistory>, List<UserReputationHistoryDto>>(model).ToArray();
+        }
     }
 }
