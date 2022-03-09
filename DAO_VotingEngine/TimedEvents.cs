@@ -118,7 +118,7 @@ namespace DAO_VotingEngine
                             //Distribute staked reputations (Only for job completion votings)
                             if (voting.Type == Enums.VoteTypes.JobCompletion)
                             {
-                                var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/DistributeStakes?votingId=" + voting.VotingID + "&jobId=" + voting.JobID + "&jobDoerRatio=" + voting.PolicingRate.ToString().Replace(",", "."));
+                                var jsonResult = Helpers.Request.Get(Program._settings.Service_Reputation_Url + "/UserReputationStake/DistributeStakes?votingId=" + voting.VotingID + "&jobId=" + voting.JobID + "&policingRate=" + voting.PolicingRate.ToString().Replace(",", "."));
                                 SimpleResponse parsedResult = Helpers.Serializers.DeserializeJson<SimpleResponse>(jsonResult);
                             }
                             else

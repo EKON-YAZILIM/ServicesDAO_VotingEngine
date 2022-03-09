@@ -324,5 +324,28 @@ namespace DAO_ReputationService.Controllers
 
             return _mapper.Map<List<UserReputationHistory>, List<UserReputationHistoryDto>>(model).ToArray();
         }
+   
+   
+        [Route("GetLastReputations")]
+        [HttpGet]
+        public List<UserReputationHistoryDto> GetLastReputations()
+        {
+            List<UserReputationHistory> model = new  List<UserReputationHistory>();
+
+            try
+            {
+                using (dao_reputationserv_context db = new dao_reputationserv_context())
+                {
+                    model = db.UserReputationHistories.OrderByDescending(x=>x.UserReputationHistoryID).ToList().GroupBy(x=>x.UserID).Select(x=>x.First()).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.monitizer.AddException(ex, LogTypes.ApplicationError, true);
+            }
+            
+            return _mapper.Map<List<UserReputationHistory>, List<UserReputationHistoryDto>>(model);
+        }
+
     }
 }

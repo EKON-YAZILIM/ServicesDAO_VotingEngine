@@ -469,7 +469,7 @@ namespace DAO_ReputationService.Controllers
         /// <returns></returns>
         [Route("DistributeStakes")]
         [HttpGet]
-        public SimpleResponse DistributeStakes(int votingId, int jobId, double jobDoerRatio)
+        public SimpleResponse DistributeStakes(int votingId, int jobId, double policingRate)
         {
             SimpleResponse res = new SimpleResponse();
 
@@ -559,7 +559,7 @@ namespace DAO_ReputationService.Controllers
                         db.SaveChanges();
                     }
 
-                    //Distribute or delete minted  reputation according to voting result
+                    //Distribute or delete minted reputation according to voting result
                     foreach (var mintedStake in mintList)
                     {
                         ReleaseStakesByType(Convert.ToInt32(mintedStake.ReferenceID), mintedStake.Type);
@@ -567,8 +567,8 @@ namespace DAO_ReputationService.Controllers
                         //If voting result is FOR -> Job completed succesfully and minted reputations should be released and distributed
                         if(winnerSide == StakeType.For)
                         {
-                            double jobDoerEarned = mintedStake.Amount * jobDoerRatio;
-                            double votersEarnedFromMint = mintedStake.Amount - jobDoerEarned;
+                            double votersEarnedFromMint = mintedStake.Amount * policingRate;
+                            double jobDoerEarned = mintedStake.Amount - votersEarnedFromMint;
 
                             //Distribute job doers share
                             if (jobDoerEarned > 0)

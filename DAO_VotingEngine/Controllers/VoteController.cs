@@ -235,18 +235,18 @@ namespace DAO_VotingEngine.Controllers
                         }
                     }
 
-                    //Save vote into database
-                    Vote vote = new Vote();
-                    vote.Date = DateTime.Now;
-                    vote.Direction = Direction;
-                    vote.VotingID = VotingID;
-                    vote.UserID = UserID;
-                    db.Votes.Add(vote);
-                    db.SaveChanges();
-
                     //Check if user staked reputation        
                     if (ReputationStake != null)
                     {
+                        //Save vote into database
+                        Vote vote = new Vote();
+                        vote.Date = DateTime.Now;
+                        vote.Direction = Direction;
+                        vote.VotingID = VotingID;
+                        vote.UserID = UserID;
+                        db.Votes.Add(vote);
+                        db.SaveChanges();
+
                         UserReputationStakeDto repModel = new UserReputationStakeDto();
                         repModel.ReferenceID = vote.VoteID;
                         repModel.ReferenceProcessID = vote.VotingID;
